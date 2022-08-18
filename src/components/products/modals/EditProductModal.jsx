@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Image } from 'cloudinary-react';
 
@@ -24,20 +23,10 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import ImageCropDialog from "../ui/ImageCropDialog";
+import ImageCropDialog from "../../ui/imageCrop/ImageCropDialog";
 
 import { verifyProductFields } from '../../../helpers/verifyProductFields';
 import { uploadImageToCloudinary } from '../../../helpers/uploadCloudinary';
-
-import { productStartUpdated } from '../../../store/thunks/products';
-import { clearActiveProduct } from '../../../store/slices/productSlice';
-import {
-    uiCloseProductModalEdit,
-    uiCloseProgressBackdrop,
-    uiOpenDialogFields,
-    uiOpenErrorAlert,
-    uiOpenProgressBackdrop
-} from '../../../store/slices/uiSlice';
 
 import { useCategoriesStore, useProductsStore, useUiStore } from '../../../hooks';
 
@@ -58,13 +47,22 @@ const initEvent = {
 
 export const EditProductModal = () => {
 
-    const dispatch = useDispatch();
-
     const imageRef = useRef();
 
-    const { activeProduct } = useSelector(state => state.product);
-    const { modalProductEdit } = useSelector(state => state.ui);
-    const { categories } = useSelector(state => state.categories);
+    const { categories } = useCategoriesStore();
+    const {
+        activeProduct,
+        productStartUpdated,
+        startClearActiveProduct,
+    } = useProductsStore();
+    const {
+        modalProductEdit,
+        startUiCloseProductModalEdit,
+        startUiCloseProgressBackdrop,
+        startUiOpenDialogFields,
+        startUiOpenErrorAlert,
+        startUiOpenProgressBackdrop,
+    } = useUiStore();
 
     const [categoryValue, setCategoryValue] = useState('');
     const [formValues, setFormValues] = useState(initEvent);
@@ -158,9 +156,9 @@ export const EditProductModal = () => {
     const handleClose = () => {
 
         setFormValues(initEvent);
-        dispatch(clearActiveProduct());
+        startClearActiveProduct();
         setCars([]);
-        dispatch(uiCloseProductModalEdit());
+        startUiCloseProductModalEdit();
         setCategoryValue('');
 
     };
@@ -178,7 +176,7 @@ export const EditProductModal = () => {
     const handleNewCategory = async () => {
 
         setCategoryValue('');
-        dispatch(uiCloseProductModalEdit());
+        startUiCloseProductModalEdit();
 
     }
 
@@ -258,13 +256,13 @@ export const EditProductModal = () => {
 
             if (errors.length >= 1) {
 
-                dispatch(uiOpenDialogFields(errors));
+                startUiOpenDialogFields(errors);
 
             } else {
 
                 handleClose();
 
-                dispatch(uiOpenProgressBackdrop());
+                startUiOpenProgressBackdrop();
 
 
                 const [one = '', two = '', tree = '', four = '', five = ''] = cars;
@@ -319,12 +317,12 @@ export const EditProductModal = () => {
                 const data = formValues;
                 data.img = newImages;
 
-                dispatch(productStartUpdated(data));
+                productStartUpdated(data);
 
             }
         } catch (error) {
-            dispatch(uiCloseProgressBackdrop());
-            dispatch(uiOpenErrorAlert('Error trying to create the product! Talk to developer'));
+            startUiCloseProgressBackdrop();
+            startUiOpenErrorAlert('Error trying to create the product! Talk to developer');
             console.log(error);
         }
 
@@ -554,14 +552,14 @@ export const EditProductModal = () => {
                                         >
                                             <ArrowRightIcon />
                                         </IconButton>
-                                        
-                            </div>
+
+                                    </div>
 
                                 </Container>
 
 
 
-                            {/* <div id="imagePreviewProduct">
+                                {/* <div id="imagePreviewProduct">
 
                                     {
 
@@ -585,45 +583,45 @@ export const EditProductModal = () => {
 
 
 
-                        </div>
+                            </div>
+                        </Container>
+
+
+
+                    </Box>
+                    <Box id='descriptionContainer'>
+
+                        <Container>
+
+                            <div>
+                                <TextareaAutosize
+                                    className="description"
+                                    required
+                                    id="outlined-required"
+                                    label="Descripción"
+                                    name='description'
+                                    variant='body2'
+                                    value={description}
+                                    onChange={handleProductInputChange}
+                                />
+
+                            </div>
+
+                            <Button
+                                type="submit"
+                                id="saveButton"
+                                variant="contained"
+                                onClick={handleSubmit}
+                            >Guardar</Button>
+
+                            <Button
+                                id="closeButton"
+                                variant="outlined"
+                                onClick={handleClose}
+                            >Cerrar</Button>
+                        </Container>
+                    </Box>
                 </Container>
-
-
-
-            </Box>
-            <Box id='descriptionContainer'>
-
-                <Container>
-
-                    <div>
-                        <TextareaAutosize
-                            className="description"
-                            required
-                            id="outlined-required"
-                            label="Descripción"
-                            name='description'
-                            variant='body2'
-                            value={description}
-                            onChange={handleProductInputChange}
-                        />
-
-                    </div>
-
-                    <Button
-                        type="submit"
-                        id="saveButton"
-                        variant="contained"
-                        onClick={handleSubmit}
-                    >Guardar</Button>
-
-                    <Button
-                        id="closeButton"
-                        variant="outlined"
-                        onClick={handleClose}
-                    >Cerrar</Button>
-                </Container>
-            </Box>
-        </Container>
             </Modal >
         </div >
     );

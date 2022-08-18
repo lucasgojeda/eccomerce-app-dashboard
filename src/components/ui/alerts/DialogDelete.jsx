@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,31 +10,34 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { uiCloseDialogDelete } from '../../../../store/slices/uiSlice';
-import { productStartDeleted } from '../../../../store/thunks/products';
-import { userStartDeleted } from '../../../../store/thunks/users';
-import { startDeleteRecords } from '../../../../store/thunks/records';
 import {
-    productBinStartDeleted,
-    userBinStartDeleted
-} from '../../../../store/thunks/Bin';
+    useBinStore,
+    useProductsStore,
+    useRecordsStore,
+    useUsersStore,
+    useUiStore
+} from '../../../hooks';
 
-import { styles__dialogDelete } from '../../../../styles/dashboard/ui/alerts/styles__dialogDelete';
+import { dialogDelete } from '../../../styles/components/ui';
 
 
 export const DialogDelete = () => {
 
-    const dispatch = useDispatch();
     const { pathname } = useLocation();
 
+    const { dialogDelete: dialogDeleteStatus, startUiCloseDialogDelete } = useUiStore();
 
-    const { dialogDelete } = useSelector(state => state.ui);
+    const { activeProduct, productStartDeleted } = useProductsStore();
+    const { activeUser, userStartDeleted } = useUsersStore();
 
-    const { activeProduct } = useSelector(state => state.product);
-    const { activeUser } = useSelector(state => state.users);
+    const { startDeleteRecords } = useRecordsStore();
 
-    const { activeBinProduct } = useSelector(state => state.bin);
-    const { activeBinUser } = useSelector(state => state.bin);
+    const {
+        activeBinProduct,
+        activeBinUser,
+        productBinStartDeleted,
+        userBinStartDeleted,
+    } = useBinStore();
 
 
     const theme = useTheme();
@@ -47,36 +49,36 @@ export const DialogDelete = () => {
 
 
     const handleClose = () => {
-        dispatch(uiCloseDialogDelete());
+        startUiCloseDialogDelete();
     };
 
     const handleDelete = () => {
-        dispatch(uiCloseDialogDelete());
+        startUiCloseDialogDelete();
         switch (pathname) {
 
             case '/dashboard/products':
-                dispatch(productStartDeleted(activeProduct))
+                productStartDeleted(activeProduct)
                 break;
 
             case '/dashboard/users':
-                dispatch(userStartDeleted(activeUser))
+                userStartDeleted(activeUser)
                 break;
 
             case '/dashboard/bin/products':
-                dispatch(productBinStartDeleted(activeBinProduct))
+                productBinStartDeleted(activeBinProduct)
                 break;
 
             case '/dashboard/bin/users':
-                dispatch(userBinStartDeleted(activeBinUser))
+                userBinStartDeleted(activeBinUser)
                 break;
 
             case '/dashboard/regist':
-                dispatch(startDeleteRecords())
+                startDeleteRecords()
                 break;
 
 
             default:
-                dispatch(productStartDeleted(activeProduct))
+                productStartDeleted(activeProduct)
                 break;
         }
 
@@ -85,8 +87,8 @@ export const DialogDelete = () => {
     return (
         <div>
             <Dialog
-                sx={styles__dialogDelete(sm, md, lg, xl)}
-                open={dialogDelete}
+                sx={dialogDelete(sm, md, lg, xl)}
+                open={dialogDeleteStatus}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"
             >

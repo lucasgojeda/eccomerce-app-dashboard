@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
     useLocation,
     useNavigate
@@ -31,32 +30,38 @@ import { useTheme } from '@mui/material/styles';
 import { Container } from '@mui/material';
 
 import {
-    uiOpenProductModal,
-    uiOpenProductModalEdit,
-    uiOpenUserModalAdd,
-    uiOpenUserModalEdit,
-    uiOpenDialogDelete
-} from '../../../../store/slices/uiSlice';
-import {
-    productBinStartEnable,
-    userBinStartEnable
-} from '../../../../store/thunks/Bin';
+    useBinStore,
+    useProductsStore,
+    useUiStore,
+    useUsersStore
+} from '../../../hooks';
 
-import { styles__navigationMenuMovil } from '../../../../styles/dashboard/ui/navbar/styles__navigationMenuMovil';
+import { navigationMenuMovil } from '../../../styles/components/ui';
 
 
 export const NavigationMenuMovil = () => {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { pathname } = useLocation();
 
 
-    const { activeUser } = useSelector(state => state.users);
-    const { activeProduct } = useSelector(state => state.product);
+    const { activeUser } = useUsersStore();
+    const { activeProduct } = useProductsStore();
 
-    const { activeBinUser } = useSelector(state => state.bin);
-    const { activeBinProduct } = useSelector(state => state.bin);
+    const {
+        activeBinProduct,
+        activeBinUser,
+        productBinStartEnable,
+        userBinStartEnable,
+    } = useBinStore();
+
+    const {
+        startUiOpenProductModal,
+        startUiOpenProductModalEdit,
+        startUiOpenUserModalAdd,
+        startUiOpenUserModalEdit,
+        startUiOpenDialogDelete
+    } = useUiStore();
 
 
     const [iconsMenu, setIconsMenu] = useState(false);
@@ -101,11 +106,11 @@ export const NavigationMenuMovil = () => {
 
         switch (pathname) {
             case '/dashboard/products':
-                dispatch(uiOpenProductModal())
+                startUiOpenProductModal()
                 break;
 
             case '/dashboard/users':
-                dispatch(uiOpenUserModalAdd())
+                startUiOpenUserModalAdd()
                 break;
 
 
@@ -119,11 +124,11 @@ export const NavigationMenuMovil = () => {
 
         switch (pathname) {
             case '/dashboard/products':
-                dispatch(uiOpenProductModalEdit())
+                startUiOpenProductModalEdit()
                 break;
 
             case '/dashboard/users':
-                dispatch(uiOpenUserModalEdit())
+                startUiOpenUserModalEdit()
                 break;
 
 
@@ -138,11 +143,11 @@ export const NavigationMenuMovil = () => {
         switch (pathname) {
 
             case '/dashboard/products':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
             case '/dashboard/users':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
 
@@ -157,11 +162,11 @@ export const NavigationMenuMovil = () => {
         switch (pathname) {
 
             case '/dashboard/bin/products':
-                dispatch(productBinStartEnable(activeBinProduct))
+                productBinStartEnable(activeBinProduct)
                 break;
 
             case '/dashboard/bin/users':
-                dispatch(userBinStartEnable(activeBinUser))
+                userBinStartEnable(activeBinUser)
                 break;
 
 
@@ -174,11 +179,11 @@ export const NavigationMenuMovil = () => {
         switch (pathname) {
 
             case '/dashboard/bin/products':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
             case '/dashboard/bin/users':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
 
@@ -219,7 +224,7 @@ export const NavigationMenuMovil = () => {
     };
 
     return (
-        <Box sx={styles__navigationMenuMovil(sm, md, lg, xl)}>
+        <Box sx={navigationMenuMovil(sm, md, lg, xl)}>
             <BottomNavigation
                 id='buttonNavigationContainer'
                 value={pathname}>

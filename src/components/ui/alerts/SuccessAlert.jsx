@@ -1,14 +1,13 @@
 import React, { forwardRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { uiCloseSuccessAlert } from '../../../store/slices/uiSlice';
+import { useUiStore } from '../../../hooks';
 
-import { styles__successAlert } from '../../../styles/dashboard/ui/alerts/styles__successAlert';
+import { successAlert } from '../../../styles/components/ui';
 
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -18,9 +17,10 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 export const SuccessAlert = () => {
 
-    const dispatch = useDispatch();
-
-    const { successAlert } = useSelector(state => state.ui);
+    const {
+        successAlert: successAlertStatus,
+        startUiCloseSuccessAlert
+    } = useUiStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -29,22 +29,21 @@ export const SuccessAlert = () => {
     const lg = useMediaQuery(theme.breakpoints.down('lg'));
 
 
-
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
         }
 
-        dispatch(uiCloseSuccessAlert())
+        startUiCloseSuccessAlert()
     };
 
 
     return (
-        <Snackbar 
-        sx={styles__successAlert(sm, md, lg, xl)}
-        open={successAlert.status} autoHideDuration={3000} onClose={handleClose} >
+        <Snackbar
+            sx={successAlert(sm, md, lg, xl)}
+            open={successAlertStatus.status} autoHideDuration={3000} onClose={handleClose} >
             <Alert onClose={handleClose} severity="success">
-                {successAlert.title}
+                {successAlertStatus.title}
             </Alert>
         </Snackbar>
     );

@@ -1,22 +1,21 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { clearActiveProduct } from '../../../store/slices/productSlice';
-import { clearActiveUser } from '../../../store/slices/userSlice';
+import { CreateUserModal } from '../modals/CreateUserModal';
+import { EditUserModal } from '../modals/EditUserModal';
+import { UsersTable } from '../table/UsersTable';
 
-import { CreateUserModal } from './modals/CreateUserModal';
-import { EditUserModal } from './modals/EditUserModal';
-import { UsersDashboardTable } from './tables/UsersDashboardTable';
+import { useProductsStore, useUsersStore } from '../../../hooks';
 
 
 export const UsersPage = () => {
 
-    const dispatch = useDispatch();
+    const { startSetActiveProduct } = useProductsStore();
+    const { startSetActiveUser } = useUsersStore();
 
     useEffect(() => {
 
-        dispatch(clearActiveProduct());
-        dispatch(clearActiveUser());
+        startSetActiveProduct();
+        startSetActiveUser();
 
 
     }, []);
@@ -25,7 +24,7 @@ export const UsersPage = () => {
         <>
 
 
-            <UsersDashboardTable />
+            <UsersTable />
 
             <EditUserModal />
 

@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import sortArray from 'sort-array';
+
+
 export const notificationsSlice = createSlice({
   name: 'notifications',
   initialState: {

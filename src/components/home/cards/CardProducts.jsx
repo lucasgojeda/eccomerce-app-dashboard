@@ -14,22 +14,24 @@ import { useTheme } from '@mui/material/styles';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut, Pie } from 'react-chartjs-2';
 
-import { styles__cardProducts } from '../../../../styles/dashboard/ui/cards/styles__cardProducts';
+import { useStaticsStore, useAuthStore } from '../../../hooks';
+
+import { cardProducts } from '../../../styles/components/ui';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export const CardProducts = () => {
 
-  const { role } = useSelector(state => state.auth);
-  
+  const { role } = useAuthStore();
   const {
     dashboardProducts,
     dashboardBinProducts,
     dashboardUsers,
     dashboardBinUsers,
     dashboardSales,
-    dashboardRecords } = useSelector(state => state.dashboard);
+    dashboardRecords } = useStaticsStore();
+
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -76,98 +78,131 @@ export const CardProducts = () => {
     ],
   };
 
+  // if (
+  //   !dashboardProducts ||
+  //   !dashboardBinProducts ||
+  //   !dashboardUsers ||
+  //   !dashboardBinUsers ||
+  //   !dashboardSales ||
+  //   !dashboardRecords
+  // ) return '';
+
 
   return (
-    <Box sx={styles__cardProducts(sm, md, lg, xl)}>
+    <Box sx={cardProducts(sm, md, lg, xl)}>
 
       <div className="cardContainer">
 
-        <div className="card">
-          <div className="border-left-orange">
-            <div className="cardInside">
-              <div className="titleAndAmountContainer">
-                <Typography
-                  variant='body2'
-                  className="card-title text-title"
-                >VENTAS</Typography>
-                <h2 className="text-amount">{dashboardSales}</h2>
-              </div>
-              <div className="iconContainer">
-                <div className="icon-shape icon-user">
-                  <TrendingUpIcon />
+        {
+          (dashboardSales)
+            ?
+            <div className="card">
+              <div className="border-left-orange">
+                <div className="cardInside">
+                  <div className="titleAndAmountContainer">
+                    <Typography
+                      variant='body2'
+                      className="card-title text-title"
+                    >VENTAS</Typography>
+                    <h2 className="text-amount">{dashboardSales}</h2>
+                  </div>
+                  <div className="iconContainer">
+                    <div className="icon-shape icon-user">
+                      <TrendingUpIcon />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+            :
+            <></>
+        }
 
 
-        <div className="card">
-          <div className="border-left-pink">
-            <div className="cardInside">
-              <div className="titleAndAmountContainer">
-                <Typography
-                  variant='body2'
-                  className="card-title text-title"
-                >PRODUCTOS</Typography>
-                <h2 className="text-amount">{dashboardProducts + dashboardBinProducts}</h2>
-              </div>
-              <div className="iconContainer">
-                <div className="icon-shape icon-pie">
-                  <InventoryIcon />
+        {
+          (dashboardProducts && dashboardBinProducts)
+            ?
+            <div className="card">
+              <div className="border-left-pink">
+                <div className="cardInside">
+                  <div className="titleAndAmountContainer">
+                    <Typography
+                      variant='body2'
+                      className="card-title text-title"
+                    >PRODUCTOS</Typography>
+                    <h2 className="text-amount">{dashboardProducts + dashboardBinProducts}</h2>
+                  </div>
+                  <div className="iconContainer">
+                    <div className="icon-shape icon-pie">
+                      <InventoryIcon />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+            :
+            <></>
+        }
 
         {
           (role === 'ADMIN_ROLE')
           &&
           <>
-            <div className="card">
-              <div className="border-left-blue">
-                <div className="cardInside">
-                  <div className="titleAndAmountContainer">
-                    <Typography
-                      variant='body2'
-                      className="card-title text-title"
-                    >USUARIOS</Typography>
-                    <h2 className="text-amount">{dashboardUsers + dashboardBinUsers}</h2>
-                  </div>
-                  <div className="iconContainer">
-                    <div className="icon-shape icon-percent">
-                      <GroupIcon />
+            {
+              (dashboardUsers && dashboardBinUsers)
+                ?
+                <div className="card">
+                  <div className="border-left-blue">
+                    <div className="cardInside">
+                      <div className="titleAndAmountContainer">
+                        <Typography
+                          variant='body2'
+                          className="card-title text-title"
+                        >USUARIOS</Typography>
+                        <h2 className="text-amount">{dashboardUsers + dashboardBinUsers}</h2>
+                      </div>
+                      <div className="iconContainer">
+                        <div className="icon-shape icon-percent">
+                          <GroupIcon />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
+                :
+                <></>
+            }
 
 
-            <div className="card">
+            {
+              (dashboardRecords)
+                ?
+                <div className="card">
 
-              <div className="border-left-yellow">
-                <div className="cardInside">
+                  <div className="border-left-yellow">
+                    <div className="cardInside">
 
-                  <div className="titleAndAmountContainer">
-                    <Typography
-                      variant='body2'
-                      className="card-title text-title"
-                    >REGISTROS</Typography>
-                    <h2 className="text-amount">{dashboardRecords}</h2>
-                  </div>
+                      <div className="titleAndAmountContainer">
+                        <Typography
+                          variant='body2'
+                          className="card-title text-title"
+                        >REGISTROS</Typography>
+                        <h2 className="text-amount">{dashboardRecords}</h2>
+                      </div>
 
-                  <div className="iconContainer">
-                    <div className="icon-shape icon-area">
-                      <LibraryBooksIcon />
+                      <div className="iconContainer">
+                        <div className="icon-shape icon-area">
+                          <LibraryBooksIcon />
+                        </div>
+                      </div>
+
                     </div>
                   </div>
 
                 </div>
-              </div>
-
-            </div>
+                :
+                <></>
+            }
           </>
         }
 
@@ -181,18 +216,22 @@ export const CardProducts = () => {
 
           {
             (dashboardProducts && dashboardBinProducts)
-            &&
+            ?
             <Container id='pie'>
               <Pie data={dataPie} />
             </Container>
-          }
+            :
+            <></>  
+        }
 
           {
             (dashboardUsers && dashboardBinUsers)
-            &&
+            ?
             <Container id='doughnut'>
               <Doughnut data={dataDoughnut} />
             </Container>
+              :
+              <></>
           }
 
         </Container>

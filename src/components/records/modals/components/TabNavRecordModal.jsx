@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { styles__tabNavRecordModal } from '../../../styles/dashboard/ui/styles__tabNavRecordModal';
+import { tabNavRecordModal } from '../../../../styles/components/ui';
 
 export const TabNavRecordModal = ({ setProductUpdate, productUpdate }) => {
 
@@ -21,7 +21,7 @@ export const TabNavRecordModal = ({ setProductUpdate, productUpdate }) => {
   };
 
   return (
-    <Box sx={styles__tabNavRecordModal(sm, md, lg, xl)}>
+    <Box sx={tabNavRecordModal(sm, md, lg, xl)}>
       <Tabs
         onChange={handleChange}
         value={productUpdate}

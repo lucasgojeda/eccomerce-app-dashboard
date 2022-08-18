@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,15 +10,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { startLogout } from '../../../../store/thunks/auth';
+import { useAuthStore } from '../../../hooks';
 
-import { styles__dialogLogout } from '../../../../styles/dashboard/ui/alerts/styles__dialogLogout';
+import { dialogLogout } from '../../../styles/components/ui';
 
 
 export const DialogLogout = ({ dialogLogoutOpen, setDialogLogoutOpen }) => {
 
-    const dispatch = useDispatch();
-
+    const { startLogout } = useAuthStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -30,7 +28,7 @@ export const DialogLogout = ({ dialogLogoutOpen, setDialogLogoutOpen }) => {
     const handleLogout = () => {
 
         setDialogLogoutOpen(false);
-        dispatch(startLogout());
+        startLogout();
     };
 
     const handleClose = () => {
@@ -40,7 +38,7 @@ export const DialogLogout = ({ dialogLogoutOpen, setDialogLogoutOpen }) => {
 
     return (
         <Dialog
-            sx={styles__dialogLogout(sm, md, lg, xl)}
+            sx={dialogLogout(sm, md, lg, xl)}
             open={dialogLogoutOpen}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"

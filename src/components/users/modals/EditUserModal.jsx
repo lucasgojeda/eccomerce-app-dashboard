@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -15,17 +14,9 @@ import { useTheme } from '@mui/material/styles';
 
 import { verifyUserEditFields } from '../../../helpers/verifyUserEditFields';
 
-import { userStartUpdated } from '../../../store/thunks/users';
-import { clearActiveUser } from '../../../store/slices/userSlice';
-import {
-    uiCloseProgressBackdrop,
-    uiCloseUserModalEdit,
-    uiOpenDialogFields,
-    uiOpenErrorAlert,
-    uiOpenProgressBackdrop
-} from '../../../store/slices/uiSlice';
+import { useUiStore, useUsersStore } from '../../../hooks';
 
-import { styles__userModal } from '../../../styles/dashboard/modals/styles__userModal';
+import { userModal } from '../../../styles/components/users';
 
 
 const initEvent = {
@@ -39,10 +30,21 @@ const initEvent = {
 
 export const EditUserModal = () => {
 
-    const dispatch = useDispatch();
+    const { 
+        activeUser,
+        userStartUpdated,
+        startClearActiveUser
+    } = useUsersStore();
 
-    const { activeUser } = useSelector(state => state.users);
-    const { modalUserEdit } = useSelector(state => state.ui);
+    const {
+        modalUserEdit,
+
+        startUiCloseProgressBackdrop,
+        startUiCloseUserModalEdit,
+        startUiOpenDialogFields,
+        startUiOpenErrorAlert,
+        startUiOpenProgressBackdrop
+    } = useUiStore();
 
     const [formValues, setFormValues] = useState(initEvent);
 
@@ -81,8 +83,8 @@ export const EditUserModal = () => {
     const handleClose = () => {
 
         setFormValues(initEvent);
-        dispatch(clearActiveUser());
-        dispatch(uiCloseUserModalEdit());
+        startClearActiveUser();
+        startUiCloseUserModalEdit();
 
     };
 
@@ -105,19 +107,19 @@ export const EditUserModal = () => {
 
             if (errors.length >= 1) {
 
-                dispatch(uiOpenDialogFields(errors));
+                startUiOpenDialogFields(errors);
 
             } else {
                 handleClose();
 
-                dispatch(uiOpenProgressBackdrop());
+                startUiOpenProgressBackdrop();
 
-                dispatch(userStartUpdated(formValues));
+                userStartUpdated(formValues);
             }
 
         } catch (error) {
-            dispatch(uiCloseProgressBackdrop());
-            dispatch(uiOpenErrorAlert('Error trying to edit the user! Talk to developer'));
+            startUiCloseProgressBackdrop();
+            startUiOpenErrorAlert('Error trying to edit the user! Talk to developer');
             console.log(error);
         }
 
@@ -141,7 +143,7 @@ export const EditUserModal = () => {
                 <Container maxWidth="sm">
                     <Box
                         component="form"
-                        sx={styles__userModal(sm, md, lg, xl)}
+                        sx={userModal(sm, md, lg, xl)}
                         noValidate
                         autoComplete="off"
                     >

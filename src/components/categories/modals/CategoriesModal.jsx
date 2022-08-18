@@ -160,7 +160,7 @@ export const CategoriesModal = () => {
         >
             <Container sx={{ border: 'none' }} maxWidth="sm">
                 <Box
-                    sx={style(sm, md, lg, xl)}>
+                    sx={categoriesModal(sm, md, lg, xl)}>
 
                     <h1>Categories</h1>
                     <Divider />

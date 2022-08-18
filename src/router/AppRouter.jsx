@@ -80,15 +80,16 @@ export const AppRouter = () => {
                 } />
 
 
-                <Route path="dashboard/*" element={
-                        <>
-                            <NavbarDashboard />
-                            <DashboardRouter />
-                        </>
+                <Route path="/*" element={
+                    <AdminRoute isAutenticated={!!uid}>
+                    <>
+                        <NavbarDashboard />
+                        <DashboardRouter />
+                    </>
+                    </AdminRoute>
                 } />
 
-
-                <Route path="/*" element={<Navigate to="/dashboard" />} />
+                <Route path="/*" element={<Navigate to="/" />} />
 
 
             </Routes>

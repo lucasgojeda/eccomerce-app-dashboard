@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,15 +10,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { salesStartAddNew } from '../../../../store/thunks/sales';
+import { useSalesStore } from '../../../hooks';
 
-import { styles__dialogBuy } from '../../../../styles/dashboard/ui/alerts/styles__dialogBuy';
+import { dialogBuy } from '../../../styles/components/ui';
 
 
 export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
 
-    const dispatch = useDispatch();
-
+    const { salesStartAddNew } = useSalesStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -30,7 +28,7 @@ export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
 
     const handleBuy = () => {
 
-        dispatch(salesStartAddNew(cart))
+        salesStartAddNew(cart)
         setDialogBuyOpen(false);
     };
 
@@ -42,7 +40,7 @@ export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
     return (
         <div>
             <Dialog
-                sx={styles__dialogBuy(sm, md, lg, xl)}
+                sx={dialogBuy(sm, md, lg, xl)}
                 open={dialogBuyOpen}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"

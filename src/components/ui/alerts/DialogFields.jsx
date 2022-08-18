@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -7,16 +6,18 @@ import DialogContentText from '@mui/material/DialogContentText';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { uiCloseDialogFields } from '../../../../store/slices/uiSlice';
+import { useUiStore } from '../../../hooks';
 
-import { styles__dialogFields } from '../../../../styles/dashboard/ui/alerts/styles__dialogFields';
+import { dialogFields } from '../../../styles/components/ui';
 
 
 export const DialogFields = () => {
 
-    const dispatch = useDispatch();
 
-    const { dialogFields } = useSelector(state => state.ui);
+    const {
+        dialogFields: dialogFieldsStatus,
+        startUiCloseDialogFields
+    } = useUiStore();
 
 
     const theme = useTheme();
@@ -27,14 +28,15 @@ export const DialogFields = () => {
 
 
     const handleClose = () => {
-        dispatch(uiCloseDialogFields());
+
+        startUiCloseDialogFields();
     };
 
 
     return (
         <Dialog
-            sx={styles__dialogFields(sm, md, lg, xl)}
-            open={dialogFields.status}
+            sx={dialogFields(sm, md, lg, xl)}
+            open={dialogFieldsStatus.status}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"
         >
@@ -44,9 +46,9 @@ export const DialogFields = () => {
                 </h4>
                 <br />
                 {
-                    (dialogFields.status !== false)
+                    (dialogFieldsStatus.status !== false)
                     &&
-                    dialogFields.errors.map(e => (
+                    dialogFieldsStatus.errors.map(e => (
 
                         <DialogContentText key={e.index}>
                             {`• ${e.charAt(0).toUpperCase() + e.slice(1)}`}

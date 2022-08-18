@@ -1,4 +1,4 @@
 
 
 export * from './modals/recordModal';
-export * from './table/recordsTable';
+export * from './table/recordsTable'; 

@@ -1,14 +1,13 @@
 import React, { forwardRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { uiCloseErrorAlert } from '../../../../store/slices/uiSlice';
+import { useUiStore } from '../../../hooks';
 
-import { styles__errorAlert } from '../../../../styles/dashboard/ui/alerts/styles__errorAlert';
+import { errorAlert } from '../../../styles/components/ui';
 
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -18,9 +17,7 @@ const Alert = forwardRef(function Alert(props, ref) {
 
 export const ErrorAlert = () => {
 
-    const dispatch = useDispatch();
-
-    const { errorAlert } = useSelector( state => state.ui );
+    const { errorAlert: errorAlertStatus, startUiCloseErrorAlert } = useUiStore();
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -35,16 +32,16 @@ export const ErrorAlert = () => {
             return;
         }
 
-        dispatch( uiCloseErrorAlert() )
+        startUiCloseErrorAlert()
     };
 
 
     return (
             <Snackbar 
-            sx={styles__errorAlert(sm, md, lg, xl)}
-            open={errorAlert.status} autoHideDuration={6000} onClose={handleClose} >
+            sx={errorAlert(sm, md, lg, xl)}
+            open={errorAlertStatus.status} autoHideDuration={6000} onClose={handleClose} >
                 <Alert onClose={handleClose} severity="error">
-                    { errorAlert.title }
+                    { errorAlertStatus.title }
                 </Alert>
             </Snackbar>
     );

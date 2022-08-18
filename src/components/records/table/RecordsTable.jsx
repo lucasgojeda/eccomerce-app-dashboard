@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import moment from 'moment';
 import 'moment-timezone';
@@ -26,30 +25,29 @@ import { useTheme } from '@mui/material/styles';
 
 import queryString from 'query-string';
 
-import {
-    uiOpenDialogDelete,
-    uiOpenRecordModal
-} from '../../../store/slices/uiSlice';
-import { activeRecord } from '../../../store/slices/recordsSlice';
-import { startLoadRecords } from '../../../store/thunks/records';
+import { useRecordsStore, useStaticsStore, useUiStore } from '../../../hooks';
 
 import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    styles__recordsTable
-} from '../../../styles/dashboard/tables/styles__recordsTable';
+    recordsTable
+} from '../../../styles/components/records';
 
 moment.locale('es');
 
 export const RecordsTable = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { records } = useSelector(state => state.records);
-    const { dashboardRecords } = useSelector(state => state.dashboard);
+    const { dashboardRecords } = useStaticsStore();
+    const { startUiOpenRecordModal } = useUiStore();
+    const {
+        records,
+        startLoadRecords,
+        startSetActiveRecord,
+    } = useRecordsStore();
 
     const { q = '' } = queryString.parse(location.search);
     const { c = '' } = queryString.parse(location.search);
@@ -71,7 +69,7 @@ export const RecordsTable = () => {
     // Filters and search
     useEffect(() => {
 
-        dispatch(startLoadRecords(filterBy, orderBy, searchText, pagePath));
+        startLoadRecords(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 
@@ -133,9 +131,9 @@ export const RecordsTable = () => {
     const handleMenu = (e, record) => {
         e.preventDefault();
 
-        dispatch(activeRecord(record));
+        startSetActiveRecord(record);
 
-        dispatch(uiOpenRecordModal())
+        startUiOpenRecordModal()
 
 
     };
@@ -148,7 +146,7 @@ export const RecordsTable = () => {
                     (records !== undefined)
                         ?
                         <Box
-                            sx={styles__recordsTable(sm, md, lg, xl)}>
+                            sx={recordsTable(sm, md, lg, xl)}>
 
 
                             <Container id='searchAndFilter'>

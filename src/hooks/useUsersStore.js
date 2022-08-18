@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import { addBinUser } from "../store/slices/binSlice";
 
 import {
@@ -24,8 +22,10 @@ import {
 
 import {
     addUser,
+    clearActiveUser,
     deleteUser,
     loadUsers,
+    setActiveUser,
     updateUser
 } from "../store/slices/userSlice";
 
@@ -42,24 +42,21 @@ export const useUsersStore = () => {
 
         try {
 
-            const resp = await fetchConToken(`users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
-            const body = await resp.json();
+            const { data: { msg, results } } = await dashboardApi.get(`users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
-                console.log('Filtered users', body);
+                console.log('Filtered users', data);
 
-                const filteredUsers = body.results;
-
-                console.log(filteredUsers)
+                const filteredUsers = results;
 
                 dispatch(loadUsers(filteredUsers));
 
                 window.scroll(0, 0);
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -68,22 +65,21 @@ export const useUsersStore = () => {
         }
     }
 
-    const userStartAddNew = async (user) => {
+    const userStartAddNew = async (_user) => {
 
         try {
 
-            const resp = await fetchConToken('users', user, 'POST');
-            const body = await resp.json();
+            const { data: { msg, user, record } } = await dashboardApi.post('users', _user);
 
 
-            if (body.msg === "OK") {
+            if (msg === "OK") {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(addUser(body.user));
+                dispatch(addUser(user));
                 dispatch(addOneDashboardUsers());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El usuario fue creado exitosamente!'));
@@ -91,7 +87,7 @@ export const useUsersStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar crear el usuario! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -102,21 +98,21 @@ export const useUsersStore = () => {
         }
     }
 
-    const userStartUpdated = async (user) => {
+    const userStartUpdated = async (_user) => {
 
         try {
 
-            const resp = await fetchConToken(`users/${user._id}`, { user: user }, 'PUT');
-            const body = await resp.json();
+            const { data: { msg, user, record } } = await dashboardApi.put(`users/${_user._id}`, { user: _user });
 
 
-            if (body.msg === 'OK') {
+
+            if (msg === 'OK') {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(updateUser(body.user));
+                dispatch(updateUser(user));
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El usuario fue actualizado exitosamente!'));
@@ -124,7 +120,7 @@ export const useUsersStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar actualizar el usuario! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -136,26 +132,26 @@ export const useUsersStore = () => {
 
     }
 
-    const userStartDeleted = async (user) => {
+    const userStartDeleted = async (_user) => {
 
         try {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const resp = await fetchConToken(`users/${user._id}`, {}, 'DELETE');
-            const body = await resp.json();
+            const { data: { msg, user, record } } = await dashboardApi.delete(`users/${_user._id}`, {});
 
-            if (body.msg === "OK") {
+
+            if (msg === "OK") {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(deleteUser(body.user));
+                dispatch(deleteUser(user));
                 dispatch(subtractOneDashboardUsers());
 
-                dispatch(addBinUser(body.user));
+                dispatch(addBinUser(user));
                 dispatch(addOneDashboardBinUsers());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El usuario fue eliminado exitosamente!'));
@@ -163,7 +159,7 @@ export const useUsersStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar eliminar el usuario! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -175,6 +171,15 @@ export const useUsersStore = () => {
 
     }
 
+    const startSetActiveUser = (user) => {
+
+        dispatch(setActiveUser(user));
+    }
+
+    const startClearActiveUser = () => {
+
+        dispatch(clearActiveUser());
+    }
 
     return {
         //* Propiedades
@@ -186,5 +191,7 @@ export const useUsersStore = () => {
         userStartAddNew,
         userStartUpdated,
         userStartDeleted,
+        startSetActiveUser,
+        startClearActiveUser,
     }
 }

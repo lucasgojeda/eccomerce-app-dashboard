@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import dashboardApi from '../api/dashboardApi';
+import sortArray from 'sort-array';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
+import dashboardApi from '../api/dashboardApi';
 
 import { cartLogout } from "../store/slices/cartSlice";
 
@@ -13,7 +13,9 @@ import {
 
 import {
     addNewSale,
+    clearActiveSale,
     loadSales,
+    setActiveSale,
     updateFilteredSales
 } from "../store/slices/saleSlice";
 
@@ -37,15 +39,14 @@ export const useSalesStore = () => {
 
         try {
 
-            const resp = await fetchConToken(`sales/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
-            const body = await resp?.json();
+            const { data: { msg, results } } = await dashboardApi.get(`sales/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
-            if (body?.msg === 'OK') {
+            if (msg === 'OK') {
 
-                console.log('Filtered sales', body);
+                console.log('Filtered sales', data);
 
-                const filteredSales = body.results;
+                const filteredSales = results;
 
                 console.log(filteredSales)
 
@@ -54,9 +55,9 @@ export const useSalesStore = () => {
                 window.scroll(0, 0);
 
             } else {
-                if (body?.msg) {
+                if (msg) {
 
-                    console.log(body.msg);
+                    console.log(msg);
                 }
             }
 
@@ -72,23 +73,23 @@ export const useSalesStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const resp = await fetchConToken('sales', {}, 'POST');
-            const body = await resp.json();
+            const { data: { msg, sale } } = await dashboardApi.post('sales', {});
 
-            console.log(body);
+            console.log(data);
 
-            if (body.msg === "OK") {
+
+            if (msg === "OK") {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(addNewSale(body.sale));
+                dispatch(addNewSale(sale));
                 dispatch(cartLogout());
 
                 dispatch(uiOpenSuccessAlert('Compra realizada exitosamente!'));
 
             } else {
                 dispatch(uiCloseProgressBackdrop());
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -102,18 +103,18 @@ export const useSalesStore = () => {
 
         try {
 
-            const resp = await fetchConToken(`sales/${id}`, {}, 'PUT');
-            const body = await resp.json();
+            const { data: { msg, results, notification } } = await dashboardApi.put(`sales/${id}`, {});
 
-            console.log(body)
+            console.log(data)
 
-            if (body.msg === 'OK') {
+            
+            if (msg === 'OK') {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(addNotification(body.notification));
-                dispatch(addSale_user(body.results));
-                dispatch(updateFilteredSales(body.results));
+                dispatch(addNotification(notification));
+                dispatch(addSale_user(results));
+                dispatch(updateFilteredSales(results));
 
                 dispatch(uiOpenSuccessAlert('El estado de la venta fue actualizado exitosamente!'));
 
@@ -121,7 +122,7 @@ export const useSalesStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar actualizar el estado de la venta! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -131,6 +132,16 @@ export const useSalesStore = () => {
             console.log(error);
         }
 
+    }
+
+    const startSetActiveSale = (sale) => {
+
+        dispatch(setActiveSale(sale));
+    }
+
+    const startClearActiveSale = () => {
+
+        dispatch(clearActiveSale());
     }
 
 
@@ -143,5 +154,7 @@ export const useSalesStore = () => {
         startLoadSales,
         salesStartAddNew,
         salesStartUpdated,
+        startSetActiveSale,
+        startClearActiveSale,
     }
 }

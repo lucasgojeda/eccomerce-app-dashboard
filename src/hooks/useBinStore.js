@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken } from "../helpers/fetch"
-
 import { addProduct } from "../store/slices/productSlice";
 import { addNewRecord } from "../store/slices/recordsSlice";
 import { addUser } from "../store/slices/userSlice";
@@ -54,24 +52,20 @@ export const useBinStore = () => {
 
         try {
 
-            const resp = await fetchConToken(`bin/products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
-            const body = await resp.json();
+            const { data: { msg, results } } = await dashboardApi.get(`bin/products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
+            if (msg === 'OK') {
 
-            if (body.msg === 'OK') {
+                console.log('Filtered bin products', data);
 
-                console.log('Filtered bin products', body);
-
-                const filteredBinProducts = body.results;
-
-                console.log(filteredBinProducts)
+                const filteredBinProducts = results;
 
                 dispatch(loadBinProducts(filteredBinProducts));
 
                 window.scroll(0, 0);
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -86,13 +80,12 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const resp = await fetchConToken(`bin/products/${product._id}`, {}, 'PUT');
-            const body = await resp.json();
+            const { data: { record, msg } } = await dashboardApi.put(`bin/products/${product._id}`, {});
 
-            console.log(body);
+            console.log(data);
 
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 dispatch(clearActiveBinProduct());
 
@@ -105,7 +98,7 @@ export const useBinStore = () => {
                 dispatch(addOneDashboardProducts());
                 dispatch(subtractOneDashboardBinProducts());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
 
@@ -115,7 +108,7 @@ export const useBinStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar habilitar el producto! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -133,13 +126,12 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const resp = await fetchConToken(`bin/products/${product._id}`, {}, 'DELETE');
-            const body = await resp.json();
+            const { data: { record, msg } } = await dashboardApi.delete(`bin/products/${product._id}`, {});
 
-            console.log(body);
+            console.log(data);
 
 
-            if (body.msg === "OK") {
+            if (msg === "OK") {
 
                 dispatch(clearActiveBinProduct());
 
@@ -148,7 +140,7 @@ export const useBinStore = () => {
                 dispatch(deleteBinProduct(product));
                 dispatch(subtractOneDashboardBinProducts());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El producto fue removido de forma permanente exitosamente!'));
@@ -156,7 +148,7 @@ export const useBinStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar eliminar el producto! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -173,9 +165,9 @@ export const useBinStore = () => {
         dispatch(clearActiveBinProduct());
     }
 
-    const startSetActiveBinProduct = () => {
+    const startSetActiveBinProduct = (product) => {
 
-        dispatch(setActiveBinProduct());
+        dispatch(setActiveBinProduct(product));
     }
 
     /* USERS */
@@ -186,24 +178,21 @@ export const useBinStore = () => {
 
         try {
 
-            const resp = await fetchConToken(`bin/users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
-            const body = await resp.json();
+            const { data: { msg, results } } = await dashboardApi.get(`bin/users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 console.log('Filtered users', body);
 
-                const filteredUsers = body.results;
-
-                console.log(filteredUsers)
+                const filteredUsers = results;
 
                 dispatch(loadBinUsers(filteredUsers));
 
                 window.scroll(0, 0);
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -218,13 +207,12 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const resp = await fetchConToken(`bin/users/${user._id}`, {}, 'PUT');
-            const body = await resp.json();
+            const { data: { msg, record } } = await dashboardApi.put(`bin/users/${user._id}`, {});
 
-            console.log(body);
+            console.log(data);
 
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 dispatch(clearActiveBinUser());
 
@@ -236,7 +224,7 @@ export const useBinStore = () => {
                 dispatch(addOneDashboardUsers());
                 dispatch(subtractOneDashboardBinUsers());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El usuario fue habilitado exitosamente!'));
@@ -244,7 +232,7 @@ export const useBinStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar habilitar el usuario! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -262,13 +250,12 @@ export const useBinStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const resp = await fetchConToken(`bin/users/${user._id}`, {}, 'DELETE');
-            const body = await resp.json();
+            const { data: { msg, record } } = await dashboardApi.delete(`bin/users/${user._id}`, {});
+            
+            console.log(data);
 
-            console.log(body);
 
-
-            if (body.msg === "OK") {
+            if (msg === "OK") {
 
                 dispatch(clearActiveBinUser());
 
@@ -277,7 +264,7 @@ export const useBinStore = () => {
                 dispatch(deleteBinUser(user));
                 dispatch(subtractOneDashboardBinUsers());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El usuario fue removido de forma permanente exitosamente!'));
@@ -285,7 +272,7 @@ export const useBinStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar eliminar el usuario! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -302,9 +289,9 @@ export const useBinStore = () => {
         dispatch(clearActiveBinUser());
     }
 
-    const startSetActiveBinUser = () => {
+    const startSetActiveBinUser = (user) => {
 
-        dispatch(setActiveBinUser());
+        dispatch(setActiveBinUser(user));
     }
 
 

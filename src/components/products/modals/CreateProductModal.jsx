@@ -21,7 +21,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
-import ImageCropDialog from "../../ui/ImageCropDialog";
+import ImageCropDialog from "../../ui/imageCrop/ImageCropDialog";
 
 import { verifyProductFields } from '../../../helpers/verifyProductFields';
 import { uploadImageToCloudinary } from '../../../helpers/uploadCloudinary';

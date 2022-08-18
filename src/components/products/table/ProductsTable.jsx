@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { DataGrid } from '@mui/x-data-grid';
 import { Box, Container, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -21,32 +19,32 @@ import { useTheme } from '@mui/material/styles';
 
 import queryString from 'query-string';
 
-import { prepareProducts } from '../../../helpers/prepareProducts';
-
-import { activeProduct } from '../../../store/slices/productSlice';
-import { startLoadProducts } from '../../../store/thunks/products';
-import {
-    uiOpenDialogDelete,
-    uiOpenProductModalEdit
-} from '../../../store/slices/uiSlice';
+import { useProductsStore, useStaticsStore, useUiStore } from '../../../hooks';
 
 import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    styles__productsTable
-} from '../../../styles/dashboard/tables/styles__productsTable';
+    productsTable
+} from '../../../styles/components/products';
 
 
 export const ProductsTable = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const theme = useTheme();
 
-    const { products } = useSelector(state => state.product);
-    const { dashboardProducts } = useSelector(state => state.dashboard);
+    const { dashboardProducts } = useStaticsStore();
+    const {
+        products,
+        startSetActiveProduct,
+        startLoadProducts
+    } = useProductsStore();
+    const {
+        startUiOpenDialogDelete,
+        startUiOpenProductModalEdit,
+    } = useUiStore();
 
     const { q = '' } = queryString.parse(location.search);
     const { c = '' } = queryString.parse(location.search);
@@ -67,7 +65,7 @@ export const ProductsTable = () => {
     // Filters and search
     useEffect(() => {
 
-        dispatch(startLoadProducts(filterBy, orderBy, searchText, pagePath));
+        startLoadProducts(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 
@@ -111,7 +109,7 @@ export const ProductsTable = () => {
     const handleEditButton = (e) => {
         e.preventDefault();
 
-        dispatch(uiOpenProductModalEdit())
+        startUiOpenProductModalEdit()
 
         handleLogout();
     }
@@ -119,7 +117,7 @@ export const ProductsTable = () => {
     const handleDeleteButton = (e) => {
         e.preventDefault();
 
-        dispatch(uiOpenDialogDelete())
+        startUiOpenDialogDelete()
 
 
         handleLogout();
@@ -148,7 +146,7 @@ export const ProductsTable = () => {
     const handleMenu = (e, product) => {
         e.preventDefault();
 
-        dispatch(activeProduct(product));
+        startSetActiveProduct(product);
 
         setAnchorEl(e.currentTarget);
     };
@@ -169,7 +167,7 @@ export const ProductsTable = () => {
                     (products !== undefined)
                         ?
                         <Box
-                            sx={styles__productsTable(sm, md, lg, xl)}>
+                            sx={productsTable(sm, md, lg, xl)}>
 
 
                             <Container id='searchAndFilter'>

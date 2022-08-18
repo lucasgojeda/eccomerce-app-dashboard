@@ -43,7 +43,8 @@ export const BinUsersTable = () => {
         binUsers,
         activeBinUser,
         userBinStartEnable,
-        startSetActiveBinUser
+        startSetActiveBinUser,
+        startLoadBinUsers
     } = useBinStore();
     const { dashboardBinUsers } = useStaticsStore();
     const { startUiOpenDialogDelete } = useUiStore();
@@ -70,7 +71,7 @@ export const BinUsersTable = () => {
     // Filters and search
     useEffect(() => {
 
-        startLoadUsers(filterBy, orderBy, searchText, pagePath);
+        startLoadBinUsers(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 

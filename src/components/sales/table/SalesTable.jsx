@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import moment from 'moment';
 import 'moment-timezone';
@@ -29,34 +28,31 @@ import queryString from 'query-string';
 
 import { prepareProducts } from '../../../helpers/prepareProducts';
 
-import { activeSale } from '../../../store/slices/saleSlice';
-import {
-    uiOpenDialogDelete,
-    uiOpenProductModalEdit
-} from '../../../store/slices/uiSlice';
-import {
-    salesStartUpdated,
-    startLoadSales
-} from '../../../store/thunks/sales';
+import { useSalesStore, useStaticsStore, useUiStore } from '../../../hooks';
 
 import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    styles__salesTable
-} from '../../../styles/dashboard/tables/styles__salesTable';
+    salesTable
+} from '../../../styles/components/sales';
 
 moment.locale('es');
 
 
 export const SalesTable = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { sales } = useSelector(state => state.sales);
-    const { dashboardSales } = useSelector(state => state.dashboard);
+    const { dashboardSales } = useStaticsStore();
+    const { startUiOpenDialogDelete } = useUiStore();
+    const {
+        sales,
+        salesStartUpdated,
+        startLoadSales,
+        startSetActiveSale,
+    } = useSalesStore();
 
     const { q = '' } = queryString.parse(location.search);
     const { c = '' } = queryString.parse(location.search);
@@ -79,7 +75,7 @@ export const SalesTable = () => {
     // Filters and search
     useEffect(() => {
 
-        dispatch(startLoadSales(filterBy, orderBy, searchText, pagePath));
+        startLoadSales(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 
@@ -141,7 +137,7 @@ export const SalesTable = () => {
     const handleSendedButton = (e, sale) => {
         e.preventDefault();
 
-        dispatch(salesStartUpdated(sale._id))
+        salesStartUpdated(sale._id)
 
         handleLogout();
     }
@@ -149,7 +145,7 @@ export const SalesTable = () => {
     const handleDeleteButton = (e) => {
         // e.preventDefault();
 
-        // dispatch(uiOpenDialogDelete())
+        // startUiOpenDialogDelete()
 
 
         handleLogout();
@@ -161,7 +157,7 @@ export const SalesTable = () => {
     const handleMenu = (e, sale) => {
         e.preventDefault();
 
-        dispatch(activeSale(sale));
+        startSetActiveSale(sale);
 
         setAnchorEl(e.currentTarget);
     };
@@ -182,7 +178,7 @@ export const SalesTable = () => {
                     (sales !== undefined)
                         ?
                         <Box
-                            sx={styles__salesTable(sm, md, lg, xl)}>
+                            sx={salesTable(sm, md, lg, xl)}>
 
 
 

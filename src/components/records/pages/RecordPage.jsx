@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { RecordModal } from './modals/RecordModal'
-import { RecordsDashboardTable } from './tables/RecordsDashboardTable';
+import { RecordModal } from '../modals/RecordModal'
+import { RecordsTable } from '../table/RecordsTable';
 
 export const RecordPage = () => {
 
@@ -11,7 +11,7 @@ export const RecordPage = () => {
             <RecordModal />
 
 
-            <RecordsDashboardTable />
+            <RecordsTable />
 
         </>
     );

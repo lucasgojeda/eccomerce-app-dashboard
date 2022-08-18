@@ -7,7 +7,7 @@ export const saleSlice = createSlice({
     activeSale: false
   },
   reducers: {
-    activeSale: (state, action) => {
+    setActiveSale: (state, action) => {
 
       state.activeSale = { ...action.payload };
     },
@@ -41,7 +41,7 @@ export const saleSlice = createSlice({
 })
 
 export const {
-  activeSale,
+  setActiveSale,
   clearActiveSale,
   loadSales,
   addNewSale,

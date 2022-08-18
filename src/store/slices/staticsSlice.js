@@ -114,4 +114,4 @@ export const {
   subtractOneDashboardSales,
   addOneDashboardRecords,
   subtractOneDashboardRecords,
-  staticsLogout, } = dashboardSlice.actions;
+  staticsLogout, } = staticsSlice.actions;

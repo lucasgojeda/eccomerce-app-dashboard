@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import {
     loadNotifications,
     updateNotification
@@ -26,21 +24,19 @@ export const useNotificationsStore = () => {
 
         try {
 
-            const resp = await fetchConToken('notifications');
-            const body = await resp.json();
+            const { data: { msg, sales, notifications } } = await dashboardApi.get('notifications');
 
+            console.log(data)
 
-            if (body.msg === 'OK') {
-
-                console.log(body)
+            if (msg === 'OK') {
 
                 dispatch(loadNotifications({
-                    sales_user: body.sales,
-                    notifications: body.notifications
+                    sales_user: sales,
+                    notifications: notifications
                 }));
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -49,19 +45,19 @@ export const useNotificationsStore = () => {
         }
     }
 
-    const notificationStartUpdated = async (notification) => {
+    const notificationStartUpdated = async (_notification) => {
 
         try {
 
-            const resp = await fetchConToken(`notifications/${notification._id}`, {}, 'PUT');
-            const body = await resp.json();
+            const { data: { msg, notification } } = await dashboardApi.put(`notifications/${_notification._id}`, {});
+            
 
-            console.log(body);
+            console.log(data);
 
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
-                dispatch(updateNotification(body.notification));
+                dispatch(updateNotification(notification));
 
                 dispatch(uiCloseProgressBackdrop());
 
@@ -71,7 +67,7 @@ export const useNotificationsStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar actualizar la categoria! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 

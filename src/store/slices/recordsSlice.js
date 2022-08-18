@@ -7,7 +7,7 @@ export const recordsSlice = createSlice({
     activeRecord: false
   },
   reducers: {
-    activeRecord: (state, action) => {
+    setActiveRecord: (state, action) => {
 
       state.activeRecord = { ...action.payload };
     },
@@ -35,7 +35,7 @@ export const recordsSlice = createSlice({
 })
 
 export const {
-  activeRecord,
+  setActiveRecord,
   clearActiveRecord,
   addNewRecord,
   loadRecords,

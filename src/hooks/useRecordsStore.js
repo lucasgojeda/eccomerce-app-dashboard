@@ -2,11 +2,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import {
     loadRecords,
-    recordsLogout
+    recordsLogout,
+    setActiveRecord
 } from "../store/slices/recordsSlice";
 
 
@@ -22,24 +21,20 @@ export const useRecordsStore = () => {
 
         try {
 
-            const resp = await fetchConToken(`records/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
-            const body = await resp.json();
+            const { data: { msg, results } } = await dashboardApi.get(`records/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
+            if (msg === 'OK') {
 
-            if (body.msg === 'OK') {
+                console.log('Filtered records', data);
 
-                console.log('Filtered records', body);
-
-                const filteredRecords = body.results;
-
-                console.log(filteredRecords)
+                const filteredRecords = results;
 
                 dispatch(loadRecords(filteredRecords));
 
                 window.scroll(0, 0);
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -51,22 +46,25 @@ export const useRecordsStore = () => {
     const startDeleteRecords = async () => {
 
         try {
-            const resp = await fetchConToken('records', {}, 'DELETE');
-            const body = await resp.json();
+            const { data: { msg } } = await dashboardApi.delete('records', {});
 
-
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 dispatch(recordsLogout());
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const startSetActiveRecord = (record) => {
+
+        dispatch(setActiveRecord(record));
     }
 
 
@@ -78,5 +76,6 @@ export const useRecordsStore = () => {
         //* Métodos
         startLoadRecords,
         startDeleteRecords,
+        startSetActiveRecord,
     }
 }

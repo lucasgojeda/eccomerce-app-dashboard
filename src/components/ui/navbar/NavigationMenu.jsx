@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
     useLocation,
     useNavigate
@@ -36,38 +35,45 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 
 import {
-    uiOpenProductModal,
-    uiOpenProductModalEdit,
-    uiOpenUserModalAdd,
-    uiOpenUserModalEdit,
-    uiOpenDialogDelete
-} from '../../../../store/slices/uiSlice';
-import {
-    productBinStartEnable,
-    userBinStartEnable
-} from '../../../../store/thunks/Bin';
+    useAuthStore,
+    useBinStore,
+    useProductsStore,
+    useUiStore,
+    useUsersStore
+} from '../../../hooks';
 
 import {
     AppBar,
     Drawer,
     DrawerHeader,
-    styles__navigationMenu
-} from '../../../../styles/dashboard/ui/navbar/styles__navigationMenu';
+    navigationMenu
+} from '../../../styles/components/ui';
 
 
 export const NavigationMenu = () => {
 
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const { pathname } = useLocation();
 
-    const { role } = useSelector(state => state.auth);
+    const { role } = useAuthStore();
 
-    const { activeUser } = useSelector(state => state.users);
-    const { activeProduct } = useSelector(state => state.product);
+    const { activeUser } = useUsersStore();
+    const { activeProduct } = useProductsStore();
 
-    const { activeBinUser } = useSelector(state => state.bin);
-    const { activeBinProduct } = useSelector(state => state.bin);
+    const {
+        activeBinUser,
+        activeBinProduct,
+        productBinStartEnable,
+        userBinStartEnable,
+    } = useBinStore();
+
+    const {
+        startUiOpenProductModal,
+        startUiOpenProductModalEdit,
+        startUiOpenUserModalAdd,
+        startUiOpenUserModalEdit,
+        startUiOpenDialogDelete
+    } = useUiStore();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const handleOpenMenuBin = Boolean(anchorEl);
@@ -84,11 +90,11 @@ export const NavigationMenu = () => {
 
         switch (pathname) {
             case '/dashboard/products':
-                dispatch(uiOpenProductModal())
+                startUiOpenProductModal()
                 break;
 
             case '/dashboard/users':
-                dispatch(uiOpenUserModalAdd())
+                startUiOpenUserModalAdd()
                 break;
 
 
@@ -102,11 +108,11 @@ export const NavigationMenu = () => {
 
         switch (pathname) {
             case '/dashboard/products':
-                dispatch(uiOpenProductModalEdit())
+                startUiOpenProductModalEdit()
                 break;
 
             case '/dashboard/users':
-                dispatch(uiOpenUserModalEdit())
+                startUiOpenUserModalEdit()
                 break;
 
 
@@ -121,11 +127,11 @@ export const NavigationMenu = () => {
         switch (pathname) {
 
             case '/dashboard/products':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
             case '/dashboard/users':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
 
@@ -139,11 +145,11 @@ export const NavigationMenu = () => {
         switch (pathname) {
 
             case '/dashboard/bin/products':
-                dispatch(productBinStartEnable(activeBinProduct))
+                productBinStartEnable(activeBinProduct)
                 break;
 
             case '/dashboard/bin/users':
-                dispatch(userBinStartEnable(activeBinUser))
+                userBinStartEnable(activeBinUser)
                 break;
 
 
@@ -156,11 +162,11 @@ export const NavigationMenu = () => {
         switch (pathname) {
 
             case '/dashboard/bin/products':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
             case '/dashboard/bin/users':
-                dispatch(uiOpenDialogDelete())
+                startUiOpenDialogDelete()
                 break;
 
 
@@ -171,7 +177,7 @@ export const NavigationMenu = () => {
 
     const handleAllRecords = () => {
 
-        dispatch(uiOpenDialogDelete())
+        startUiOpenDialogDelete()
     }
 
 
@@ -195,8 +201,17 @@ export const NavigationMenu = () => {
     return (
         <>
 
-            <Box sx={styles__navigationMenu(sm, md, lg, xl)}>
-                <AppBar id='appBar' open={open}>
+            <Box sx={navigationMenu(sm, md, lg, xl)}>
+
+                <Drawer variant="permanent" open={open}>
+
+                    {/* <DrawerHeader>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        </IconButton>
+                    </DrawerHeader> */}
+
+                    <Divider />
 
                     <Toolbar>
 
@@ -211,35 +226,11 @@ export const NavigationMenu = () => {
                         </IconButton>
 
 
-
-                        <Typography
-                            id='dashboardTitle'
-                            onClick={() => navigate('/dashboard')}
-                            variant="h6"
-                            noWrap component="div"
-                        >
-                            Panel de control
-                        </Typography>
-
-
                     </Toolbar>
-
-
-                </AppBar>
-
-                <Drawer variant="permanent" open={open}>
-
-                    <DrawerHeader>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                        </IconButton>
-                    </DrawerHeader>
-
-                    <Divider />
 
                     <List>
 
-                        <ListItem button onClick={() => navigate('/dashboard/products')}>
+                        <ListItem button onClick={() => navigate('/products')}>
 
                             <ListItemIcon>
                                 <InventoryIcon sx={{
@@ -254,7 +245,7 @@ export const NavigationMenu = () => {
                         {
                             (role === 'ADMIN_ROLE')
                             &&
-                            <ListItem button onClick={() => navigate('/dashboard/users')}>
+                            <ListItem button onClick={() => navigate('/users')}>
                                 <ListItemIcon>
                                     <GroupIcon sx={{
                                         ml: '10%'
@@ -269,7 +260,7 @@ export const NavigationMenu = () => {
                         {
                             (role === 'ADMIN_ROLE')
                             &&
-                            <ListItem button onClick={() => navigate('/dashboard/regist')}>
+                            <ListItem button onClick={() => navigate('/regist')}>
                                 <ListItemIcon>
                                     <LibraryBooksIcon sx={{
                                         ml: '10%'
@@ -281,7 +272,7 @@ export const NavigationMenu = () => {
                             </ListItem>
                         }
 
-                        <ListItem button onClick={() => navigate('/dashboard/sales')}>
+                        <ListItem button onClick={() => navigate('/sales')}>
                             <ListItemIcon>
                                 <TrendingUpIcon sx={{
                                     ml: '10%'
@@ -322,8 +313,8 @@ export const NavigationMenu = () => {
                                         horizontal: 'right',
                                     }}
                                 >
-                                    <MenuItem onClick={() => navigate('/dashboard/bin/products')} >Productos</MenuItem>
-                                    <MenuItem onClick={() => navigate('/dashboard/bin/users')} >Usuarios</MenuItem>
+                                    <MenuItem onClick={() => navigate('/bin/products')} >Productos</MenuItem>
+                                    <MenuItem onClick={() => navigate('/bin/users')} >Usuarios</MenuItem>
                                 </Menu>
 
                             </ListItem>
@@ -333,7 +324,7 @@ export const NavigationMenu = () => {
                     <Divider />
 
                     {
-                        (pathname === '/dashboard/products' || pathname === '/dashboard/users')
+                        (pathname === '/products' || pathname === '/users')
                         &&
                         <List>
 

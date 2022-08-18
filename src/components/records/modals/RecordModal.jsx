@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { Image } from 'cloudinary-react';
 
-import ImageCropDialog from "../../ui/ImageCropDialog";
+import ImageCropDialog from "../../ui/imageCrop/ImageCropDialog";
 
 import moment from 'moment';
 import 'moment-timezone';
@@ -21,22 +20,19 @@ import { Divider } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { uiCloseRecordModal } from '../../../store/slices/uiSlice';
+import { TabNavRecordModal } from './components/TabNavRecordModal';
 
-import { TabNavRecordModal } from '../../ui/TabNavRecordModal';
+import { useUiStore, useRecordsStore } from '../../../hooks';
 
-import { styles__recordModal } from '../../../styles/dashboard/modals/styles__recordModal';
+import { recordModal } from '../../../styles/components/records';
 
 moment.locale('es');
 
 
 export const RecordModal = () => {
 
-    const dispatch = useDispatch();
-
-    const { recordModal } = useSelector(state => state.ui);
-    const { activeRecord } = useSelector(state => state.records);
-
+    const { activeRecord } = useRecordsStore();
+    const { recordModal: recordModalStatus, startUiCloseRecordModal } = useUiStore();
 
     const [productUpdate, setProductUpdate] = useState(0);
 
@@ -59,7 +55,7 @@ export const RecordModal = () => {
     const handleClose = () => {
         setCounterImageBefore(1);
         setCounterImageAfter(1);
-        dispatch(uiCloseRecordModal())
+        startUiCloseRecordModal()
     };
 
     if (!activeRecord) {
@@ -73,14 +69,14 @@ export const RecordModal = () => {
 
 
             <Modal
-                open={recordModal}
+                open={recordModalStatus}
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
                 <Container maxWidth="sm">
                     <Box
-                        sx={styles__recordModal(sm, md, lg, xl)}
+                        sx={recordModal(sm, md, lg, xl)}
                     >
                         <Typography variant='body2' id='title'>
                             Registro

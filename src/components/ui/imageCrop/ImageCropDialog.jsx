@@ -8,7 +8,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
 import getCroppedImg from "./cropImage";
-import { styles__imageCropDialog } from "../../../styles/dashboard/ui/styles__imageCropDialog";
+
+import { imageCropDialog } from "../../../styles/components/ui";
 
 
 const aspectRatios = [
@@ -78,7 +79,7 @@ const ImageCropDialog = ({
   };
 
   return (
-    <Box sx={styles__imageCropDialog(sm, md, lg, xl)}>
+    <Box sx={imageCropDialog(sm, md, lg, xl)}>
 
       <div className="crop-container">
         <Cropper

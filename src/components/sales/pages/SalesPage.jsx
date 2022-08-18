@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SalesDashboardTable } from './tables/SalesDashboardTable';
+import { SalesTable } from '../table/SalesTable';
 
 
 export const SalesPage = () => {
@@ -8,7 +8,7 @@ export const SalesPage = () => {
     return (
         <>
 
-        <SalesDashboardTable />
+        <SalesTable />
 
         </>
     );

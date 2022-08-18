@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import {
     addNewCategory,
     deleteCategory,
@@ -29,20 +27,19 @@ export const useCategoriesStore = () => {
 
         try {
 
-            const resp = await fetchSinToken('categories');
-            const body = await resp.json();
+            const { data: { categories: _categories, msg } } = await dashboardApi.get('categories');
 
 
-            if (body.categories) {
+            if (_categories) {
 
-                const categories = body.categories;
+                // const categories = categories;
 
-                console.log(categories)
+                console.log(_categories)
 
-                dispatch(loadCategories(categories));
+                dispatch(loadCategories(_categories));
 
             } else {
-                return console.log(body.msg);
+                return console.log(msg);
             }
 
 
@@ -61,13 +58,12 @@ export const useCategoriesStore = () => {
 
             try {
 
-                const resp = await fetchConToken('categories', name, 'POST');
-                const body = await resp.json();
+                const { data: { msg, category } } = await dashboardApi.post('categories', name);
 
 
-                if (body.msg === "OK") {
+                if (msg === "OK") {
 
-                    dispatch(addNewCategory(body.category));
+                    dispatch(addNewCategory(category));
 
                     dispatch(uiCloseProgressBackdrop());
 
@@ -77,7 +73,7 @@ export const useCategoriesStore = () => {
 
                     dispatch(uiCloseProgressBackdrop());
                     dispatch(uiOpenErrorAlert('Error al intentar crear la categoria! Hable con el administrador'));
-                    console.log(body.msg);
+                    console.log(msg);
                 }
 
             } catch (error) {
@@ -88,19 +84,19 @@ export const useCategoriesStore = () => {
         }
     }
 
-    const categoryStartUpdated = async (category) => {
+    const categoryStartUpdated = async (_category) => {
 
         try {
 
-            const resp = await fetchConToken(`categories/${category._id}`, category, 'PUT');
-            const body = await resp.json();
-
-            console.log(body);
+            const { data: { msg, category } } = await dashboardApi.put(`categories/${_category._id}`, category);
 
 
-            if (body.msg === 'OK') {
+            console.log(data);
 
-                dispatch(updateCategory(body.category));
+
+            if (msg === 'OK') {
+
+                dispatch(updateCategory(category));
 
                 dispatch(uiCloseProgressBackdrop());
 
@@ -110,7 +106,7 @@ export const useCategoriesStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar actualizar la categoria! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -122,22 +118,21 @@ export const useCategoriesStore = () => {
 
     }
 
-    const categoryStartDeleted = async (category) => {
+    const categoryStartDeleted = async (_category) => {
 
         try {
 
             dispatch(uiOpenProgressBackdrop());
 
 
-            const resp = await fetchConToken(`categories/${category._id}`, {}, 'DELETE');
-            const body = await resp.json();
+            const { data: { msg, category } } = await dashboardApi.delete(`categories/${_category._id}`, {});
 
-            console.log(body);
+            console.log(data);
 
 
-            if (body.msg === "OK") {
+            if (msg === "OK") {
 
-                dispatch(deleteCategory(body.category));
+                dispatch(deleteCategory(category));
 
                 dispatch(uiCloseProgressBackdrop());
 
@@ -146,8 +141,8 @@ export const useCategoriesStore = () => {
 
             } else {
                 dispatch(uiCloseProgressBackdrop());
-                dispatch(uiOpenErrorAlert(`${body.msg}`));
-                console.log(body.msg);
+                dispatch(uiOpenErrorAlert(`${msg}`));
+                console.log(msg);
             }
 
 

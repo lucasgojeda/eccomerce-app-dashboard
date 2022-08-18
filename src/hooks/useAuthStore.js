@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import { usersLogout } from "../store/slices/userSlice";
 import { recordsLogout } from "../store/slices/recordsSlice";
 import { salesLogout } from "../store/slices/saleSlice";
@@ -43,27 +41,27 @@ export const useAuthStore = () => {
         try {
 
             dispatch(uiOpenProgressBackdrop());
-            const resp = await fetchSinToken('auth/login', { email, password }, 'POST');
-            const body = await resp.json();
 
-            if (body.token) {
+            const { data: { token, user, msg } } = await dashboardApi.post('auth/login', { email, password });
 
-                localStorage.setItem('token', body.token);
+            if (token) {
+
+                localStorage.setItem('token', token);
                 localStorage.setItem('token-init-date', new Date().getTime());
 
 
                 dispatch(authLogin({
-                    uid: body.user._id,
-                    name: body.user.name,
-                    role: body.user.role
+                    uid: user._id,
+                    name: user.name,
+                    role: user.role
                 }));
-                dispatch(loadCart(body.user.cart));
+                dispatch(loadCart(user.cart));
 
                 dispatch(uiCloseProgressBackdrop());
 
             } else {
                 dispatch(uiCloseProgressBackdrop());
-                return console.log(body.msg);
+                return console.log(msg);
             }
 
 
@@ -77,28 +75,30 @@ export const useAuthStore = () => {
 
         try {
             dispatch(uiOpenProgressBackdrop());
-            const resp = await fetchSinToken('users', { name, email, password, role }, 'POST');
-            const body = await resp.json();
 
-            console.log(body);
+            const { data } = await dashboardApi.post('users', { name, email, password, role });
 
-            if (body.msg === 'OK') {
+            console.log(data);
 
-                localStorage.setItem('token', body.token);
+            const { token, user, msg, errors } = data;
+
+            if (msg === 'OK') {
+
+                localStorage.setItem('token', token);
                 localStorage.setItem('token-init-date', new Date().getTime());
 
 
                 dispatch(authLogin({
-                    uid: body.user._id,
-                    name: body.user.name,
-                    role: body.user.role,
+                    uid: user._id,
+                    name: user.name,
+                    role: user.role,
                 }));
-                dispatch(loadCart(body.user.cart));
+                dispatch(loadCart(user.cart));
 
                 dispatch(uiCloseProgressBackdrop());
             } else {
-                (body.errors !== undefined) && console.log(body.errors);
-                (body.msg !== undefined) && console.log(body.msg);
+                (errors !== undefined) && console.log(errors);
+                (msg !== undefined) && console.log(msg);
                 dispatch(uiCloseProgressBackdrop());
 
             }
@@ -113,27 +113,38 @@ export const useAuthStore = () => {
 
     const startChecking = async () => {
 
+        if (!localStorage.getItem('token')) return dispatch(authCheckingFinish());
+
         try {
-            const resp = await fetchConToken('auth/renew');
-            const body = await resp?.json();
 
-            if (body?.msg === 'OK') {
+            const { data } = await dashboardApi.get('auth/renew');
 
-                localStorage.setItem('token', body.token);
+            const {
+                msg,
+                token,
+                _id,
+                name: _name,
+                role: _role,
+                cart
+            } = data;
+
+            if (msg === 'OK') {
+
+                localStorage.setItem('token', token);
                 localStorage.setItem('token-init-date', new Date().getTime());
 
 
                 dispatch(authLogin({
-                    uid: body._id,
-                    name: body.name,
-                    role: body.role,
+                    uid: _id,
+                    name: _name,
+                    role: _role,
                 }));
-                dispatch(loadCart(body.cart));
+                dispatch(loadCart(cart));
 
             } else {
 
 
-                if (body?.msg === 'invalid token.') {
+                if (msg === 'invalid token.') {
 
                     const removeToken = new Promise((resolve, reject) => {
                         resolve(() => {
@@ -185,27 +196,29 @@ export const useAuthStore = () => {
 
         try {
             dispatch(uiOpenProgressBackdrop());
-            const resp = await fetchSinToken('auth/google', { id_token }, 'POST');
-            const body = await resp.json();
 
-            if (body.msg === 'OK') {
+            const { data } = await dashboardApi.post('auth/google', { id_token });
 
-                localStorage.setItem('token', body.token);
+            const { msg, user, token } = data;
+
+            if (msg === 'OK') {
+
+                localStorage.setItem('token', token);
                 localStorage.setItem('token-init-date', new Date().getTime());
 
 
                 dispatch(authLogin({
-                    uid: body.user._id,
-                    name: body.user.name,
-                    role: body.user.role,
+                    uid: user._id,
+                    name: user.name,
+                    role: user.role,
                 }));
-                dispatch(loadCart(body.user.cart));
+                dispatch(loadCart(user.cart));
 
                 dispatch(uiCloseProgressBackdrop());
 
             } else {
                 dispatch(uiCloseProgressBackdrop());
-                return console.log(body.msg);
+                return console.log(msg);
             }
 
 

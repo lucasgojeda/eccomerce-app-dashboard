@@ -7,7 +7,7 @@ export const userSlice = createSlice({
     activeUser: false,
   },
   reducers: {
-    activeUser: (state, action) => {
+    setActiveUser: (state, action) => {
 
       state.activeUser = { ...action.payload };
     },
@@ -48,7 +48,7 @@ export const userSlice = createSlice({
 })
 
 export const {
-  activeUser,
+  setActiveUser,
   clearActiveUser,
   loadUsers,
   usersLogout,

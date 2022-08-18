@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { DataGrid } from '@mui/x-data-grid';
 import { Box, Container, Typography } from '@mui/material';
@@ -21,33 +20,32 @@ import { useTheme } from '@mui/material/styles';
 
 import queryString from 'query-string';
 
-import { prepareProducts } from '../../../helpers/prepareProducts';
-
-import { activeProduct } from '../../../store/slices/productSlice';
-import { activeUser } from '../../../store/slices/userSlice';
-import { startLoadUsers } from '../../../store/thunks/users';
-import {
-    uiOpenDialogDelete,
-    uiOpenProductModalEdit,
-    uiOpenUserModalEdit
-} from '../../../store/slices/uiSlice';
+import { useStaticsStore, useUiStore, useUsersStore } from '../../../hooks';
 
 import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    styles__usersTable
-} from '../../../styles/dashboard/tables/styles__usersTable';
+    usersTable
+} from '../../../styles/components/users';
 
 
 export const UsersTable = () => {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { users } = useSelector(state => state.users);
-    const { dashboardUsers } = useSelector(state => state.dashboard);
+    const {
+        users,
+        startLoadUsers,
+        startSetActiveUser
+    } = useUsersStore();
+    const { dashboardUsers } = useStaticsStore();
+    const {
+        startUiOpenDialogDelete,
+        startUiOpenProductModalEdit,
+        startUiOpenUserModalEdit
+    } = useUiStore();
 
     const { q = '' } = queryString.parse(location.search);
     const { c = '' } = queryString.parse(location.search);
@@ -69,7 +67,7 @@ export const UsersTable = () => {
     // Filters and search
     useEffect(() => {
 
-        dispatch(startLoadUsers(filterBy, orderBy, searchText, pagePath));
+        startLoadUsers(filterBy, orderBy, searchText, pagePath);
 
     }, [filterBy, orderBy, flagSearch, pagePath]);
 
@@ -130,7 +128,7 @@ export const UsersTable = () => {
     const handleEditButton = (e) => {
         e.preventDefault();
 
-        dispatch(uiOpenUserModalEdit())
+        startUiOpenUserModalEdit()
 
         handleLogout();
     }
@@ -138,7 +136,7 @@ export const UsersTable = () => {
     const handleDeleteButton = (e) => {
         e.preventDefault();
 
-        dispatch(uiOpenDialogDelete())
+        startUiOpenDialogDelete()
 
 
         handleLogout();
@@ -150,7 +148,7 @@ export const UsersTable = () => {
     const handleMenu = (e, user) => {
         e.preventDefault();
 
-        dispatch(activeUser(user));
+        startSetActiveUser(user);
 
         setAnchorEl(e.currentTarget);
     };
@@ -170,7 +168,7 @@ export const UsersTable = () => {
                 {
                     (users !== undefined)
                         ?
-                        <Box sx={styles__usersTable(sm, md, lg, xl)}>
+                        <Box sx={usersTable(sm, md, lg, xl)}>
 
 
                             <Container id='searchAndFilter'>

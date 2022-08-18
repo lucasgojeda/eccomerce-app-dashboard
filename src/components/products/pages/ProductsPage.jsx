@@ -1,21 +1,28 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
-import { clearActiveProduct } from '../../../store/slices/productSlice';
-import { clearActiveUser } from '../../../store/slices/userSlice';
+import { CreateProductModal } from '../modals/CreateProductModal';
+import { ProductsTable } from '../table/ProductsTable';
 
-import { CreateProductModal } from './modals/CreateProductModal';
-import { ProductsDashboardTable } from './tables/ProductsDashboardTable';
+import {
+    useCategoriesStore,
+    useProductsStore,
+    useUsersStore
+} from '../../../hooks';
 
 
-export const ProductsPage = () => { 
+export const ProductsPage = () => {
 
-    const dispatch = useDispatch();
+    const { startLoadCategories } = useCategoriesStore();
+
+    const { startClearActiveProduct } = useProductsStore();
+    const { startClearActiveUser } = useUsersStore();
 
     useEffect(() => {
 
-        dispatch(clearActiveProduct());
-        dispatch(clearActiveUser());
+        startLoadCategories();
+
+        startClearActiveProduct();
+        startClearActiveUser();
 
     }, []);
 
@@ -24,7 +31,7 @@ export const ProductsPage = () => {
 
             <CreateProductModal />
 
-            <ProductsDashboardTable />
+            <ProductsTable />
 
         </>
     );

@@ -66,6 +66,7 @@ export const LoginPage = () => {
     }
 
     const handleGoogleLogin = (response) => {
+        response.preventDefault();
 
         const { tokenId } = response;
 

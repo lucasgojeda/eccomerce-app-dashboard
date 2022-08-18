@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import {
     deleteCartProduct,
     updateCartProduct
@@ -21,26 +19,25 @@ export const useCartStore = () => {
     const { cart } = useSelector(state => state.cart);
 
 
-    const startUpdatedCart = async(cart, id) => {
+    const startUpdatedCart = async(_cart, id) => {
 
         try {
 
-            const resp = await fetchConToken(`users/cart/${id}`, cart, 'PUT');
-            const body = await resp.json();
+            const { data: { msg, product } } = await dashboardApi.put(`users/cart/${id}`, _cart);
 
-            console.log(body);
+            console.log(data);
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(updateCartProduct(body.product));
+                dispatch(updateCartProduct(product));
 
 
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error trying to update the user! Talk to developer'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -52,26 +49,26 @@ export const useCartStore = () => {
 
     }
 
-    const startDeletedCart = async(cart, id) => {
+    const startDeletedCart = async(_cart, id) => {
 
         try {
 
-            const resp = await fetchConToken(`users/cart/${id}`, cart, 'DELETE');
-            const body = await resp.json();
+            const { data: { msg, product } } = await dashboardApi.delete(`users/cart/${id}`, _cart);
+            
 
-            console.log(body);
+            console.log(data);
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(deleteCartProduct(body.product));
+                dispatch(deleteCartProduct(product));
 
 
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error trying to update the user! Talk to developer'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 

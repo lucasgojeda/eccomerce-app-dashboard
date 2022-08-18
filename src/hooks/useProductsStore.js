@@ -2,8 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { fetchConToken, fetchSinToken } from "../helpers/fetch"
-
 import { addBinProduct } from "../store/slices/binSlice";
 import { addNewRecord } from "../store/slices/recordsSlice";
 
@@ -18,6 +16,7 @@ import {
     clearActiveProduct,
     deleteProduct,
     loadProducts,
+    setActiveProduct,
     updateProduct
 } from "../store/slices/productSlice";
 
@@ -41,15 +40,15 @@ export const useProductsStore = () => {
 
         try {
 
-            const resp = await fetchSinToken(`products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
-            const body = await resp.json();
+            const { data } = await dashboardApi.get(`products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
+            const { msg, results } = data;
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 // console.log('Filtered products', body);
 
-                const filteredProducts = body.results;
+                const filteredProducts = results;
 
                 console.log(filteredProducts)
 
@@ -58,7 +57,7 @@ export const useProductsStore = () => {
                 window.scroll(0, 0);
 
             } else {
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -67,29 +66,27 @@ export const useProductsStore = () => {
         }
     }
 
-    const productStartAddNew = async (product) => {
+    const productStartAddNew = async (_product) => {
 
         try {
 
-            const { category } = product;
+            const { category } = _product;
 
-            const productNew = { ...product, category: category.name };
+            const productNew = { ..._product, category: category.name };
 
-            console.log(productNew)
+            const { data: { msg, product, record } } = await dashboardApi.post('products', productNew);
 
-            const resp = await fetchConToken('products', productNew, 'POST');
-            const body = await resp.json();
+            console.log(data);
 
-            console.log(body);
 
-            if (body.msg === "OK") {
+            if (msg === "OK") {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(addProduct(body.product));
+                dispatch(addProduct(product));
                 dispatch(addOneDashboardProducts());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El producto fue creado exitosamente!'));
@@ -97,7 +94,7 @@ export const useProductsStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar crear el producto! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -108,29 +105,30 @@ export const useProductsStore = () => {
         }
     }
 
-    const productStartUpdated = async (product) => {
+    const productStartUpdated = async (_product) => {
 
         try {
 
-            const { category } = product
+            const { category } = _product
 
-            const productNew = { ...product, category: category.name }
+            const productNew = { ..._product, category: category.name }
 
-            const resp = await fetchConToken(`products/${product._id}`, { product: productNew }, 'PUT');
-            const body = await resp.json();
+            const { data } = await dashboardApi.put(`products/${_product._id}`, { product: productNew });
 
-            console.log(body);
+            console.log(data);
+
+            const { msg, product, record } = data;
 
 
-            if (body.msg === 'OK') {
+            if (msg === 'OK') {
 
                 dispatch(clearActiveProduct());
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(updateProduct(body.product));
+                dispatch(updateProduct(product));
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El producto fue actualizado exitosamente!'));
@@ -139,7 +137,7 @@ export const useProductsStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar actualizar el producto! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -151,32 +149,30 @@ export const useProductsStore = () => {
 
     }
 
-    const productStartDeleted = async (product) => {
+    const productStartDeleted = async (_product) => {
 
         try {
 
             dispatch(uiOpenProgressBackdrop());
 
+            const { data: { msg, record, product } } = await dashboardApi.delete(`products/${_product._id}`, {});
 
-            const resp = await fetchConToken(`products/${product._id}`, {}, 'DELETE');
-            const body = await resp.json();
-
-            console.log(body);
+            console.log(data);
 
 
-            if (body.msg === "OK") {
+            if (msg === "OK") {
 
                 dispatch(clearActiveProduct());
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(deleteProduct(body.product));
+                dispatch(deleteProduct(product));
                 dispatch(subtractOneDashboardProducts());
 
-                dispatch(addBinProduct(body.product));
+                dispatch(addBinProduct(product));
                 dispatch(addOneDashboardBinProducts());
 
-                dispatch(addNewRecord(body.record));
+                dispatch(addNewRecord(record));
                 dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El producto fue eliminado exitosamente!'));
@@ -185,7 +181,7 @@ export const useProductsStore = () => {
             } else {
                 dispatch(uiCloseProgressBackdrop());
                 dispatch(uiOpenErrorAlert('Error al intentar eliminar el producto! Hable con el administrador'));
-                console.log(body.msg);
+                console.log(msg);
             }
 
 
@@ -195,6 +191,16 @@ export const useProductsStore = () => {
             console.log(error);
         }
 
+    }
+
+    const startSetActiveProduct = (product) => {
+
+        dispatch(setActiveProduct(product));
+    }
+
+    const startClearActiveProduct = () => {
+
+        dispatch(clearActiveProduct());
     }
 
 
@@ -208,5 +214,7 @@ export const useProductsStore = () => {
         productStartAddNew,
         productStartUpdated,
         productStartDeleted,
+        startSetActiveProduct,
+        startClearActiveProduct,
     }
 }
