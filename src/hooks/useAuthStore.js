@@ -162,7 +162,7 @@ export const useAuthStore = () => {
 
         } catch (error) {
             dispatch(authCheckingFinish());
-            console.log(error);
+            console.log(error.response.data.msg);
 
         }
 
@@ -174,6 +174,10 @@ export const useAuthStore = () => {
 
             dispatch(uiOpenProgressBackdrop());
 
+            localStorage.removeItem('token-init-date');
+            localStorage.removeItem('token');
+
+            dispatch(authLogout());
             dispatch(usersLogout());
             dispatch(usersBinLogout());
             dispatch(productsBinLogout());
@@ -182,7 +186,7 @@ export const useAuthStore = () => {
             dispatch(staticsLogout());
             dispatch(cartLogout());
             dispatch(notificationsLogout());
-            dispatch(authLogout());
+
 
             dispatch(uiCloseProgressBackdrop());
 

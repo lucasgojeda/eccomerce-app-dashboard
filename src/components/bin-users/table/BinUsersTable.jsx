@@ -23,8 +23,9 @@ import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    binUsersTable
 } from '../../../styles/components/bin-users';
+
+import '../../../styles/components/bin-users/table/_binUsersTable.scss';
 
 import {
     useBinStore,
@@ -171,8 +172,7 @@ export const BinUsersTable = () => {
                 {
                     (binUsers !== undefined)
                         ?
-                        <Box
-                            sx={binUsersTable(sm, md, lg, xl)}>
+                        <Box className='mainBinUsersTableContainer'>
 
 
 

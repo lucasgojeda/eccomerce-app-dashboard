@@ -26,8 +26,9 @@ import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    usersTable
 } from '../../../styles/components/users';
+
+import '../../../styles/components/users/table/_usersTable.scss';
 
 
 export const UsersTable = () => {
@@ -168,7 +169,7 @@ export const UsersTable = () => {
                 {
                     (users !== undefined)
                         ?
-                        <Box sx={usersTable(sm, md, lg, xl)}>
+                        <Box className='mainUsersTableContainer'>
 
 
                             <Container id='searchAndFilter'>

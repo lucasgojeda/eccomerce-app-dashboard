@@ -1,0 +1,308 @@
+// xl
+@media (min-width: 1200px) {
+    .mainCaregoriesModalContainer {
+        background-color: #fff;
+        height: 70vh;
+        width: 60vh;
+        margin: auto;
+        margin-top: 15%;
+
+        h1 {
+            margin-top: 2.5%;
+            margin-left: 2.5%;
+            margin-bottom: 1.5%;
+            font-size: 20px;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 5%;
+            height: 40vh;
+            overflow-y: scroll
+        }
+
+        .MuiMenuItem-root {
+            width: 40ch;
+            cursor: default;
+
+            :hover {
+                #DeleteIcon {
+                    visibility: visible;
+                }
+
+                #EditIcon {
+                    visibility: visible;
+                }
+            }
+        }
+
+        #DeleteIcon {
+            position: absolute;
+            right: 0;
+            margin-right: 2%;
+            font-size: 20px;
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        #EditIcon {
+            position: absolute;
+            right: 0;
+            margin-right: 10%;
+            font-size: 20px;
+            cursor: pointer;
+            color: gray;
+            visibility: hidden;
+        }
+
+        #AddIcon {
+            display: block;
+            margin: auto;
+            margin-top: 5%;
+            padding-top: 2%;
+        }
+
+        #submitButton {
+            width: 20%;
+            margin: auto;
+            margin-left: 40%;
+            margin-bottom: 2.5%;
+            margin-top: 3.5%;
+        }
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainCaregoriesModalContainer {
+        background-color: #fff;
+        height: 70vh;
+        width: 60vh;
+        margin: auto;
+        margin-top: 15%;
+
+        h1 {
+            margin-top: 2.5%;
+            margin-left: 2.5%;
+            margin-bottom: 1.5%;
+            font-size: 20px;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 5%;
+            height: 40vh;
+            overflow-y: scroll
+        }
+
+        .MuiMenuItem-root {
+            width: 40ch;
+            cursor: default;
+
+            :hover {
+                #DeleteIcon {
+                    visibility: visible;
+                }
+
+                #EditIcon {
+                    visibility: visible;
+                }
+            }
+        }
+
+        #DeleteIcon {
+            position: absolute;
+            right: 0;
+            margin-right: 2%;
+            font-size: 20px;
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        #EditIcon {
+            position: absolute;
+            right: 0;
+            margin-right: 10%;
+            font-size: 20px;
+            cursor: pointer;
+            color: gray;
+            visibility: hidden;
+        }
+
+        #AddIcon {
+            display: block;
+            margin: auto;
+            margin-top: 5%;
+            padding-top: 2%;
+        }
+
+        #submitButton {
+            width: 20%;
+            margin: auto;
+            margin-left: 40%;
+            margin-bottom: 2.5%;
+            margin-top: 3.5%;
+        }
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainCaregoriesModalContainer {
+        background-color: #fff;
+        height: 70vh;
+        width: 60vh;
+        margin: auto;
+        margin-top: 15%;
+
+        h1 {
+            margin-top: 2.5%;
+            margin-left: 2.5%;
+            margin-bottom: 1.5%;
+            font-size: 20px;
+            visibility: visible
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 5%;
+            height: 40vh;
+            overflow-y: scroll
+        }
+
+        .MuiMenuItem-root {
+            width: 40ch;
+            cursor: default;
+
+            :hover {
+                #DeleteIcon {
+                    visibility: visible;
+                }
+
+                #EditIcon {
+                    visibility: visible;
+                }
+            }
+        }
+
+        #DeleteIcon {
+            position: absolute;
+            right: 0;
+            margin-right: 2%;
+            font-size: 20px;
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        #EditIcon {
+            position: absolute;
+            right: 0;
+            margin-right: 10%;
+            font-size: 20px;
+            cursor: pointer;
+            color: gray;
+            visibility: hidden;
+        }
+
+        #AddIcon {
+            display: block;
+            margin: auto;
+            margin-top: 5%;
+            padding-top: 2%;
+        }
+
+        #submitButton {
+            width: 20%;
+            margin: auto;
+            margin-left: 40%;
+            margin-bottom: 2.5%;
+            margin-top: 3.5%;
+        }
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainCaregoriesModalContainer {
+        position: absolute;
+        right: 0;
+        background-color: #fff;
+        height: 100vh;
+        width: 100vw;
+        margin: auto;
+        text-align: center;
+
+        h1 {
+            text-align: start;
+            margin-top: 2.5%;
+            margin-left: 2.5%;
+            margin-bottom: 1.5%;
+            font-size: 20px;
+            visibility: visible;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 15%;
+            height: 40vh;
+            overflow-y: scroll
+        }
+
+        .MuiMenuItem-root {
+            border-bottom: 1px solid #B2B6B5;
+            width: 90vw;
+            cursor: default;
+
+            :hover {
+                background-color: #B2B6B5;
+                color: #fff;
+
+                #DeleteIcon {
+                    visibility: visible;
+                }
+
+                #EditIcon {
+                    visibility: visible;
+                }
+            }
+        }
+
+        #DeleteIcon {
+            position: absolute;
+            right: 0; 
+            margin-right: 2%;
+            font-size: 20px;
+            cursor: pointer;
+            visibility: hidden;
+        }
+
+        #EditIcon {
+            position: absolute;
+            right: 0; 
+            margin-right: 10%;
+            font-size: 20px;
+            cursor: pointer;
+            color: gray;
+            visibility: hidden;
+        }
+
+        #AddIcon {
+            background-color: transparent;
+            display: block;
+            margin: auto;
+            margin-top: 10%;
+            padding-top: 2%;
+        }
+
+        #submitButton {
+            width: 20%;
+            margin: auto;
+            margin-bottom: 2.5%;
+            margin-top: 15%;
+        }
+    }
+}

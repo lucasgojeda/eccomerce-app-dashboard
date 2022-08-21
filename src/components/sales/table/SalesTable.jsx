@@ -34,8 +34,9 @@ import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    salesTable
 } from '../../../styles/components/sales';
+
+import '../../../styles/components/sales/table/_salesTable.scss';
 
 moment.locale('es');
 
@@ -177,8 +178,7 @@ export const SalesTable = () => {
                 {
                     (sales !== undefined)
                         ?
-                        <Box
-                            sx={salesTable(sm, md, lg, xl)}>
+                        <Box className='mainSalesTableContainer'>
 
 
 

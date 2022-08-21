@@ -1,0 +1,136 @@
+/* 5 */
+.btn-5 {
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    background: rgb(154, 95, 177);
+    // background: linear-gradient(0deg, rgba(255, 27, 0, 1) 0%, rgba(251, 75, 2, 1) 100%);
+}
+
+.btn-5:hover {
+    color: rgb(109, 52, 131);
+    background: transparent;
+    box-shadow: none;
+}
+
+.btn-5:before,
+.btn-5:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background-color: #6C3483;
+    box-shadow:
+        -1px -1px 5px 0px #fff,
+        7px 7px 20px 0px #0003,
+        4px 4px 5px 0px #0002;
+    transition: 400ms ease all;
+}
+
+.btn-5:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.btn-5:hover:before,
+.btn-5:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    font-size: 18px;
+    color: #676767;
+}
+
+.frame {
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+button {
+    margin: 20px;
+}
+
+.custom-btn {
+    width: 130px;
+    height: 40px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    color: gray;
+    border: none;
+    background: none;
+    z-index: 100;
+
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        .MuiSvgIcon-root {
+            font-size: 20px;
+        }
+    }
+}
+
+
+
+
+// // xl
+@media (min-width: 1200px) {
+    .mainHomePageContainer {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        height: 7.5vh;
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainHomePageContainer {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        height: 7.5vh;
+    }
+}
+
+// // md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainHomePageContainer {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        height: 7.5vh;
+    }
+}
+
+// // sm
+@media (max-width: 600px) {
+    .mainHomePageContainer {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+        height: 7.5vh;
+    }
+}

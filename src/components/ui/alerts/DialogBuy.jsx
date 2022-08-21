@@ -12,7 +12,6 @@ import { useTheme } from '@mui/material/styles';
 
 import { useSalesStore } from '../../../hooks';
 
-import { dialogBuy } from '../../../styles/components/ui';
 
 
 export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
@@ -40,7 +39,6 @@ export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
     return (
         <div>
             <Dialog
-                sx={dialogBuy(sm, md, lg, xl)}
                 open={dialogBuyOpen}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"

@@ -26,7 +26,7 @@ export const useNotificationsStore = () => {
 
             const { data: { msg, sales, notifications } } = await dashboardApi.get('notifications');
 
-            console.log(data)
+            console.log({ msg, sales, notifications })
 
             if (msg === 'OK') {
 
@@ -52,7 +52,7 @@ export const useNotificationsStore = () => {
             const { data: { msg, notification } } = await dashboardApi.put(`notifications/${_notification._id}`, {});
             
 
-            console.log(data);
+            console.log({ msg, notification });
 
 
             if (msg === 'OK') {

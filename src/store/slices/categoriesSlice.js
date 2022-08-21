@@ -29,6 +29,10 @@ export const categoriesSlice = createSlice({
         e => (e._id !== action.payload._id) && e
       );
     },
+    logoutCategories: (state) => {
+
+      state.categories = [];
+    }
   },
 })
 
@@ -36,4 +40,5 @@ export const {
   loadCategories,
   addNewCategory,
   updateCategory,
+  logoutCategories,
   deleteCategory, } = categoriesSlice.actions;

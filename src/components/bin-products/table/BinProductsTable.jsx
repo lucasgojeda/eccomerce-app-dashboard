@@ -24,9 +24,10 @@ import { useBinStore, useStaticsStore, useUiStore } from '../../../hooks';
 import {
     Search,
     SearchIconWrapper,
-    StyledInputBase,
-    binProductsTable
+    StyledInputBase
 } from '../../../styles/components/bin-products';
+
+import '../../../styles/components/bin-products/table/_binProductsTable.scss';
 
 
 export const BinProductsTable = () => {
@@ -168,8 +169,7 @@ export const BinProductsTable = () => {
                 {
                     (binProducts !== undefined)
                         ?
-                        <Box
-                            sx={binProductsTable(sm, md, lg, xl)}>
+                        <Box className='mainBinProductsTableContainer'>
 
 
                             <Container id='searchAndFilter'>

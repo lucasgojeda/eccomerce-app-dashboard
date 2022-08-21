@@ -1,0 +1,581 @@
+@media (min-width: 1200px) {
+  .mainCardsContainer {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    left: 7vw;
+    top: 2.5vh;
+    font-family: Quicksand;
+
+
+    #chartsContainer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5vh;
+      margin-left: -3vw;
+      width: 100%;
+      height: auto;
+    }
+
+    #doughnut,
+    #pie {
+      margin-top: 5vh;
+      width: 40ch;
+      height: 40ch;
+      background: transparent;
+    }
+
+    .cardContainer {
+      margin-top: 5vh;
+      width: 92.5vw;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .cardInside {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 25px;
+    }
+
+    .titleAndAmountContainer {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 50%;
+    }
+
+    .iconContainer {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+      width: 50%;
+
+      .MuiSvgIcon-root {
+        font-size: 35px;
+      }
+    }
+
+    .card {
+      width: 35vw;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background-color: #fff;
+      margin-bottom: 30px;
+      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+
+      .border-left-pink {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(245, 54, 92, 1) 100%);
+
+        border-left: 4px solid #f5365c;
+      }
+
+      .border-left-orange {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(251, 99, 64, 1) 100%);
+
+        border-left: 4px solid #fb6340;
+      }
+
+      .border-left-yellow {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(255, 214, 0, 1) 100%);
+
+        border-left: 4px solid #ffd600;
+      }
+
+      .border-left-blue {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(17, 205, 239, 1) 100%);
+
+        border-left: 4px solid #11cdef;
+      }
+
+      .text-title {
+        color: #818891;
+        font-weight: 500px;
+        font-size: 14px;
+      }
+
+      .text-amount {
+        font-weight: 600px;
+      }
+
+      .icon-shape {
+        border-radius: 50%;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+      }
+
+      .icon-area {
+        background-color: #ffd600;
+      }
+
+      .icon-pie {
+        background-color: #f5365c;
+      }
+
+      .icon-user {
+        background-color: #fb6340;
+      }
+
+      .icon-percent {
+        background-color: #11cdef;
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+  .mainCardsContainer {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    left: 7vw;
+    top: 2.5vh;
+    font-family: Quicksand;
+
+
+    #chartsContainer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2.5vh;
+      margin-left: -3vw;
+      width: 100%;
+      height: auto;
+    }
+
+    #doughnut,
+    #pie {
+      margin-top: 5vh;
+      width: 40ch;
+      height: 40ch;
+      background: transparent;
+    }
+
+    .cardContainer {
+      margin-top: 5vh;
+      width: 92.5vw;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .cardInside {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 25px;
+    }
+
+    .titleAndAmountContainer {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 50%;
+    }
+
+    .iconContainer {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+      width: 50%;
+
+      .MuiSvgIcon-root {
+        font-size: 35px;
+      }
+    }
+
+    .card {
+      width: 35vw;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background-color: #fff;
+      margin-bottom: 30px;
+      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+
+      .border-left-pink {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(245, 54, 92, 1) 100%);
+
+        border-left: 4px solid #f5365c;
+      }
+
+      .border-left-orange {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(251, 99, 64, 1) 100%);
+
+        border-left: 4px solid #fb6340;
+      }
+
+      .border-left-yellow {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(255, 214, 0, 1) 100%);
+
+        border-left: 4px solid #ffd600;
+      }
+
+      .border-left-blue {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(17, 205, 239, 1) 100%);
+
+        border-left: 4px solid #11cdef;
+      }
+
+      .text-title {
+        color: #818891;
+        font-weight: 500px;
+        font-size: 14px;
+      }
+
+      .text-amount {
+        font-weight: 600px;
+      }
+
+      .icon-shape {
+        border-radius: 50%;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+      }
+
+      .icon-area {
+        background-color: #ffd600;
+      }
+
+      .icon-pie {
+        background-color: #f5365c;
+      }
+
+      .icon-user {
+        background-color: #fb6340;
+      }
+
+      .icon-percent {
+        background-color: #11cdef;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .mainCardsContainer {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    left: 8.5vw;
+    top: 2.5vh;
+    font-family: Quicksand;
+
+
+    #chartsContainer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-top: 2.5vh;
+      margin-left: -3vw;
+      width: 100%;
+      height: auto;
+    }
+
+    #doughnut,
+    #pie {
+      margin-top: 5vh;
+      width: 40ch;
+      height: 40ch;
+      background: transparent;
+    }
+
+    .cardContainer {
+      margin-top: 5vh;
+      width: 92.5vw;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .cardInside {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 25px;
+    }
+
+    .titleAndAmountContainer {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 50%;
+    }
+
+    .iconContainer {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+      width: 50%;
+
+      .MuiSvgIcon-root {
+        font-size: 35px;
+      }
+    }
+
+    .card {
+      width: 35vw;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background-color: #fff;
+      margin-bottom: 30px;
+      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+
+      .border-left-pink {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(245, 54, 92, 1) 100%);
+
+        border-left: 4px solid #f5365c;
+      }
+
+      .border-left-orange {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(251, 99, 64, 1) 100%);
+
+        border-left: 4px solid #fb6340;
+      }
+
+      .border-left-yellow {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(255, 214, 0, 1) 100%);
+
+        border-left: 4px solid #ffd600;
+      }
+
+      .border-left-blue {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(17, 205, 239, 1) 100%);
+
+        border-left: 4px solid #11cdef;
+      }
+
+      .text-title {
+        color: #818891;
+        font-weight: 500px;
+        font-size: 14px;
+      }
+
+      .text-amount {
+        font-weight: 600px;
+      }
+
+      .icon-shape {
+        border-radius: 50%;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+      }
+
+      .icon-area {
+        background-color: #ffd600;
+      }
+
+      .icon-pie {
+        background-color: #f5365c;
+      }
+
+      .icon-user {
+        background-color: #fb6340;
+      }
+
+      .icon-percent {
+        background-color: #11cdef;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+
+  .mainCardsContainer {
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: auto;
+    left: 0;
+    top: 0;
+    font-family: Quicksand;
+
+    #chartsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 2.5vh;
+      width: 100%;
+      height: auto;
+    }
+
+    #doughnut {
+      width: 85%;
+      padding: 10px;
+      margin-bottom: 10vh;
+      background: transparent;
+      border-radius: 6px;
+    }
+
+    #pie {
+      width: 85%;
+      padding: 10px;
+      margin-bottom: 2.5vh;
+      background: transparent;
+      border-radius: 6px;
+    }
+
+    .cardContainer {
+      width: 92.5vw;
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: auto;
+      margin-top: 10vh;
+    }
+
+    .cardInside {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 25px;
+    }
+
+    .titleAndAmountContainer {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 50%;
+    }
+
+    .iconContainer {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+      width: 50%;
+
+      .MuiSvgIcon-root {
+        font-size: 35px;
+      }
+    }
+
+    .card {
+      width: 80vw;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      background-color: #fff;
+      margin-bottom: 30px;
+      box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+
+      .border-left-pink {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(245, 54, 92, 1) 100%);
+
+        border-left: 4px solid #f5365c;
+      }
+
+      .border-left-orange {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(251, 99, 64, 1) 100%);
+
+        border-left: 4px solid #fb6340;
+      }
+
+      .border-left-yellow {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(255, 214, 0, 1) 100%);
+
+        border-left: 4px solid #ffd600;
+      }
+
+      .border-left-blue {
+
+        background: rgb(255, 255, 255);
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.4926228005865103) 0%, rgba(17, 205, 239, 1) 100%);
+
+        border-left: 4px solid #11cdef;
+      }
+
+      .text-title {
+        color: #818891;
+        font-weight: 500px;
+        font-size: 14px;
+      }
+
+      .text-amount {
+        font-weight: 600px;
+      }
+
+      .icon-shape {
+        border-radius: 50%;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+      }
+
+      .icon-area {
+        background-color: #ffd600;
+      }
+
+      .icon-pie {
+        background-color: #f5365c;
+      }
+
+      .icon-user {
+        background-color: #fb6340;
+      }
+
+      .icon-percent {
+        background-color: #11cdef;
+      }
+    }
+  }
+}

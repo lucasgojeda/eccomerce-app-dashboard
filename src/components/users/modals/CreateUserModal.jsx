@@ -16,7 +16,7 @@ import { verifyUserCreateFields } from '../../../helpers/verifyUserCreateFields'
 
 import { useUiStore, useUsersStore } from '../../../hooks';
 
-import { userModal } from '../../../styles/components/users';
+import '../../../styles/components/users/modals/_userModal.scss';
 
 
 const initEvent = {
@@ -128,7 +128,7 @@ export const CreateUserModal = () => {
                 <Container maxWidth="sm">
                     <Box
                         component="form"
-                        sx={userModal(sm, md, lg, xl)}
+                        className='mainUserModalContainer'
                         noValidate
                         autoComplete="off"
                     >

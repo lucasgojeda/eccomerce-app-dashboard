@@ -31,8 +31,9 @@ import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    recordsTable
 } from '../../../styles/components/records';
+
+import '../../../styles/components/records/table/_recordTable.scss'
 
 moment.locale('es');
 
@@ -145,8 +146,7 @@ export const RecordsTable = () => {
                 {
                     (records !== undefined)
                         ?
-                        <Box
-                            sx={recordsTable(sm, md, lg, xl)}>
+                        <Box className='mainRecordsTableContainer'>
 
 
                             <Container id='searchAndFilter'>

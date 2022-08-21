@@ -36,7 +36,7 @@ import {
     useUsersStore
 } from '../../../hooks';
 
-import { navigationMenuMovil } from '../../../styles/components/ui';
+import '../../../styles/components/ui/navbar/_navigationMenuMovil.scss';
 
 
 export const NavigationMenuMovil = () => {
@@ -105,11 +105,11 @@ export const NavigationMenuMovil = () => {
     const handleAddButton = () => {
 
         switch (pathname) {
-            case '/dashboard/products':
+            case '/products':
                 startUiOpenProductModal()
                 break;
 
-            case '/dashboard/users':
+            case '/users':
                 startUiOpenUserModalAdd()
                 break;
 
@@ -123,11 +123,11 @@ export const NavigationMenuMovil = () => {
     const handleEditButton = () => {
 
         switch (pathname) {
-            case '/dashboard/products':
+            case '/products':
                 startUiOpenProductModalEdit()
                 break;
 
-            case '/dashboard/users':
+            case '/users':
                 startUiOpenUserModalEdit()
                 break;
 
@@ -142,11 +142,11 @@ export const NavigationMenuMovil = () => {
 
         switch (pathname) {
 
-            case '/dashboard/products':
+            case '/products':
                 startUiOpenDialogDelete()
                 break;
 
-            case '/dashboard/users':
+            case '/users':
                 startUiOpenDialogDelete()
                 break;
 
@@ -161,11 +161,11 @@ export const NavigationMenuMovil = () => {
     const handleBinEnable = () => {
         switch (pathname) {
 
-            case '/dashboard/bin/products':
+            case '/bin/products':
                 productBinStartEnable(activeBinProduct)
                 break;
 
-            case '/dashboard/bin/users':
+            case '/bin/users':
                 userBinStartEnable(activeBinUser)
                 break;
 
@@ -178,11 +178,11 @@ export const NavigationMenuMovil = () => {
     const handleBinDelete = () => {
         switch (pathname) {
 
-            case '/dashboard/bin/products':
+            case '/bin/products':
                 startUiOpenDialogDelete()
                 break;
 
-            case '/dashboard/bin/users':
+            case '/bin/users':
                 startUiOpenDialogDelete()
                 break;
 
@@ -224,7 +224,7 @@ export const NavigationMenuMovil = () => {
     };
 
     return (
-        <Box sx={navigationMenuMovil(sm, md, lg, xl)}>
+        <Box className='mainMenuMovilContainer'>
             <BottomNavigation
                 id='buttonNavigationContainer'
                 value={pathname}>
@@ -236,11 +236,11 @@ export const NavigationMenuMovil = () => {
                     }}
                     label="Papelera"
                     value={
-                        (pathname === "/dashboard/bin/users")
+                        (pathname === "/bin/users")
                             ?
-                            "/dashboard/bin/users"
+                            "/bin/users"
                             :
-                            "/dashboard/bin/products"
+                            "/bin/products"
                     }
                     icon={<AutoDeleteIcon />}
                     onClick={handleBinMenu}
@@ -249,16 +249,9 @@ export const NavigationMenuMovil = () => {
 
                 <BottomNavigationAction
                     label="Sales"
-                    value="/dashboard/sales"
+                    value="/sales"
                     icon={<TrendingUpIcon />}
-                    onClick={() => navigate('/dashboard/sales')}
-                />
-
-                <BottomNavigationAction
-                    label="Dashboard"
-                    value="/dashboard"
-                    icon={<DashboardIcon />}
-                    onClick={() => navigate('/dashboard')}
+                    onClick={() => navigate('/sales')}
                 />
 
 
@@ -269,6 +262,12 @@ export const NavigationMenuMovil = () => {
                     onClick={() => navigate('/')}
                 />
 
+                <BottomNavigationAction
+                    label="Productos"
+                    value="/products"
+                    icon={<InventoryIcon />}
+                    onClick={() => navigate('/products')}
+                />
 
                 <BottomNavigationAction
                     sx={{
@@ -286,18 +285,15 @@ export const NavigationMenuMovil = () => {
                     &&
                     <Box id='containerSubMenu'>
 
-                        <IconButton aria-label="Usuarios" onClick={() => navigate('/dashboard/users')}>
+                        <IconButton aria-label="Usuarios" onClick={() => navigate('/users')}>
                             <GroupIcon />
                         </IconButton>
 
 
-                        <IconButton aria-label="Registros" onClick={() => navigate('/dashboard/regist')}>
+                        <IconButton aria-label="Registros" onClick={() => navigate('/regist')}>
                             <LibraryBooksIcon />
                         </IconButton>
 
-                        <IconButton aria-label="Productos" onClick={() => navigate('/dashboard/products')}>
-                            <InventoryIcon />
-                        </IconButton>
 
                     </Box>
                 }
@@ -307,11 +303,11 @@ export const NavigationMenuMovil = () => {
                     &&
                     <Box id='containerSubMenuBin'>
 
-                        <IconButton aria-label="Usuarios" onClick={() => navigate('/dashboard/bin/users')}>
+                        <IconButton aria-label="Usuarios" onClick={() => navigate('/bin/users')}>
                             <GroupIcon />
                         </IconButton>
 
-                        <IconButton aria-label="Productos" onClick={() => navigate('/dashboard/bin/products')}>
+                        <IconButton aria-label="Productos" onClick={() => navigate('/bin/products')}>
                             <InventoryIcon />
                         </IconButton>
 

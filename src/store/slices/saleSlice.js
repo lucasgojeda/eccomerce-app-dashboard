@@ -34,7 +34,8 @@ export const saleSlice = createSlice({
     },
     salesLogout: (state) => {
 
-      // initialState;
+      state.sales = [];
+      state.activeSale = false;
     },
 
   },

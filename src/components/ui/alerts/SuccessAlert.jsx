@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { useUiStore } from '../../../hooks';
 
-import { successAlert } from '../../../styles/components/ui';
+import '../../../styles/components/ui/alerts/_successAlert.scss';
 
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -40,7 +40,7 @@ export const SuccessAlert = () => {
 
     return (
         <Snackbar
-            sx={successAlert(sm, md, lg, xl)}
+            className='mainSuccessAlertContainer'
             open={successAlertStatus.status} autoHideDuration={3000} onClose={handleClose} >
             <Alert onClose={handleClose} severity="success">
                 {successAlertStatus.title}

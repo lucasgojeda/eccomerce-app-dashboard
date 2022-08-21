@@ -49,7 +49,8 @@ export const productSlice = createSlice({
     },
     productsLogout: (state) => {
 
-      // initialState
+      state.products = [];
+      state.activeProduct = false;
     },
 
   },

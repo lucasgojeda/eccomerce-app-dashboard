@@ -14,14 +14,14 @@ export const AdminRoute = ({ children, isRole }) => {
 
         case 'MODERATOR_ROLE':
             switch (pathname) {
-                case '/dashboard/bin/users':
-                    return <Navigate to="/login" />;
+                case '/bin/users':
+                    return <Navigate to="/" />;
 
-                case '/dashboard/bin/products':
-                    return <Navigate to="/login" />;
+                case '/bin/products':
+                    return <Navigate to="/" />;
 
-                case '/dashboard/regist':
-                    return <Navigate to="/login" />;
+                case '/regist':
+                    return <Navigate to="/" />;
 
                 default:
                     return children;

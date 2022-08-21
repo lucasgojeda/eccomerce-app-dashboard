@@ -16,7 +16,8 @@ import { Doughnut, Pie } from 'react-chartjs-2';
 
 import { useStaticsStore, useAuthStore } from '../../../hooks';
 
-import { cardProducts } from '../../../styles/components/ui';
+import '../../../styles/components/home/cards/_cardProducts.scss';
+import { ProgressCoffe } from '../progress/ProgressCoffe';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -31,13 +32,6 @@ export const CardProducts = () => {
     dashboardBinUsers,
     dashboardSales,
     dashboardRecords } = useStaticsStore();
-
-
-  const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.down('sm'));
-  const md = useMediaQuery(theme.breakpoints.down('md'));
-  const xl = useMediaQuery(theme.breakpoints.down('xl'));
-  const lg = useMediaQuery(theme.breakpoints.down('lg'));
 
 
   const dataDoughnut = {
@@ -78,18 +72,18 @@ export const CardProducts = () => {
     ],
   };
 
-  // if (
-  //   !dashboardProducts ||
-  //   !dashboardBinProducts ||
-  //   !dashboardUsers ||
-  //   !dashboardBinUsers ||
-  //   !dashboardSales ||
-  //   !dashboardRecords
-  // ) return '';
+  if (
+    !dashboardProducts ||
+    !dashboardBinProducts ||
+    !dashboardUsers ||
+    !dashboardBinUsers ||
+    !dashboardSales ||
+    !dashboardRecords
+  ) return <ProgressCoffe />;
 
 
   return (
-    <Box sx={cardProducts(sm, md, lg, xl)}>
+    <Box className='mainCardsContainer'>
 
       <div className="cardContainer">
 
@@ -216,26 +210,30 @@ export const CardProducts = () => {
 
           {
             (dashboardProducts && dashboardBinProducts)
-            ?
-            <Container id='pie'>
-              <Pie data={dataPie} />
-            </Container>
-            :
-            <></>  
-        }
+              ?
+              <Container id='pie'>
+                <Pie data={dataPie} />
+              </Container>
+              :
+              <></>
+          }
 
           {
             (dashboardUsers && dashboardBinUsers)
-            ?
-            <Container id='doughnut'>
-              <Doughnut data={dataDoughnut} />
-            </Container>
+              ?
+              <Container id='doughnut'>
+                <Doughnut data={dataDoughnut} />
+              </Container>
               :
               <></>
           }
 
         </Container>
       }
+
+      {/* <Container className='waveImage'>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0099ff" fill-opacity="1" d="M0,64L24,58.7C48,53,96,43,144,80C192,117,240,203,288,245.3C336,288,384,288,432,256C480,224,528,160,576,154.7C624,149,672,203,720,197.3C768,192,816,128,864,112C912,96,960,128,1008,149.3C1056,171,1104,181,1152,170.7C1200,160,1248,128,1296,106.7C1344,85,1392,75,1416,69.3L1440,64L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path></svg>
+      </Container> */}
 
     </Box>
   );

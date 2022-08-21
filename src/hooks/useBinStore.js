@@ -56,7 +56,7 @@ export const useBinStore = () => {
 
             if (msg === 'OK') {
 
-                console.log('Filtered bin products', data);
+                console.log('Filtered bin products', results);
 
                 const filteredBinProducts = results;
 
@@ -82,7 +82,7 @@ export const useBinStore = () => {
 
             const { data: { record, msg } } = await dashboardApi.put(`bin/products/${product._id}`, {});
 
-            console.log(data);
+            console.log({ record, msg });
 
 
             if (msg === 'OK') {
@@ -128,7 +128,7 @@ export const useBinStore = () => {
 
             const { data: { record, msg } } = await dashboardApi.delete(`bin/products/${product._id}`, {});
 
-            console.log(data);
+            console.log({ record, msg });
 
 
             if (msg === "OK") {
@@ -183,7 +183,7 @@ export const useBinStore = () => {
 
             if (msg === 'OK') {
 
-                console.log('Filtered users', body);
+                console.log('Filtered users', results);
 
                 const filteredUsers = results;
 
@@ -209,7 +209,7 @@ export const useBinStore = () => {
 
             const { data: { msg, record } } = await dashboardApi.put(`bin/users/${user._id}`, {});
 
-            console.log(data);
+            console.log({ msg, record });
 
 
             if (msg === 'OK') {
@@ -252,7 +252,7 @@ export const useBinStore = () => {
 
             const { data: { msg, record } } = await dashboardApi.delete(`bin/users/${user._id}`, {});
             
-            console.log(data);
+            console.log({ msg, record });
 
 
             if (msg === "OK") {

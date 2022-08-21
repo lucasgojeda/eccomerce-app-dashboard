@@ -25,7 +25,7 @@ export const useCartStore = () => {
 
             const { data: { msg, product } } = await dashboardApi.put(`users/cart/${id}`, _cart);
 
-            console.log(data);
+            console.log({ msg, product });
 
             if (msg === 'OK') {
 
@@ -56,7 +56,7 @@ export const useCartStore = () => {
             const { data: { msg, product } } = await dashboardApi.delete(`users/cart/${id}`, _cart);
             
 
-            console.log(data);
+            console.log({ msg, product });
 
             if (msg === 'OK') {
 

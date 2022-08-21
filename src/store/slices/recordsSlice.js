@@ -28,7 +28,8 @@ export const recordsSlice = createSlice({
     },
     recordsLogout: (state) => {
 
-      // initialState
+      state.records = [];
+      state.activeRecord = false;
     },
 
   },

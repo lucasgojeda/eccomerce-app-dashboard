@@ -85,6 +85,7 @@ export const staticsSlice = createSlice({
     },
     staticsLogout: (state) => {
 
+      state.dashboardProducts = 0;
       state.dashboardBinProducts = 0;
       state.dashboardUsers = 0;
       state.dashboardBinUsers = 0;

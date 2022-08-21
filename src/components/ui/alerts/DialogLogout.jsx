@@ -12,8 +12,6 @@ import { useTheme } from '@mui/material/styles';
 
 import { useAuthStore } from '../../../hooks';
 
-import { dialogLogout } from '../../../styles/components/ui';
-
 
 export const DialogLogout = ({ dialogLogoutOpen, setDialogLogoutOpen }) => {
 
@@ -38,7 +36,6 @@ export const DialogLogout = ({ dialogLogoutOpen, setDialogLogoutOpen }) => {
 
     return (
         <Dialog
-            sx={dialogLogout(sm, md, lg, xl)}
             open={dialogLogoutOpen}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"

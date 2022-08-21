@@ -18,8 +18,6 @@ import {
     useUiStore
 } from '../../../hooks';
 
-import { dialogDelete } from '../../../styles/components/ui';
-
 
 export const DialogDelete = () => {
 
@@ -87,7 +85,6 @@ export const DialogDelete = () => {
     return (
         <div>
             <Dialog
-                sx={dialogDelete(sm, md, lg, xl)}
                 open={dialogDeleteStatus}
                 onClose={handleClose}
                 aria-labelledby="responsive-dialog-title"

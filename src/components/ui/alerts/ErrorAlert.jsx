@@ -7,7 +7,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { useUiStore } from '../../../hooks';
 
-import { errorAlert } from '../../../styles/components/ui';
+import '../../../styles/components/ui/alerts/_errorAlert.scss';
 
 
 const Alert = forwardRef(function Alert(props, ref) {
@@ -25,7 +25,7 @@ export const ErrorAlert = () => {
     const xl = useMediaQuery(theme.breakpoints.down('xl'));
     const lg = useMediaQuery(theme.breakpoints.down('lg'));
 
-    
+
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
@@ -37,12 +37,12 @@ export const ErrorAlert = () => {
 
 
     return (
-            <Snackbar 
-            sx={errorAlert(sm, md, lg, xl)}
+        <Snackbar
+            className='mainErrorAlertContainer'
             open={errorAlertStatus.status} autoHideDuration={6000} onClose={handleClose} >
-                <Alert onClose={handleClose} severity="error">
-                    { errorAlertStatus.title }
-                </Alert>
-            </Snackbar>
+            <Alert onClose={handleClose} severity="error">
+                {errorAlertStatus.title}
+            </Alert>
+        </Snackbar>
     );
 };

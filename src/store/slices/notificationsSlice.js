@@ -39,7 +39,8 @@ export const notificationsSlice = createSlice({
     },
     notificationsLogout: (state) => {
 
-      // initialState;
+      state.notifications = [];
+      state.sales_user = [];
     },
 
   },

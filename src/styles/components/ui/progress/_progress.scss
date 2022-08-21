@@ -1,0 +1,35 @@
+// xl
+@media (min-width: 1200px) {
+    .mainProgressContainer {
+        color: #fff;
+        // z-index: (theme)=> theme.z-index.drawer + 100
+        z-index: 100;
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainProgressContainer {
+        color: #fff;
+        // z-index: (theme)=> theme.z-index.drawer + 100
+        z-index: 100;
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainProgressContainer {
+        color: #fff;
+        // z-index: (theme)=> theme.z-index.drawer + 100
+        z-index: 100;
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainProgressContainer {
+        color: #fff;
+        // z-index: (theme)=> theme.z-index.drawer + 100
+        z-index: 100;
+    }
+}

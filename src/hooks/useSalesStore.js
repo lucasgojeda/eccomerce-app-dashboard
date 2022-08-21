@@ -44,7 +44,7 @@ export const useSalesStore = () => {
 
             if (msg === 'OK') {
 
-                console.log('Filtered sales', data);
+                console.log('Filtered sales', results);
 
                 const filteredSales = results;
 
@@ -75,7 +75,7 @@ export const useSalesStore = () => {
 
             const { data: { msg, sale } } = await dashboardApi.post('sales', {});
 
-            console.log(data);
+            console.log({ msg, sale });
 
 
             if (msg === "OK") {
@@ -105,7 +105,7 @@ export const useSalesStore = () => {
 
             const { data: { msg, results, notification } } = await dashboardApi.put(`sales/${id}`, {});
 
-            console.log(data)
+            console.log({ msg, results, notification })
 
             
             if (msg === 'OK') {

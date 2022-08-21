@@ -28,9 +28,9 @@ import { uploadImageToCloudinary } from '../../../helpers/uploadCloudinary';
 
 import { useCategoriesStore, useProductsStore, useUiStore } from '../../../hooks';
 
-import { productModal } from '../../../styles/components/products';
+import '../../../styles/components/products/modals/_productModal.scss';
 
-
+ 
 const initEvent = {
     name: '',
     price: '',
@@ -303,7 +303,7 @@ export const CreateProductModal = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Container sx={productModal(sm, md, lg, xl)}>
+                <Container className='mainProductModalContainer'>
                     <Box
                         component="form"
 

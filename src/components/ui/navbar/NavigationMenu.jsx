@@ -46,8 +46,9 @@ import {
     AppBar,
     Drawer,
     DrawerHeader,
-    navigationMenu
 } from '../../../styles/components/ui';
+
+import '../../../styles/components/ui/navbar/_navigationMenu.scss';
 
 
 export const NavigationMenu = () => {
@@ -79,21 +80,14 @@ export const NavigationMenu = () => {
     const handleOpenMenuBin = Boolean(anchorEl);
     const [open, setOpen] = React.useState(false);
 
-    const theme = useTheme();
-    const sm = useMediaQuery(theme.breakpoints.down('sm'));
-    const md = useMediaQuery(theme.breakpoints.down('md'));
-    const xl = useMediaQuery(theme.breakpoints.down('xl'));
-    const lg = useMediaQuery(theme.breakpoints.down('lg'));
-
-
     const handleAddButton = () => {
 
         switch (pathname) {
-            case '/dashboard/products':
+            case '/products':
                 startUiOpenProductModal()
                 break;
 
-            case '/dashboard/users':
+            case '/users':
                 startUiOpenUserModalAdd()
                 break;
 
@@ -107,11 +101,11 @@ export const NavigationMenu = () => {
     const handleEditButton = () => {
 
         switch (pathname) {
-            case '/dashboard/products':
+            case '/products':
                 startUiOpenProductModalEdit()
                 break;
 
-            case '/dashboard/users':
+            case '/users':
                 startUiOpenUserModalEdit()
                 break;
 
@@ -126,11 +120,11 @@ export const NavigationMenu = () => {
 
         switch (pathname) {
 
-            case '/dashboard/products':
+            case '/products':
                 startUiOpenDialogDelete()
                 break;
 
-            case '/dashboard/users':
+            case '/users':
                 startUiOpenDialogDelete()
                 break;
 
@@ -144,11 +138,11 @@ export const NavigationMenu = () => {
     const handleBinEnable = () => {
         switch (pathname) {
 
-            case '/dashboard/bin/products':
+            case '/bin/products':
                 productBinStartEnable(activeBinProduct)
                 break;
 
-            case '/dashboard/bin/users':
+            case '/bin/users':
                 userBinStartEnable(activeBinUser)
                 break;
 
@@ -161,11 +155,11 @@ export const NavigationMenu = () => {
     const handleBinDelete = () => {
         switch (pathname) {
 
-            case '/dashboard/bin/products':
+            case '/bin/products':
                 startUiOpenDialogDelete()
                 break;
 
-            case '/dashboard/bin/users':
+            case '/bin/users':
                 startUiOpenDialogDelete()
                 break;
 
@@ -201,23 +195,16 @@ export const NavigationMenu = () => {
     return (
         <>
 
-            <Box sx={navigationMenu(sm, md, lg, xl)}>
+            <Box className='mainNavigationMenuContainer'>
 
                 <Drawer variant="permanent" open={open}>
 
-                    {/* <DrawerHeader>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                        </IconButton>
-                    </DrawerHeader> */}
-
-                    <Divider />
 
                     <Toolbar>
 
                         <IconButton
                             id='homeIconButton'
-                            color="inherit"
+                            color="primary"
                             edge="start"
                             onClick={() => navigate('/')}
                         >
@@ -227,6 +214,8 @@ export const NavigationMenu = () => {
 
 
                     </Toolbar>
+
+                    <Divider />
 
                     <List>
 
@@ -283,43 +272,6 @@ export const NavigationMenu = () => {
 
                         </ListItem>
 
-                        {
-                            (role === 'ADMIN_ROLE')
-                            &&
-                            <ListItem button onClick={handleClick}>
-                                <ListItemIcon>
-                                    <AutoDeleteIcon sx={{
-                                        ml: '10%'
-                                    }} />
-                                </ListItemIcon>
-
-                                <ListItemText primary="Papelera" />
-
-                                <Menu
-                                    id="basic-menu"
-                                    anchorEl={anchorEl}
-                                    open={handleOpenMenuBin}
-                                    onClose={handleClose}
-                                    MenuListProps={{
-                                        'aria-labelledby': 'basic-button',
-                                    }}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    keepMounted
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                >
-                                    <MenuItem onClick={() => navigate('/bin/products')} >Productos</MenuItem>
-                                    <MenuItem onClick={() => navigate('/bin/users')} >Usuarios</MenuItem>
-                                </Menu>
-
-                            </ListItem>
-                        }
-
                     </List>
                     <Divider />
 
@@ -362,6 +314,64 @@ export const NavigationMenu = () => {
                                 </List>
                             }
                         </>
+                    }
+
+
+
+                    <Divider />
+
+
+                    {
+                        (role === 'ADMIN_ROLE')
+                        &&
+                        <List sx={{
+                            position: 'absolute',
+                            bottom: 0,
+                        }}>
+
+                            <Divider />
+
+
+                            <ListItem>
+                                <ListItemIcon>
+                                    <DeleteIcon
+                                        color='error'
+                                        sx={{
+                                            ml: '10%',
+                                        }} />
+                                </ListItemIcon>
+
+                                <ListItemText primary="Papelera" />
+
+                            </ListItem>
+
+                            <Divider />
+
+                            <ListItem button onClick={() => navigate('/bin/products')}>
+                                <ListItemIcon>
+                                    <InventoryIcon
+                                        sx={{
+                                            ml: '10%',
+                                        }} />
+                                </ListItemIcon>
+
+                                <ListItemText primary="Productos" />
+
+                            </ListItem>
+
+                            <ListItem button onClick={() => navigate('/bin/users')}>
+                                <ListItemIcon>
+                                    <GroupIcon
+                                        sx={{
+                                            ml: '10%',
+                                        }} />
+                                </ListItemIcon>
+
+                                <ListItemText primary="Usuarios" />
+
+                            </ListItem>
+
+                        </List>
                     }
 
                 </Drawer>

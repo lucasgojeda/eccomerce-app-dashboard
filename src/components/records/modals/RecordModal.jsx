@@ -24,7 +24,7 @@ import { TabNavRecordModal } from './components/TabNavRecordModal';
 
 import { useUiStore, useRecordsStore } from '../../../hooks';
 
-import { recordModal } from '../../../styles/components/records';
+// import '../../../styles/components/records/modals/_recordModal.scss';
 
 moment.locale('es');
 
@@ -75,9 +75,7 @@ export const RecordModal = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Container maxWidth="sm">
-                    <Box
-                        sx={recordModal(sm, md, lg, xl)}
-                    >
+                    <Box className='mainRecordsModalContainer'>
                         <Typography variant='body2' id='title'>
                             Registro
                         </Typography>

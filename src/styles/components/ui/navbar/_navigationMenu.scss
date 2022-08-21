@@ -1,0 +1,80 @@
+// xl
+@media (min-width: 1200px) {
+    .mainNavigationMenuContainer {
+        display: flex;
+
+        #appBar {
+            position: fixed;
+            background-color: #154360
+        }
+
+        #homeIconButton {
+            margin-right: 36px;
+        }
+
+        #dashboardTitle {
+            cursor: pointer;
+        }
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainNavigationMenuContainer {
+        display: flex;
+
+        
+        #appBar {
+            position: fixed;
+            background-color: #154360;
+        }
+
+        #homeIconButton {
+            margin-right: 36px;
+        }
+
+        #dashboardTitle {
+            cursor: pointer;
+        }
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainNavigationMenuContainer {
+        display: flex;
+
+        #appBar {
+            position: fixed;
+            background-color: #154360
+        }
+
+        #homeIconButton {
+            margin-right: 36px;
+        }
+
+        #dashboardTitle {
+            cursor: pointer;
+        }
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainNavigationMenuContainer {
+        display: flex;
+
+        #appBar {
+            position: fixed;
+            background-color: #154360
+        }
+
+        #homeIconButton {
+            margin-right: 36px;
+        }
+
+        #dashboardTitle {
+            cursor: pointer;
+        }
+    }
+}

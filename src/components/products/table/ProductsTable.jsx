@@ -25,8 +25,9 @@ import {
     Search,
     SearchIconWrapper,
     StyledInputBase,
-    productsTable
 } from '../../../styles/components/products';
+
+import '../../../styles/components/products/table/_productsTable.scss'
 
 
 export const ProductsTable = () => {
@@ -166,8 +167,7 @@ export const ProductsTable = () => {
                 {
                     (products !== undefined)
                         ?
-                        <Box
-                            sx={productsTable(sm, md, lg, xl)}>
+                        <Box className='mainProductsTableContainer'>
 
 
                             <Container id='searchAndFilter'>

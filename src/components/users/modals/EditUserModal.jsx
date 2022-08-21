@@ -16,7 +16,7 @@ import { verifyUserEditFields } from '../../../helpers/verifyUserEditFields';
 
 import { useUiStore, useUsersStore } from '../../../hooks';
 
-import { userModal } from '../../../styles/components/users';
+import '../../../styles/components/users/modals/_userModal.scss';
 
 
 const initEvent = {
@@ -143,7 +143,7 @@ export const EditUserModal = () => {
                 <Container maxWidth="sm">
                     <Box
                         component="form"
-                        sx={userModal(sm, md, lg, xl)}
+                        className='mainUserModalContainer'
                         noValidate
                         autoComplete="off"
                     >

@@ -8,8 +8,6 @@ import { useTheme } from '@mui/material/styles';
 
 import { useUiStore } from '../../../hooks';
 
-import { dialogFields } from '../../../styles/components/ui';
-
 
 export const DialogFields = () => {
 
@@ -35,7 +33,6 @@ export const DialogFields = () => {
 
     return (
         <Dialog
-            sx={dialogFields(sm, md, lg, xl)}
             open={dialogFieldsStatus.status}
             onClose={handleClose}
             aria-labelledby="responsive-dialog-title"

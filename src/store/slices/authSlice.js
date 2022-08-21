@@ -24,6 +24,7 @@ export const authSlice = createSlice({
 
       state.uid = null;
       state.name = null;
+      state.role = null;
       state.checking = false;
     },
 

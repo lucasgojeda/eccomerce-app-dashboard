@@ -1,0 +1,199 @@
+// xl
+@media (min-width: 1200px) {
+    .mainImageCropContainer {
+        position: fixed;
+        background-color: #000;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+
+        .button-area {
+            text-align: center;
+            margin: auto;
+            margin-bottom: 0.5%;
+
+            Button {
+                margin-left: 2.5%
+            }
+        }
+
+        .crop-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            bottom: 80px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 5%;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 110,
+        }
+
+        .controls-upper-area {
+            text-align: center;
+        }
+
+        .slider {
+            width: 50%;
+        }
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainImageCropContainer {
+        position: fixed;
+        background-color: #000;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+
+        .button-area {
+            text-align: center;
+            margin: auto;
+            margin-bottom: 0.5%;
+
+            Button {
+                margin-left: 2.5%
+            }
+        }
+
+        .crop-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            bottom: 80px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 5%;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 110;
+        }
+
+        .controls-upper-area {
+            text-align: center;
+        }
+
+        .slider {
+            width: 50%;
+        }
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainImageCropContainer {
+        position: fixed;
+        background-color: #000;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+
+        .button-area {
+            text-align: center;
+            margin: auto;
+            margin-bottom: 0.5%;
+
+            Button {
+                margin-left: 2.5%
+            }
+        }
+
+        .crop-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            bottom: 80px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 5%;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 110;
+        }
+
+        .controls-upper-area {
+            text-align: center;
+        }
+
+        .slider {
+            width: 50%;
+        }
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainImageCropContainer {
+        position: fixed;
+        background-color: #000;
+
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 99;
+
+        .button-area {
+            text-align: center;
+            margin: auto;
+            margin-bottom: 0.5%;
+
+            Button {
+                margin-left: 2.5%
+            }
+        }
+
+        .crop-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            bottom: 80px;
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 5%;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            z-index: 110;
+        }
+
+        .controls-upper-area {
+            text-align: center;
+        }
+
+        .slider {
+            width: 50%;
+        }
+    }
+}

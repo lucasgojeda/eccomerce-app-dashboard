@@ -6,7 +6,7 @@ import { store } from './store';
 
 import { App } from './App'
 
-import './styles/App.css';
+import './styles/styles.css';
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(

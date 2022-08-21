@@ -25,7 +25,7 @@ export const useRecordsStore = () => {
 
             if (msg === 'OK') {
 
-                console.log('Filtered records', data);
+                console.log('Filtered records', results);
 
                 const filteredRecords = results;
 

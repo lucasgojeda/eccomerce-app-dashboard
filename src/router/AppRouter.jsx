@@ -10,17 +10,22 @@ import {
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 
-import { LoginPage } from '../components/auth';
-
-import { DashboardRouter } from './DashboardRouter';
-import { NavbarDashboard } from '../components/ui/navbar/NavbarDashboard';
-
-
-import { PublicRoute } from './PublicRoute';
 import { AdminRoute } from './AdminRoute';
+import { PublicRoute } from './PublicRoute';
+
+import { NavbarDashboard } from '../components/ui/navbar/NavbarDashboard';
 
 import { EditProductModal } from '../components/products/modals/EditProductModal';
 import { CategoriesModal } from '../components/categories/modals/CategoriesModal';
+
+import { LoginPage } from '../components/auth';
+import { ProductsPage } from '../components/products';
+import { UsersPage } from '../components/users';
+import { RecordPage } from '../components/records';
+import { BinProductsPage } from '../components/bin-products';
+import { BinUsersPage } from '../components/bin-users';
+import { SalesPage } from '../components/sales';
+import { HomePage } from '../components/home';
 
 import { ErrorAlert } from '../components/ui/alerts/ErrorAlert';
 import { SuccessAlert } from '../components/ui/alerts/SuccessAlert';
@@ -28,7 +33,7 @@ import { DialogDelete } from '../components/ui/alerts/DialogDelete';
 import { DialogFields } from '../components/ui/alerts/DialogFields';
 import { ProgressBackdrop } from '../components/ui/progress/ProgressBackdrop';
 
-import { useAuthStore } from '../hooks';
+import { useAuthStore, useStaticsStore } from '../hooks';
 
 
 
@@ -36,12 +41,19 @@ import { useAuthStore } from '../hooks';
 export const AppRouter = () => {
 
     const { uid, checking, role, startChecking } = useAuthStore();
-
+    const { startLoadStatistics } = useStaticsStore();
 
     useEffect(() => {
 
         startChecking();
     }, [])
+
+    useEffect(() => {
+
+        if (uid) {
+            startLoadStatistics();
+        }
+    }, [uid])
 
 
     if (checking) {
@@ -60,6 +72,86 @@ export const AppRouter = () => {
 
         <BrowserRouter>
 
+            <Routes>
+
+
+                <Route path="login" element={
+                    <PublicRoute isAutenticated={!!uid}>
+                        <LoginPage />
+                    </PublicRoute>
+                } />
+
+
+                <Route path="/" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <HomePage />
+                        </>
+                    </AdminRoute>
+                } />
+
+                <Route path="products" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <ProductsPage />
+                        </>
+                    </AdminRoute>
+                } />
+
+                <Route path="users" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <UsersPage />
+                        </>
+                    </AdminRoute>
+                } />
+
+                <Route path="regist" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <RecordPage />
+                        </>
+                    </AdminRoute>
+                } />
+
+                <Route path="bin/products" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <BinProductsPage />
+                        </>
+                    </AdminRoute>
+                } />
+
+                <Route path="bin/users" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <BinUsersPage />
+                        </>
+                    </AdminRoute>
+                } />
+
+                <Route path="sales" element={
+                    <AdminRoute isRole={role}>
+                        <>
+                            <NavbarDashboard />
+                            <SalesPage />
+                        </>
+                    </AdminRoute>
+                } />
+
+
+                <Route path="/*" element={<Navigate to="/" />} />
+
+
+            </Routes>
+
+
             <EditProductModal />
             <CategoriesModal />
             <ProgressBackdrop />
@@ -67,32 +159,6 @@ export const AppRouter = () => {
             <DialogFields />
             <ErrorAlert />
             <SuccessAlert />
-
-            <Routes>
-
-
-                <Route path="login" element={
-                    <PublicRoute isAutenticated={!!uid}>
-                        <>
-                            <LoginPage />
-                        </>
-                    </PublicRoute>
-                } />
-
-
-                <Route path="/*" element={
-                    <AdminRoute isAutenticated={!!uid}>
-                    <>
-                        <NavbarDashboard />
-                        <DashboardRouter />
-                    </>
-                    </AdminRoute>
-                } />
-
-                <Route path="/*" element={<Navigate to="/" />} />
-
-
-            </Routes>
 
         </BrowserRouter>
     );

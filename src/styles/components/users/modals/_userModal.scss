@@ -1,0 +1,205 @@
+// xl
+@media (min-width: 1200px) {
+    .mainUserModalContainer {
+        .MuiTextField-root {
+            margin: 10px;
+            width: 25ch;
+            margin-top: 5%;
+        }
+
+        text-align: center;
+        background-color: #fff;
+        height: 50vh;
+        margin-top: 25%;
+        border-radius: 5px;
+
+        #title {
+            text-align: start;
+            font-size: 20px;
+            padding-top: 1%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 1%;
+            visibility: visible
+        }
+
+        #FormControl {
+            margin: 10px;
+            margin-top: 5%;
+            width: 25ch;
+        }
+
+        #submitButton {
+            width: 20%;
+            bottom: 2%;
+            margin: auto;
+            margin-left: 2%;
+            margin-bottom: 2.5%;
+            margin-top: 1.5%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainUserModalContainer {
+        .MuiTextField-root {
+            margin: 10px;
+            width: 25ch;
+            margin-top: 5%;
+        }
+
+        text-align: center;
+        background-color: #fff;
+        height: 50vh;
+        margin-top: 25%;
+        border-radius: 5px;
+
+        #title {
+            text-align: start;
+            font-size: 20px;
+            padding-top: 1%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 1%;
+            visibility: visible
+        }
+
+        #FormControl {
+            margin: 10px;
+            margin-top: 5%;
+            width: 25ch;
+        }
+
+        #submitButton {
+            width: 20%;
+            margin: auto;
+            margin-left: 2%;
+            margin-bottom: 2.5%;
+            margin-top: 1.5%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainUserModalContainer {
+        .MuiTextField-root {
+            margin: 10px;
+            width: 25ch;
+            margin-top: 5%;
+        }
+
+        text-align: center;
+        background-color: #fff;
+        height: 50vh;
+        margin-top: 25%;
+        border-radius: 5px;
+
+        #title {
+            text-align: start;
+            font-size: 20px;
+            padding-top: 1%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 1%;
+            visibility: visible
+        }
+
+        #FormControl {
+            margin: 10px;
+            margin-top: 5%;
+            width: 25ch;
+        }
+
+        #submitButton {
+            width: 20%;
+            bottom: 2%;
+            margin: auto;
+            margin-left: 2%;
+            margin-bottom: 2.5%;
+            margin-top: 1.5%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainUserModalContainer {
+        position: absolute;
+        left: 0;
+        overflow-y: scroll;
+        background-color: #fff;
+        height: 100vh;
+        width: 100vw;
+        text-align: center;
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+
+        .MuiTextField-root {
+            margin: 10px;
+            width: 100%;
+            margin: auto;
+            margin-top: 7.5%;
+        }
+
+        #title {
+            text-align: start;
+            font-size: 20px;
+            padding-top: 5%;
+            padding-bottom: 2.5%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            visibility: visible
+        }
+
+        #FormControl {
+            margin: 10px;
+            margin: auto;
+            margin-top: 7.5%;
+            width: 100%;
+        }
+
+        #submitButton {
+            width: 25%;
+            margin: auto;
+            margin-left: 2%;
+            margin-bottom: 2.5%;
+            margin-top: 7.5%;
+        }
+    }
+}

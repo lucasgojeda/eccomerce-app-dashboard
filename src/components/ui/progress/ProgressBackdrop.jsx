@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
-import { progress } from '../../../styles/components/ui';
+import '../../../styles/components/ui/progress/_progress.scss';
 
 export const ProgressBackdrop = () => {
 
@@ -20,7 +20,7 @@ export const ProgressBackdrop = () => {
 
   return (
     <Backdrop
-      sx={progress(sm, md, lg, xl)}
+      className='mainProgressContainer'
       open={progressBackdrop.status}
     >
       <CircularProgress color="inherit" size='80px' sx={{ display: 'block' }} />

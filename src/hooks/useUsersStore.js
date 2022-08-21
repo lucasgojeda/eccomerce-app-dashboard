@@ -47,7 +47,7 @@ export const useUsersStore = () => {
 
             if (msg === 'OK') {
 
-                console.log('Filtered users', data);
+                console.log('Filtered users', results);
 
                 const filteredUsers = results;
 

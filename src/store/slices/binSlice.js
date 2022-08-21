@@ -73,7 +73,9 @@ export const binSlice = createSlice({
     usersBinLogout: (state) => {
 
       state.activeBinUser = false;
-      state.binUsers = false;
+      state.binUsers = [];
+      state.activeBinProduct = false;
+      state.binProducts = [];
     },
 
   },

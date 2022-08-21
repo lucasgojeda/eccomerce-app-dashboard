@@ -1,0 +1,738 @@
+// xl
+@media (min-width: 1200px) {
+    .mainProductModalContainer {
+        position: absolute;
+        left: 17.5%;
+        top: 2.5%;
+        background-color: #fff;
+        width: 40%;
+        height: 95vh;
+        border-radius: 5px 0 0 5px;
+        border-right: 1px solid #B2B6B5;
+
+        .MuiTextField-root {
+            margin: 10px;
+            width: 25ch;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+        }
+
+        #title {
+            font-size: 25px;
+            padding-top: 1%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 1%
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .products_input-image {
+            position: absolute;
+            visibility: hidden
+        }
+
+        #FormControl {
+            margin: 1;
+            width: 25ch;
+        }
+
+        #imagePreviewProduct {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+
+            img {
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #NoneImage {
+            position: relative;
+            width: 30ch;
+            height: 30ch;
+            object-fit: contain;
+            border: gray 1px dashed;
+
+            :hover {
+                cursor: pointer
+            }
+        }
+
+        #PhotoCameraIcon {
+            font-size: 50px;
+            color: gray;
+            margin-top: 40%
+        }
+
+        .MuiIconButton-root {
+            margin-top: 25%;
+            height: 50px;
+            width: 50px
+        }
+
+        #containerImage {
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            margin-top: 25%;
+        }
+
+        #leftArrowIcon {
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #rightArrowIcon {
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #iconsContainer {
+            width: 30ch;
+            height: 50ch;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+
+        #editIcon {
+            margin-top: -25%;
+        }
+
+        #cameraIcon {
+            margin-top: -25%;
+        }
+
+        #imageCard {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+            height: 30ch;
+
+            img {
+                position: absolute;
+                left: 2.5%;
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #descriptionContainer {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background-color: #fff;
+            width: 30vw;
+            height: 95vh;
+            border-radius: 0 5px 5px 0;
+
+            z-index: -1;
+
+            .description {
+                position: relative;
+                min-height: 10vh;
+                min-width: 25vw;
+                max-height: 80vh;
+                max-width: 25vw;
+                overflow-y: scroll;
+                left: 0;
+                padding: 10px;
+                margin-top: 2.5vh;
+                border: 1px solid #B2B6B5;
+                border-radius: 5px;
+                font-family: Arial;
+                font-size: 16px;
+
+                :focus {
+                    border: 1px solid #B2B6B5;
+                }
+            }
+
+            #saveButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-right: 2.5%;
+            }
+
+            #closeButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-left: 2.5%;
+            }
+        }
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainProductModalContainer {
+        position: absolute;
+        left: 5%;
+        top: 2.5%;
+        background-color: #fff;
+        width: 50%;
+        height: 95vh;
+        border-radius: 5px 0 0 5px;
+        border-right: 1px solid #B2B6B5;
+
+        .MuiTextField-root {
+            margin: 10px;
+            width: 45%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+        }
+
+        #title {
+            font-size: 25px;
+            padding-top: 1%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 1%
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .products_input-image {
+            position: absolute;
+            visibility: hidden
+        }
+
+        #FormControl {
+            margin: 1;
+            width: 45%;
+        }
+
+        #imagePreviewProduct {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+
+            img {
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #NoneImage {
+            position: relative;
+            width: 30ch;
+            height: 30ch;
+            object-fit: contain;
+            border: gray 1px dashed;
+
+            :hover {
+                cursor: pointer
+            }
+        }
+
+        #PhotoCameraIcon {
+            font-size: 50px;
+            color: gray;
+            margin-top: 40%
+        }
+
+        .MuiIconButton-root {
+            margin-top: 25%;
+            height: 50px;
+            width: 50px
+        }
+
+        #containerImage {
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            margin-top: 25%;
+        }
+
+        #leftArrowIcon {
+            position: absolute;
+            left: 10%;
+            top: 51.125%;
+
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #rightArrowIcon {
+            position: absolute;
+            left: 90%;
+            top: 51.125%;
+
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #iconsContainer {
+            width: 30ch;
+            height: 50ch;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+
+        #editIcon {
+            margin-top: -25%;
+        }
+
+        #cameraIcon {
+            margin-top: -25%;
+        }
+
+        #imageCard {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+            height: 30ch;
+
+            img {
+                position: absolute;
+                left: 5%;
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #descriptionContainer {
+            position: absolute;
+            left: 100%;
+            top: 0;
+            padding-right: 2.5%;
+            background-color: #fff;
+            width: 30vw;
+            height: 95vh;
+            border-radius: 0 5px 5px 0;
+
+            z-index: -1;
+
+            .description {
+                position: relative;
+                min-height: 10vh;
+                min-width: 25vw;
+                max-height: 80vh;
+                max-width: 25vw;
+                overflow-y: scroll;
+                left: 0;
+                padding: 10px;
+                margin-top: 2.5vh;
+                border: 1px solid #B2B6B5;
+                border-radius: 5px;
+                font-family: Arial;
+                font-size: 16px;
+
+                :focus {
+                    border: 1px solid #B2B6B5;
+                }
+            }
+
+            #saveButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-right: 2.5%;
+            }
+
+            #closeButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-left: 2.5%;
+            }
+        }
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainProductModalContainer {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        object-fit: contain;
+
+        .MuiTextField-root {
+            margin: 20px;
+            width: 40%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+        }
+
+        #title {
+            font-size: 25px;
+            padding-top: 2%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 2%
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .products_input-image {
+            position: absolute;
+            visibility: hidden
+        }
+
+        #FormControl {
+            margin: 20px;
+            width: 40%;
+        }
+
+        #imagePreviewProduct {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+
+            img {
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #NoneImage {
+            position: relative;
+            width: 30ch;
+            height: 30ch;
+            object-fit: contain;
+            border: gray 1px dashed;
+
+            :hover {
+                cursor: pointer
+            }
+        }
+
+        #PhotoCameraIcon {
+            font-size: 50px;
+            color: gray;
+            margin-top: 40%
+        }
+
+        .MuiIconButton-root {
+            margin-top: 25%;
+            height: 50px;
+            width: 50px
+        }
+
+        #containerImage {
+            margin: auto;
+            margin-top: 15%;
+        }
+
+        #leftArrowIcon {
+            position: absolute;
+            left: 10%;
+            top: 51.125%;
+
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #rightArrowIcon {
+            position: absolute;
+            left: 90%;
+            top: 51.125%;
+
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #iconsContainer {
+            width: 30ch;
+            height: 50ch;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+
+        #editIcon {
+            margin-top: -25%;
+        }
+
+        #cameraIcon {
+            margin-top: -25%;
+        }
+
+        #imageCard {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+            height: 30ch;
+
+            img {
+                position: absolute;
+                left: 5%;
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #descriptionContainer {
+            background-color: #fff;
+            width: 100%;
+            height: auto;
+            margin-top: 10%;
+
+            .description {
+                position: relative;
+                min-height: 10vh;
+                min-width: 90%;
+                max-height: 100vh;
+                max-width: 90%;
+                overflow-y: scroll;
+                left: 0;
+                padding: 10px;
+                margin-top: 2.5vh;
+                border: 1px solid #B2B6B5;
+                border-radius: 5px;
+                font-family: Arial;
+                font-size: 16px;
+
+                :focus {
+                    border: 1px solid #B2B6B5;
+                }
+            }
+
+            #saveButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-bottom: 2.5%;
+                margin-right: 2.5%;
+            }
+
+            #closeButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-bottom: 2.5%;
+                margin-left: 2.5%;
+            }
+        }
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainProductModalContainer {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .MuiTextField-root {
+            margin: 20px;
+            width: 90%;
+            object-fit: contain;
+            overflow: cover;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+        }
+
+        #title {
+            font-size: 25px;
+            padding-top: 2%;
+            border-bottom: 1px solid #B2B6B5;
+            margin-left: 4%;
+            margin-right: 4%;
+            margin-bottom: 2.5%;
+            padding-bottom: 2%
+        }
+
+        div {
+            text-align: center;
+        }
+
+        .products_input-image {
+            position: absolute;
+            visibility: hidden
+        }
+
+        #FormControl {
+            margin: 20px;
+            width: 90%;
+            object-fit: contain;
+            overflow: cover;
+        }
+
+        #imagePreviewProduct {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 100%;
+
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+        }
+
+        #NoneImage {
+            position: relative;
+            width: 30ch;
+            height: 30ch;
+            object-fit: contain;
+            border: gray 1px dashed;
+
+            :hover {
+                cursor: pointer
+            }
+        }
+
+        #PhotoCameraIcon {
+            font-size: 50px;
+            color: gray;
+            margin-top: 40%
+        }
+
+        .MuiIconButton-root {
+            margin-top: 25%;
+            height: 50px;
+            width: 50px
+        }
+
+        #containerImage {
+            display: flex;
+            flex-wrap: wrap;
+            margin: auto;
+            margin-top: 15%;
+        }
+
+        #arrowsContainer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: auto;
+        }
+
+        #leftArrowIcon {
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #rightArrowIcon {
+            .MuiSvgIcon-root {
+                font-size: 50px;
+            }
+        }
+
+        #iconsContainer {
+            width: 30ch;
+            height: 50ch;
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+
+        #editIcon {
+            margin-top: -25%;
+        }
+
+        #cameraIcon {
+            margin-top: -25%;
+        }
+
+        #imageCard {
+            margin: auto;
+            margin-top: 2.5%;
+            width: 30ch;
+            height: 30ch;
+
+            img {
+                position: absolute;
+                left: 0;
+                width: 30ch;
+                height: 30ch;
+                object-fit: contain;
+            }
+        }
+
+        #descriptionContainer {
+            background-color: #fff;
+            width: 100%;
+            height: auto;
+            margin-top: 10%;
+
+            .description {
+                position: relative;
+                min-height: 10vh;
+                min-width: 90%;
+                max-height: 100vh;
+                max-width: 90%;
+                overflow-y: scroll;
+                left: 0;
+                padding: 10px;
+                margin-top: 2.5vh;
+                border: 1px solid #B2B6B5;
+                border-radius: 5px;
+                font-family: Arial;
+                font-size: 16px;
+
+                :focus {
+                    border: 1px solid #B2B6B5;
+                }
+            }
+
+            #saveButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-bottom: 2.5%;
+                margin-right: 2.5%;
+            }
+
+            #closeButton {
+                position: relative;
+                width: 100px;
+                margin-top: 2.5%;
+                margin-bottom: 2.5%;
+                margin-left: 2.5%;
+            }
+        }
+    }
+}

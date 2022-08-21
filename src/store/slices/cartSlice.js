@@ -25,7 +25,7 @@ export const cartSlice = createSlice({
     },
     cartLogout: (state) => {
 
-      // initialState;
+      state.cart = [];
     },
 
   },

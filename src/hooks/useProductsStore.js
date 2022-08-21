@@ -76,7 +76,7 @@ export const useProductsStore = () => {
 
             const { data: { msg, product, record } } = await dashboardApi.post('products', productNew);
 
-            console.log(data);
+            console.log({ msg, product, record });
 
 
             if (msg === "OK") {
@@ -157,7 +157,7 @@ export const useProductsStore = () => {
 
             const { data: { msg, record, product } } = await dashboardApi.delete(`products/${_product._id}`, {});
 
-            console.log(data);
+            console.log({ msg, record, product });
 
 
             if (msg === "OK") {

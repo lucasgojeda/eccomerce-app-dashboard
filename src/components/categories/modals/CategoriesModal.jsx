@@ -20,7 +20,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { useCategoriesStore, useUiStore } from '../../../hooks';
 
-import { categoriesModal } from '../../../styles/components/categories';
+import '../../../styles/components/categories/modals/_categoriesModal.scss';
 
 
 export const CategoriesModal = () => {
@@ -159,8 +159,7 @@ export const CategoriesModal = () => {
             aria-describedby="modal-modal-description"
         >
             <Container sx={{ border: 'none' }} maxWidth="sm">
-                <Box
-                    sx={categoriesModal(sm, md, lg, xl)}>
+                <Box className='mainCaregoriesModalContainer'>
 
                     <h1>Categories</h1>
                     <Divider />

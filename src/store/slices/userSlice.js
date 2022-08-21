@@ -21,7 +21,8 @@ export const userSlice = createSlice({
     },
     usersLogout: (state) => {
 
-      // initialState
+      state.users = [];
+      state.activeUser = false;
     },
     addUser: (state, action) => {
 

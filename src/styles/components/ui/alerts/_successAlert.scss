@@ -1,0 +1,30 @@
+// xl
+@media (min-width: 1200px) {
+    .mainSuccessAlertContainer {
+        width: 100%;
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainSuccessAlertContainer {
+        width: 100%;
+    }
+}
+
+// md
+@media (min-width: 600px) and (max-width: 900px) {
+    .mainSuccessAlertContainer {
+        width: 100%;
+    }
+}
+
+// sm
+@media (max-width: 600px) {
+    .mainSuccessAlertContainer {
+        width: 100%;
+        margin: auto;
+        margin-left: -1.5%;
+        margin-bottom: 10vh;
+    }
+}
