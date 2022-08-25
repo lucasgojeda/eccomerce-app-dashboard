@@ -183,17 +183,17 @@
 @media (min-width: 900px) and (max-width: 1200px) {
     .mainProductModalContainer {
         position: absolute;
-        left: 5%;
+        left: 9%;
         top: 2.5%;
         background-color: #fff;
-        width: 50%;
+        width: 50% !important;
         height: 95vh;
         border-radius: 5px 0 0 5px;
         border-right: 1px solid #B2B6B5;
 
         .MuiTextField-root {
             margin: 10px;
-            width: 45%;
+            width: 42.5% !important;
         }
 
         #container {
@@ -222,8 +222,8 @@
         }
 
         #FormControl {
-            margin: 1;
-            width: 45%;
+            margin: 10px;
+            width: 42.5%;
         }
 
         #imagePreviewProduct {

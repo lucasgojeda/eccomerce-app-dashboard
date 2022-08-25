@@ -46,6 +46,7 @@ export const RecordsTable = () => {
     const { startUiOpenRecordModal } = useUiStore();
     const {
         records,
+        activeRecord,
         startLoadRecords,
         startSetActiveRecord,
     } = useRecordsStore();
@@ -127,6 +128,17 @@ export const RecordsTable = () => {
         navigate(url)
     }
 
+    const handleActiveRecord = (e, record) => {
+        e.preventDefault();
+
+        startSetActiveRecord(record);
+    }
+
+    const handleOpenButton = (e) => {
+        e.preventDefault();
+
+        startUiOpenRecordModal()
+    }
 
     // Normal menu
     const handleMenu = (e, record) => {
@@ -296,7 +308,15 @@ export const RecordsTable = () => {
 
                                     {
                                         records.map(
-                                            e => <div key={e._id} id='rowsDiv'>
+                                            (e, i) => <div
+                                                onClick={(event) => handleActiveRecord(event, e)}
+                                                onDoubleClick={handleOpenButton}
+                                                key={e._id}
+                                                id='rowsDiv'
+                                                style={{
+                                                    backgroundColor: (activeRecord?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                }}
+                                                >
 
                                                 <div id='nameItemContainer'>
                                                     <Typography variant='body2'>

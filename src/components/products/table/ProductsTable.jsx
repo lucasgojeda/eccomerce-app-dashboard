@@ -39,6 +39,7 @@ export const ProductsTable = () => {
     const { dashboardProducts } = useStaticsStore();
     const {
         products,
+        activeProduct,
         startSetActiveProduct,
         startLoadProducts
     } = useProductsStore();
@@ -107,6 +108,12 @@ export const ProductsTable = () => {
         navigate(url)
     }
 
+    const handleActiveProduct = (e, product) => {
+        e.preventDefault();
+
+        startSetActiveProduct(product);
+    }
+
     const handleEditButton = (e) => {
         e.preventDefault();
 
@@ -164,262 +171,197 @@ export const ProductsTable = () => {
         <div>
 
             <div>
-                {
-                    (products !== undefined)
-                        ?
-                        <Box className='mainProductsTableContainer'>
+                
+                <Box className='mainProductsTableContainer'>
 
+                    <Container id='searchAndFilter'>
 
-                            <Container id='searchAndFilter'>
+                        <Box className='ContainerFormsControl'>
 
-                                <FormControl id="FormControl">
+                            <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
 
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={filterBy}
-                                        defaultValue={'name'}
-                                        label="filterBy"
-                                        onChange={handleFilterByChange}
-                                    >
-                                        <MenuItem value={'name'}>Nombre</MenuItem>
-                                        <MenuItem value={'category'}>Categoria</MenuItem>
-                                        <MenuItem value={'price'}>Precio</MenuItem>
-                                        <MenuItem value={'quantity'}>Cantidad</MenuItem>
-                                        <MenuItem value={'user'}>Usuario</MenuItem>
-                                    </Select>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={filterBy}
+                                    defaultValue={'name'}
+                                    label="filterBy"
+                                    onChange={handleFilterByChange}
+                                >
+                                    <MenuItem value={'name'}>Nombre</MenuItem>
+                                    <MenuItem value={'category'}>Categoria</MenuItem>
+                                    <MenuItem value={'price'}>Precio</MenuItem>
+                                    <MenuItem value={'quantity'}>Cantidad</MenuItem>
+                                    <MenuItem value={'user'}>Usuario</MenuItem>
+                                </Select>
 
-                                </FormControl>
+                            </FormControl>
 
-                                <FormControl id="FormControl">
+                            <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
 
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={orderBy}
-                                        defaultValue={'ascendent'}
-                                        label="orderBy"
-                                        onChange={handleOrderByChange}
-                                    >
-                                        <MenuItem value={'asc'}>Ascendente</MenuItem>
-                                        <MenuItem value={'desc'}>Descendente</MenuItem>
-                                    </Select>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={orderBy}
+                                    defaultValue={'ascendent'}
+                                    label="orderBy"
+                                    onChange={handleOrderByChange}
+                                >
+                                    <MenuItem value={'asc'}>Ascendente</MenuItem>
+                                    <MenuItem value={'desc'}>Descendente</MenuItem>
+                                </Select>
 
-                                </FormControl>
-
-                                <Search>
-
-
-                                    <SearchIconWrapper>
-                                        <SearchIcon />
-                                    </SearchIconWrapper>
-
-                                    <form onSubmit={handleSearch}>
-                                        <StyledInputBase
-                                            onChange={handleInputChange}
-                                            type='text'
-                                            name='searchText'
-                                            autoComplete='off'
-                                            value={searchText}
-                                        />
-                                    </form>
-
-                                    {
-                                        (searchText !== '')
-                                        &&
-                                        <IconButton
-                                            id='closeIcon'
-                                            onClick={() => setSearchText('')}
-                                            color="inherit"
-                                        >
-                                            <CloseIcon />
-                                        </IconButton>
-                                    }
-
-                                </Search>
-
-                            </Container>
-
-
-                            <Container id='tableContainer'>
-
-                                <div id='headerDiv'>
-
-                                    <div id='nameItemContainer'>
-                                        <Typography variant='body2'>
-                                            Nombre
-                                        </Typography>
-                                    </div>
-
-                                    <div id='priceItemContainer'>
-                                        <Typography variant='body2'>
-                                            Precio
-                                        </Typography>
-                                    </div>
-
-                                    <div id='quantityItemContainer'>
-                                        <Typography variant='body2'>
-                                            Cantidad
-                                        </Typography>
-                                    </div>
-
-                                    <div id='categoryItemContainer'>
-                                        <Typography variant='body2'>
-                                            Categoria
-                                        </Typography>
-                                    </div>
-
-                                    <div id='userItemContainer'>
-                                        <Typography variant='body2'>
-                                            Usuario
-                                        </Typography>
-                                    </div>
-
-                                    <div id='menuIconDiv'>
-                                        <IconButton
-                                            size="large"
-                                            aria-label="account of current user"
-                                            aria-controls="menu-appbar"
-                                            aria-haspopup="true"
-                                            // onClick={(event) => handleMenu(event, e)}
-                                            color="inherit"
-                                            id='productMenuIcon'
-                                        >
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={anchorEl}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            sx={{
-                                                boxShadow: '1px solid #000'
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
-                                        >
-                                            <MenuItem onClick={handleEditButton}>Editar</MenuItem>
-                                            <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                        </Menu>
-                                    </div>
-                                </div>
-
-                                <Container id='containerRows'>
-
-                                    {
-                                        products.map(
-                                            e => <div key={e._id} id='rowsDiv'>
-
-                                                <div id='nameItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.name.split(" ")[0]} {e.name.split(" ")[1]}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='priceItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {`$${new Intl.NumberFormat('es-IN').format(e.price)}`}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='quantityItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {new Intl.NumberFormat('es-IN').format(e.quantity)}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='categoryItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.category.name}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='userItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.user.name}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='menuIconDiv'>
-                                                    <IconButton
-                                                        size="large"
-                                                        aria-label="account of current user"
-                                                        aria-controls="menu-appbar"
-                                                        aria-haspopup="true"
-                                                        onClick={(event) => handleMenu(event, e)}
-                                                        color="inherit"
-                                                        id='productMenuIcon'
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        anchorEl={anchorEl}
-                                                        anchorOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        sx={{
-                                                            boxShadow: '1px solid #000'
-                                                        }}
-                                                        transformOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        open={Boolean(anchorEl)}
-                                                        onClose={handleClose}
-                                                    >
-                                                        <MenuItem onClick={handleEditButton}>Editar</MenuItem>
-                                                        <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                                    </Menu>
-                                                </div>
-
-                                            </div>
-                                        )
-                                    }
-
-                                </Container>
-
-                                <Container id='paginationDiv'>
-                                    {
-                                        (products && products?.length !== 0)
-                                        &&
-                                        <Stack
-                                            spacing={2}>
-                                            <Pagination
-                                                size='large'
-                                                aria-current='page'
-                                                defaultPage={1}
-                                                page={Number(pagePath)}
-                                                count={Math.ceil(parseInt(dashboardProducts) / 8)}
-                                                onChange={handlePaginationChange}
-
-                                            />
-                                        </Stack>
-                                    }
-                                </Container>
-
-                            </Container>
+                            </FormControl>
 
                         </Box>
-                        :
-                        <>
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation={false} />
-                        </>
-                }
+
+                        <Search className='Search'>
+
+
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+
+                            <form onSubmit={handleSearch}>
+                                <StyledInputBase
+                                    onChange={handleInputChange}
+                                    type='text'
+                                    name='searchText'
+                                    autoComplete='off'
+                                    value={searchText}
+                                />
+                            </form>
+
+                            {
+                                (searchText !== '')
+                                &&
+                                <IconButton
+                                    id='closeIcon'
+                                    onClick={() => setSearchText('')}
+                                    color="inherit"
+                                >
+                                    <CloseIcon />
+                                </IconButton>
+                            }
+
+                        </Search>
+
+                    </Container>
+
+
+                    <Container id='tableContainer'>
+
+                        <div id='headerDiv'>
+
+                            <div id='nameItemContainer'>
+                                <Typography variant='body2'>
+                                    Nombre
+                                </Typography>
+                            </div>
+
+                            <div id='priceItemContainer'>
+                                <Typography variant='body2'>
+                                    Precio
+                                </Typography>
+                            </div>
+
+                            <div id='quantityItemContainer'>
+                                <Typography variant='body2'>
+                                    Cantidad
+                                </Typography>
+                            </div>
+
+                            <div id='categoryItemContainer'>
+                                <Typography variant='body2'>
+                                    Categoria
+                                </Typography>
+                            </div>
+
+                            <div id='userItemContainer'>
+                                <Typography variant='body2'>
+                                    Usuario
+                                </Typography>
+                            </div>
+
+                        </div>
+
+                        <Container id='containerRows'>
+
+                            {
+                                products.map(
+                                    (e, i) => <div
+                                        onClick={(event) => handleActiveProduct(event, e)}
+                                        onDoubleClick={handleEditButton}
+                                        key={e._id}
+                                        id='rowsDiv'
+                                        style={{
+                                            backgroundColor: (activeProduct?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                        }}
+                                    >
+
+                                        <div id='nameItemContainer'>
+                                            <Typography variant='body2'>
+                                                {e.name.split(" ")[0]} {e.name.split(" ")[1]}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='priceItemContainer'>
+                                            <Typography variant='body2'>
+                                                {`$${new Intl.NumberFormat('es-IN').format(e.price)}`}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='quantityItemContainer'>
+                                            <Typography variant='body2'>
+                                                {new Intl.NumberFormat('es-IN').format(e.quantity)}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='categoryItemContainer'>
+                                            <Typography variant='body2'>
+                                                {e.category.name}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='userItemContainer'>
+                                            <Typography variant='body2'>
+                                                {e.user.name}
+                                            </Typography>
+                                        </div>
+
+
+                                    </div>
+                                )
+                            }
+
+                        </Container>
+
+                        <Container id='paginationDiv'>
+                            {
+                                (products && products?.length !== 0)
+                                &&
+                                <Stack
+                                    spacing={2}>
+                                    <Pagination
+                                        size='large'
+                                        aria-current='page'
+                                        defaultPage={1}
+                                        page={Number(pagePath)}
+                                        count={Math.ceil(parseInt(dashboardProducts) / 8)}
+                                        onChange={handlePaginationChange}
+
+                                    />
+                                </Stack>
+                            }
+                        </Container>
+
+                    </Container>
+
+                </Box>
             </div>
         </div>
     );

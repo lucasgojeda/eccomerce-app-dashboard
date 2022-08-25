@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import dashboardApi from '../api/dashboardApi';
 
 import {
+    clearActiveRecord,
     loadRecords,
     recordsLogout,
     setActiveRecord
@@ -67,6 +68,11 @@ export const useRecordsStore = () => {
         dispatch(setActiveRecord(record));
     }
 
+    const startClearActiveRecord = () => {
+
+        dispatch(clearActiveRecord());
+    }
+
 
     return {
         //* Propiedades
@@ -77,5 +83,6 @@ export const useRecordsStore = () => {
         startLoadRecords,
         startDeleteRecords,
         startSetActiveRecord,
+        startClearActiveRecord,
     }
 }

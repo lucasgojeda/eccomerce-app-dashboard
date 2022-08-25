@@ -8,6 +8,7 @@ export const Search = styled('div')(({ theme }) => ({
     alignItems: 'center',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#fff',
+    border: '1px solid rgba(0, 0, 0, 0.23)', 
     marginLeft: 0,
     marginRight: 0,
     width: '90%',
@@ -23,12 +24,9 @@ export const Search = styled('div')(({ theme }) => ({
         width: 'auto',
     },
     [theme.breakpoints.down('sm')]: {
-        position: 'absolute',
-        top: '2.5%',
-        left: '0.5%',
-        margin: 'auto',
-        marginLeft: theme.spacing('0%'),
-        width: '100%',
+        marginLeft: theme.spacing('0'),
+        marginTop: '2.5vh',
+        width: '90%',
     },
 }));
 
@@ -65,7 +63,12 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
         [theme.breakpoints.down('md')]: {
             width: '20vw',
         },
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+            '&:focus': {
+                width: '80%',
+            },
+        },
     }
 }));
-
 

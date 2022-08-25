@@ -129,6 +129,12 @@ export const BinUsersTable = () => {
         navigate(url)
     }
 
+    const handleActiveBinUser = (e, user) => {
+        e.preventDefault();
+
+        startSetActiveBinUser(user);
+    }
+
     const handleEnableButton = (e) => {
         e.preventDefault();
 
@@ -272,45 +278,20 @@ export const BinUsersTable = () => {
                                         </Typography>
                                     </div>
 
-                                    <div id='menuIconDiv'>
-                                        <IconButton
-                                            size="large"
-                                            aria-label="account of current user"
-                                            aria-controls="menu-appbar"
-                                            aria-haspopup="true"
-                                            // onClick={(event) => handleMenu(event, e)}
-                                            color="inherit"
-                                            id='productMenuIcon'
-                                        >
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={anchorEl}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            sx={{
-                                                boxShadow: '1px solid #000'
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
-                                        >
-                                            <MenuItem>Habilitar</MenuItem>
-                                            <MenuItem>Eliminar</MenuItem>
-                                        </Menu>
-                                    </div>
                                 </div>
 
                                 <Container id='containerRows'>
 
                                     {
                                         binUsers.map(
-                                            e => <div key={e._id} id='rowsDiv'>
+                                            (e, i) => <div
+                                            onClick={(event) => handleActiveBinUser(event, e)}
+                                            key={e._id}
+                                            id='rowsDiv'
+                                            style={{
+                                                backgroundColor: (activeBinUser?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                            }}
+                                            >
 
                                                 <div id='nameItemContainer'>
                                                     <Typography variant='body2'>
@@ -328,39 +309,6 @@ export const BinUsersTable = () => {
                                                     <Typography variant='body2'>
                                                         {e.email}
                                                     </Typography>
-                                                </div>
-
-                                                <div id='menuIconDiv'>
-                                                    <IconButton
-                                                        size="large"
-                                                        aria-label="account of current user"
-                                                        aria-controls="menu-appbar"
-                                                        aria-haspopup="true"
-                                                        onClick={(event) => handleMenu(event, e)}
-                                                        color="inherit"
-                                                        id='productMenuIcon'
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        anchorEl={anchorEl}
-                                                        anchorOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        sx={{
-                                                            boxShadow: '1px solid #000'
-                                                        }}
-                                                        transformOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        open={Boolean(anchorEl)}
-                                                        onClose={handleClose}
-                                                    >
-                                                        <MenuItem onClick={handleEnableButton}>Habilitar</MenuItem>
-                                                        <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                                    </Menu>
                                                 </div>
 
                                             </div>

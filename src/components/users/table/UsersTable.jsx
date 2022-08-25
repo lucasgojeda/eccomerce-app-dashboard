@@ -38,6 +38,7 @@ export const UsersTable = () => {
 
     const {
         users,
+        activeUser,
         startLoadUsers,
         startSetActiveUser
     } = useUsersStore();
@@ -124,6 +125,12 @@ export const UsersTable = () => {
         (!url.includes('?')) ? url += `?page=${value}` : url += `&page=${value}`;
 
         navigate(url)
+    }
+
+    const handleActiveUser = (e, user) => {
+        e.preventDefault();
+
+        startSetActiveUser(user);
     }
 
     const handleEditButton = (e) => {
@@ -267,45 +274,21 @@ export const UsersTable = () => {
                                         </Typography>
                                     </div>
 
-                                    <div id='menuIconDiv'>
-                                        <IconButton
-                                            size="large"
-                                            aria-label="account of current user"
-                                            aria-controls="menu-appbar"
-                                            aria-haspopup="true"
-                                            // onClick={(event) => handleMenu(event, e)}
-                                            color="inherit"
-                                            id='productMenuIcon'
-                                        >
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={anchorEl}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            sx={{
-                                                boxShadow: '1px solid #000'
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
-                                        >
-                                            <MenuItem onClick={handleEditButton}>Editar</MenuItem>
-                                            <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                        </Menu>
-                                    </div>
                                 </div>
 
                                 <Container id='containerRows'>
 
                                     {
                                         users.map(
-                                            e => <div key={e._id} id='rowsDiv'>
+                                            (e, i) => <div
+                                                onClick={(event) => handleActiveUser(event, e)}
+                                                onDoubleClick={handleEditButton}
+                                                key={e._id}
+                                                id='rowsDiv'
+                                                style={{
+                                                    backgroundColor: (activeUser?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                }}
+                                                >
 
                                                 <div id='nameItemContainer'>
                                                     <Typography variant='body2'>
@@ -323,39 +306,6 @@ export const UsersTable = () => {
                                                     <Typography variant='body2'>
                                                         {e.email}
                                                     </Typography>
-                                                </div>
-
-                                                <div id='menuIconDiv'>
-                                                    <IconButton
-                                                        size="large"
-                                                        aria-label="account of current user"
-                                                        aria-controls="menu-appbar"
-                                                        aria-haspopup="true"
-                                                        onClick={(event) => handleMenu(event, e)}
-                                                        color="inherit"
-                                                        id='productMenuIcon'
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        anchorEl={anchorEl}
-                                                        anchorOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        sx={{
-                                                            boxShadow: '1px solid #000'
-                                                        }}
-                                                        transformOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        open={Boolean(anchorEl)}
-                                                        onClose={handleClose}
-                                                    >
-                                                        <MenuItem onClick={handleEditButton}>Editar</MenuItem>
-                                                        <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                                    </Menu>
                                                 </div>
 
                                             </div>

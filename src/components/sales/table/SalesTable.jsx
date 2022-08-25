@@ -62,8 +62,8 @@ export const SalesTable = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [flagSearch, setFlagSearch] = useState(0);
     const [searchText, setSearchText] = useState('');
-    const [filterBy, setFilterBy] = useState('date_requested');
-    const [orderBy, setOrderBy] = useState('desc');
+    const [filterBy, setFilterBy] = useState('status');
+    const [orderBy, setOrderBy] = useState('asc');
 
     const theme = useTheme();
     const sm = useMediaQuery(theme.breakpoints.down('sm'));
@@ -175,260 +175,254 @@ export const SalesTable = () => {
         <div>
 
             <div>
-                {
-                    (sales !== undefined)
-                        ?
-                        <Box className='mainSalesTableContainer'>
 
+                <Box className='mainSalesTableContainer'>
 
+                    <Container id='searchAndFilter'>
 
-                            <Container id='searchAndFilter'>
+                        <Box className='ContainerFormsControl'>
 
-                                <FormControl id="FormControl">
+                            <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
 
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={filterBy}
-                                        defaultValue={'name'}
-                                        label="filterBy"
-                                        onChange={handleFilterByChange}
-                                    >
-                                        <MenuItem value={'user'}>Usuario</MenuItem>
-                                        <MenuItem value={'status'}>Estado</MenuItem>
-                                        <MenuItem value={'total_price'}>Total</MenuItem>
-                                        <MenuItem value={'date_requested'}>Fecha entrada</MenuItem>
-                                        <MenuItem value={'date_sended'}>Fecha salida</MenuItem>
-                                        {/* <MenuItem value={'user'}>Usuario</MenuItem> */}
-                                    </Select>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={filterBy}
+                                    defaultValue={'name'}
+                                    label="filterBy"
+                                    onChange={handleFilterByChange}
+                                >
+                                    <MenuItem value={'user'}>Usuario</MenuItem>
+                                    <MenuItem value={'status'}>Estado</MenuItem>
+                                    <MenuItem value={'total_price'}>Total</MenuItem>
+                                    <MenuItem value={'date_requested'}>Fecha entrada</MenuItem>
+                                    <MenuItem value={'date_sended'}>Fecha salida</MenuItem>
+                                    {/* <MenuItem value={'user'}>Usuario</MenuItem> */}
+                                </Select>
 
-                                </FormControl>
+                            </FormControl>
 
-                                <FormControl id="FormControl">
+                            <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
 
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={orderBy}
-                                        defaultValue={'ascendent'}
-                                        label="orderBy"
-                                        onChange={handleOrderByChange}
-                                    >
-                                        <MenuItem value={'asc'}>Ascendente</MenuItem>
-                                        <MenuItem value={'desc'}>Descendente</MenuItem>
-                                    </Select>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={orderBy}
+                                    defaultValue={'ascendent'}
+                                    label="orderBy"
+                                    onChange={handleOrderByChange}
+                                >
+                                    <MenuItem value={'asc'}>Ascendente</MenuItem>
+                                    <MenuItem value={'desc'}>Descendente</MenuItem>
+                                </Select>
 
-                                </FormControl>
-
-                                <Search>
-
-
-                                    <SearchIconWrapper>
-                                        <SearchIcon />
-                                    </SearchIconWrapper>
-
-                                    <form onSubmit={handleSearch}>
-                                        <StyledInputBase
-                                            onChange={handleInputChange}
-                                            type='text'
-                                            name='searchText'
-                                            autoComplete='off'
-                                            value={searchText}
-                                        />
-                                    </form>
-
-                                    {
-                                        (searchText !== '')
-                                        &&
-                                        <IconButton
-                                            id='closeIcon'
-                                            onClick={() => setSearchText('')}
-                                            color="inherit"
-                                        >
-                                            <CloseIcon />
-                                        </IconButton>
-                                    }
-
-                                </Search>
-
-                            </Container>
-
-
-                            <Container id='tableContainer'>
-
-                                <div id='headerDiv'>
-
-                                    <div id='userItemContainer'>
-                                        <Typography variant='body2'>
-                                            Usuario
-                                        </Typography>
-                                    </div>
-
-                                    <div id='stateItemContainer'>
-                                        <Typography variant='body2'>
-                                            Estado
-                                        </Typography>
-                                    </div>
-
-                                    <div id='totalItemContainer'>
-                                        <Typography variant='body2'>
-                                            Total
-                                        </Typography>
-                                    </div>
-
-                                    <div id='dateRequestedItemContainer'>
-                                        <Typography variant='body2'>
-                                            Fecha entrada
-                                        </Typography>
-                                    </div>
-
-                                    <div id='dateSendedItemContainer'>
-                                        <Typography variant='body2'>
-                                            Fecha salida
-                                        </Typography>
-                                    </div>
-
-                                    <div id='menuIconDiv'>
-                                        <IconButton
-                                            size="large"
-                                            aria-label="account of current user"
-                                            aria-controls="menu-appbar"
-                                            aria-haspopup="true"
-                                            // onClick={(event) => handleMenu(event, e)}
-                                            color="inherit"
-                                            id='productMenuIcon'
-                                        >
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={anchorEl}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            sx={{
-                                                boxShadow: '1px solid #000'
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
-                                        >
-                                            <MenuItem onClick={handleSendedButton}>Marcar como enviado</MenuItem>
-                                            <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                        </Menu>
-                                    </div>
-                                </div>
-
-                                <Container id='containerRows'>
-
-                                    {
-                                        sales.map(
-                                            e => <div
-                                                // onClick={() => console.log(e)}
-                                                key={e._id} id='rowsDiv'>
-
-                                                <div id='userItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.user?.name}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='stateItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {(e.status === 'false' ? 'Enviado' : 'Sin enviar')}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='totalItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {`$${new Intl.NumberFormat('es-IN').format(e.total_price)}`}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='dateRequestedItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {(e.date_requested) && moment(e.date_requested).tz("America/Argentina/Buenos_Aires").format('LLL')}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='dateSendedItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {(e?.date_sended) && moment(e?.date_sended).tz("America/Argentina/Buenos_Aires").format('LLL')}
-                                                    </Typography>
-                                                </div>
-
-                                                {
-                                                    (e.status !== 'false')
-                                                        ?
-                                                        <IconButton
-                                                            size="large"
-                                                            aria-label="account of current user"
-                                                            aria-controls="menu-appbar"
-                                                            aria-haspopup="true"
-                                                            onClick={(event) => handleSendedButton(event, e)}
-                                                            color="inherit"
-                                                            id='productMenuIcon'
-                                                        >
-                                                            <CheckBoxOutlineBlankIcon />
-                                                        </IconButton>
-                                                        :
-                                                        <IconButton
-                                                            size="large"
-                                                            aria-label="account of current user"
-                                                            aria-controls="menu-appbar"
-                                                            aria-haspopup="true"
-                                                            color="inherit"
-                                                            id='productMenuIcon'
-                                                        >
-                                                            <CheckBoxIcon />
-                                                        </IconButton>
-                                                }
-
-                                            </div>
-                                        )
-                                    }
-
-                                </Container>
-
-                                <Container id='paginationDiv'>
-                                    {
-                                        (sales && sales?.length !== 0)
-                                        &&
-                                        <Stack
-                                            spacing={2}>
-                                            <Pagination
-                                                size='large'
-                                                aria-current='page'
-                                                defaultPage={1}
-                                                page={Number(pagePath)}
-                                                count={Math.ceil(parseInt(dashboardSales) / 8)}
-                                                onChange={handlePaginationChange}
-
-                                            />
-                                        </Stack>
-                                    }
-                                </Container>
-
-                            </Container>
+                            </FormControl>
 
                         </Box>
-                        :
-                        <>
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation="wave" />
-                            <Skeleton height={80} animation={false} />
-                        </>
-                }
+
+                        <Search className='Search'>
+
+
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+
+                            <form onSubmit={handleSearch}>
+                                <StyledInputBase
+                                    onChange={handleInputChange}
+                                    type='text'
+                                    name='searchText'
+                                    autoComplete='off'
+                                    value={searchText}
+                                />
+                            </form>
+
+                            {
+                                (searchText !== '')
+                                &&
+                                <IconButton
+                                    id='closeIcon'
+                                    onClick={() => setSearchText('')}
+                                    color="inherit"
+                                >
+                                    <CloseIcon />
+                                </IconButton>
+                            }
+
+                        </Search>
+
+                    </Container>
+
+
+                    <Container id='tableContainer'>
+
+                        <div id='headerDiv'>
+
+                            <div id='userItemContainer'>
+                                <Typography variant='body2'>
+                                    Usuario
+                                </Typography>
+                            </div>
+
+                            <div id='stateItemContainer'>
+                                <Typography variant='body2'>
+                                    Estado
+                                </Typography>
+                            </div>
+
+                            <div id='totalItemContainer'>
+                                <Typography variant='body2'>
+                                    Total
+                                </Typography>
+                            </div>
+
+                            <div id='dateRequestedItemContainer'>
+                                <Typography variant='body2'>
+                                    Fecha entrada
+                                </Typography>
+                            </div>
+
+                            <div id='dateSendedItemContainer'>
+                                <Typography variant='body2'>
+                                    Fecha salida
+                                </Typography>
+                            </div>
+
+                            <div id='menuIconDiv'>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    // onClick={(event) => handleMenu(event, e)}
+                                    color="inherit"
+                                    id='productMenuIcon'
+                                >
+                                    <MoreVertIcon />
+                                </IconButton>
+                                <Menu
+                                    anchorEl={anchorEl}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    sx={{
+                                        boxShadow: '1px solid #000'
+                                    }}
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorEl)}
+                                    onClose={handleClose}
+                                >
+                                    <MenuItem onClick={handleSendedButton}>Marcar como enviado</MenuItem>
+                                    <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
+                                </Menu>
+                            </div>
+                        </div>
+
+                        <Container id='containerRows'>
+
+                            {
+                                sales.map(
+                                    (e, i) => <div
+                                        key={e._id}
+                                        id='rowsDiv'
+                                        style={{
+                                            backgroundColor: (e.status === 'false') ? 'rgba(208, 211, 212, 0.5)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                        }}
+                                    >
+
+                                        <div id='userItemContainer'>
+                                            <Typography variant='body2'>
+                                                {e.user?.name}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='stateItemContainer'>
+                                            <Typography variant='body2'>
+                                                {(e.status === 'false' ? 'Enviado' : 'Sin enviar')}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='totalItemContainer'>
+                                            <Typography variant='body2'>
+                                                {`$${new Intl.NumberFormat('es-IN').format(e.total_price)}`}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='dateRequestedItemContainer'>
+                                            <Typography variant='body2'>
+                                                {(e.date_requested) && moment(e.date_requested).tz("America/Argentina/Buenos_Aires").format('LLL')}
+                                            </Typography>
+                                        </div>
+
+                                        <div id='dateSendedItemContainer'>
+                                            <Typography variant='body2'>
+                                                {(e?.date_sended) && moment(e?.date_sended).tz("America/Argentina/Buenos_Aires").format('LLL')}
+                                            </Typography>
+                                        </div>
+
+                                        {
+                                            (e.status !== 'false')
+                                                ?
+                                                <IconButton
+                                                    size="large"
+                                                    aria-label="account of current user"
+                                                    aria-controls="menu-appbar"
+                                                    aria-haspopup="true"
+                                                    onClick={(event) => handleSendedButton(event, e)}
+                                                    color="inherit"
+                                                    id='productMenuIcon'
+                                                >
+                                                    <CheckBoxOutlineBlankIcon />
+                                                </IconButton>
+                                                :
+                                                <IconButton
+                                                    size="large"
+                                                    aria-label="account of current user"
+                                                    aria-controls="menu-appbar"
+                                                    aria-haspopup="true"
+                                                    color="inherit"
+                                                    id='productMenuIcon'
+                                                >
+                                                    <CheckBoxIcon />
+                                                </IconButton>
+                                        }
+
+                                    </div>
+                                )
+                            }
+
+                        </Container>
+
+                        <Container id='paginationDiv'>
+                            {
+                                (sales && sales?.length !== 0)
+                                &&
+                                <Stack
+                                    spacing={2}>
+                                    <Pagination
+                                        size='large'
+                                        aria-current='page'
+                                        defaultPage={1}
+                                        page={Number(pagePath)}
+                                        count={Math.ceil(parseInt(dashboardSales) / 8)}
+                                        onChange={handlePaginationChange}
+
+                                    />
+                                </Stack>
+                            }
+                        </Container>
+
+                    </Container>
+
+                </Box>
             </div>
         </div>
     );

@@ -1,0 +1,43 @@
+.mainContainerMiniBarMenu {
+    position: absolute;
+    top: 40%;
+    right: 0;
+    width: calc(17.5vw + 17.5px);
+    height: auto;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .secondaryContainerMiniBarMenu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 17.5vw;
+        height: auto;
+        background-color: #fff;
+        border-top: 1px solid rgb(165, 165, 165);
+        border-left: 1px solid rgb(165, 165, 165);
+        border-bottom: 1px solid rgb(165, 165, 165);
+        border-radius: 5px 0 0 5px;
+        overflow: hidden;
+    }
+
+    .arrowContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 17.5px;
+        height: 30px;
+        background-color: #fff;
+        border-top: 1px solid rgb(165, 165, 165);
+        border-left: 1px solid rgb(165, 165, 165);
+        border-bottom: 1px solid rgb(165, 165, 165);
+        border-radius: 7.5px 0 0 7.5px;
+
+        .MuiSvgIcon-root {
+            color: rgb(165, 165, 165);
+            font-size: 16px;
+        }
+    }
+}

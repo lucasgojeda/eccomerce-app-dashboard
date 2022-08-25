@@ -62,6 +62,7 @@ export const EditProductModal = () => {
         startUiOpenDialogFields,
         startUiOpenErrorAlert,
         startUiOpenProgressBackdrop,
+        startUiOpenCategoriesModal,
     } = useUiStore();
 
     const [categoryValue, setCategoryValue] = useState('');
@@ -169,14 +170,17 @@ export const EditProductModal = () => {
 
     const handleSelectInput = (e) => {
 
-        setCategoryValue(e.target.value)
+        const value = e.target.value;
+
+        setCategoryValue(value)
 
     }
 
     const handleNewCategory = async () => {
 
         setCategoryValue('');
-        startUiCloseProductModalEdit();
+
+        startUiOpenCategoriesModal();
 
     }
 
@@ -413,7 +417,7 @@ export const EditProductModal = () => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Category"
-                                        value={categoryValue}
+                                        value={categoryValue || ''}
                                         onChange={handleSelectInput}
                                     >
                                         {
@@ -421,7 +425,9 @@ export const EditProductModal = () => {
                                                 <MenuItem key={e._id} name={e.name} value={e.name}>{e.name}</MenuItem>
                                             ))
                                         }
-                                        <MenuItem value='' name='' onClick={handleNewCategory} >New category<AddIcon /></MenuItem>
+                                        <MenuItem
+                                            onClick={handleNewCategory}>New category<AddIcon />
+                                        </MenuItem>
                                     </Select>
 
                                 </FormControl>

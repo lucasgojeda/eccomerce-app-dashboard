@@ -24,7 +24,7 @@ import { TabNavRecordModal } from './components/TabNavRecordModal';
 
 import { useUiStore, useRecordsStore } from '../../../hooks';
 
-// import '../../../styles/components/records/modals/_recordModal.scss';
+import '../../../styles/components/records/modals/_recordModal.scss';
 
 moment.locale('es');
 
@@ -76,6 +76,7 @@ export const RecordModal = () => {
             >
                 <Container maxWidth="sm">
                     <Box className='mainRecordsModalContainer'>
+
                         <Typography variant='body2' id='title'>
                             Registro
                         </Typography>
@@ -115,14 +116,16 @@ export const RecordModal = () => {
                                         {
                                             (!sm)
                                             &&
-                                            <IconButton
-                                                disabled={(details.img.length === 0 || details.img.length === 1 || counterImageBefore <= 1)}
-                                                color="primary"
-                                                component="span"
-                                                onClick={() => setCounterImageBefore(counterImageBefore - 1)}
-                                            >
-                                                <ArrowLeftIcon id='ArrowIcon' />
-                                            </IconButton>
+                                            <div className='arrowsContainer'>
+                                                <IconButton
+                                                    disabled={(details.img.length === 0 || details.img.length === 1 || counterImageBefore <= 1)}
+                                                    color="primary"
+                                                    component="span"
+                                                    onClick={() => setCounterImageBefore(counterImageBefore - 1)}
+                                                >
+                                                    <ArrowLeftIcon id='ArrowIcon' />
+                                                </IconButton>
+                                            </div>
                                         }
 
                                         {
@@ -135,7 +138,9 @@ export const RecordModal = () => {
                                                         <Container
                                                             key={car.id}
                                                             sx={{
-                                                                visibility: (car.id === counterImageBefore) ? 'visible' : 'hidden',
+                                                                display: (car.id === counterImageBefore) ? 'flex' : 'none',
+                                                                alignItems: 'center',
+                                                                justifyContent: 'center',
                                                             }}
                                                         >
                                                             {
@@ -156,7 +161,7 @@ export const RecordModal = () => {
                                         }
 
 
-                                        <div id='arrowsContainer'>
+                                        <div className='arrowsContainer'>
 
                                             {
                                                 (sm)
@@ -213,14 +218,16 @@ export const RecordModal = () => {
                                                 {
                                                     (!sm)
                                                     &&
-                                                    <IconButton
-                                                        disabled={(details.before.img.length === 0 || details.before.img.length === 1 || counterImageBefore <= 1)}
-                                                        color="primary"
-                                                        component="span"
-                                                        onClick={() => setCounterImageBefore(counterImageBefore - 1)}
-                                                    >
-                                                        <ArrowLeftIcon id='ArrowIcon' />
-                                                    </IconButton>
+                                                    <div className='arrowsContainer'>
+                                                        <IconButton
+                                                            disabled={(details.before.img.length === 0 || details.before.img.length === 1 || counterImageBefore <= 1)}
+                                                            color="primary"
+                                                            component="span"
+                                                            onClick={() => setCounterImageBefore(counterImageBefore - 1)}
+                                                        >
+                                                            <ArrowLeftIcon id='ArrowIcon' />
+                                                        </IconButton>
+                                                    </div>
                                                 }
 
                                                 {
@@ -233,7 +240,9 @@ export const RecordModal = () => {
                                                                 <Container
                                                                     key={car.id}
                                                                     sx={{
-                                                                        visibility: (car.id === counterImageBefore) ? 'visible' : 'hidden',
+                                                                        display: (car.id === counterImageBefore) ? 'flex' : 'none',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
                                                                     }}
                                                                 >
                                                                     {
@@ -253,7 +262,7 @@ export const RecordModal = () => {
                                                     </>
                                                 }
 
-                                                <div id='arrowsContainer'>
+                                                <div className='arrowsContainer'>
                                                     {
                                                         (sm)
                                                         &&
@@ -293,14 +302,16 @@ export const RecordModal = () => {
                                                 {
                                                     (!sm)
                                                     &&
-                                                    <IconButton
-                                                        disabled={(details.after.img.length === 0 || details.after.img.length === 1 || counterImageAfter <= 1)}
-                                                        color="primary"
-                                                        component="span"
-                                                        onClick={() => setCounterImageAfter(counterImageAfter - 1)}
-                                                    >
-                                                        <ArrowLeftIcon id='ArrowIcon' />
-                                                    </IconButton>
+                                                    <div className='arrowsContainer'>
+                                                        <IconButton
+                                                            disabled={(details.after.img.length === 0 || details.after.img.length === 1 || counterImageAfter <= 1)}
+                                                            color="primary"
+                                                            component="span"
+                                                            onClick={() => setCounterImageAfter(counterImageAfter - 1)}
+                                                        >
+                                                            <ArrowLeftIcon id='ArrowIcon' />
+                                                        </IconButton>
+                                                    </div>
                                                 }
 
                                                 {
@@ -313,7 +324,9 @@ export const RecordModal = () => {
                                                                 <Container
                                                                     key={car.id}
                                                                     sx={{
-                                                                        visibility: (car.id === counterImageAfter) ? 'visible' : 'hidden',
+                                                                        display: (car.id === counterImageBefore) ? 'flex' : 'none',
+                                                                        alignItems: 'center',
+                                                                        justifyContent: 'center',
                                                                     }}
                                                                 >
                                                                     {
@@ -333,7 +346,7 @@ export const RecordModal = () => {
                                                     </>
                                                 }
 
-                                                <div id='arrowsContainer'>
+                                                <div className='arrowsContainer'>
                                                     {
                                                         (sm)
                                                         &&

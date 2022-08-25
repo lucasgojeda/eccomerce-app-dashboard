@@ -5,6 +5,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { NavigationMenu } from './NavigationMenu';
 import { NavigationMenuMovil } from './NavigationMenuMovil';
+import { MiniBarMenu } from '../menu/MiniBarMenu';
 
 
 export const NavbarDashboard = () => { 
@@ -17,7 +18,10 @@ export const NavbarDashboard = () => {
             {
                 (smDown)
                     ?
+                    <>
+                    <MiniBarMenu />
                     <NavigationMenuMovil />
+                    </>
                     :
                     <NavigationMenu /> 
             }

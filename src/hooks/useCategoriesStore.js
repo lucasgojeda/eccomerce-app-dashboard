@@ -4,8 +4,10 @@ import dashboardApi from '../api/dashboardApi';
 
 import {
     addNewCategory,
+    clearActiveCategory,
     deleteCategory,
     loadCategories,
+    setActiveCategory,
     updateCategory
 } from "../store/slices/categoriesSlice";
 
@@ -20,7 +22,7 @@ import {
 export const useCategoriesStore = () => {
 
     const dispatch = useDispatch();
-    const { categories } = useSelector(state => state.categories);
+    const { categories, activeCategory } = useSelector(state => state.categories);
 
 
     const startLoadCategories = async () => {
@@ -154,15 +156,29 @@ export const useCategoriesStore = () => {
 
     }
 
+    const startSetActiveCategory = (category) => {
+
+        dispatch(setActiveCategory(category));
+    }
+
+    const startClearActiveCategory = () => {
+
+        dispatch(clearActiveCategory());
+    }
+
+
 
     return {
         //* Propiedades
         categories,
+        activeCategory,
 
         //* Métodos
         startLoadCategories,
         startCreateCategory,
         categoryStartUpdated,
         categoryStartDeleted,
+        startSetActiveCategory,
+        startClearActiveCategory,
     }
 }

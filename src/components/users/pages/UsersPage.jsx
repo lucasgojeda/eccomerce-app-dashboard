@@ -9,13 +9,13 @@ import { useProductsStore, useUsersStore } from '../../../hooks';
 
 export const UsersPage = () => {
 
-    const { startSetActiveProduct } = useProductsStore();
-    const { startSetActiveUser } = useUsersStore();
+    const { startClearActiveProduct } = useProductsStore();
+    const { startClearActiveUser } = useUsersStore();
 
     useEffect(() => {
 
-        startSetActiveProduct();
-        startSetActiveUser();
+        startClearActiveProduct();
+        startClearActiveUser();
 
 
     }, []);

@@ -8,70 +8,7 @@
         text-align: center;
 
         #title {
-            text-align: start;
-            font-size: 20px;
-            margin-left: 4%;
-            padding-top: 2%;
-            margin-right: 4%;
-            margin-bottom: 1%;
-            visibility: visible
-        }
-
-        h4 {
-            font-size: 15px;
-            margin-left: 2.5%;
-            margin-top: 2.5%;
-            text-align: start;
-        }
-
-        #itemsContainer {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
-        }
-
-        #detailsContainer {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 2.5%;
-            margin-bottom: 2.5%;
-        }
-
-        .MuiListItemText-root {
-            padding-left: 2%;
-            text-align: start;
-        }
-
-        #submitButton {
-            position: absolute;
-            left: 40%;
-            bottom: 5%;
-            width: 20%;
-            margin: auto;
-        }
-
-        #productImage {
-            width: 30ch;
-            height: 30ch;
-            object-fit: contain;
-            margin: auto;
-            margin-top: 5%;
-        }
-    }
-}
-
-// lg
-@media (min-width: 900px) and (max-width: 1200px) {
-    .mainRecordsModalContainer {
-        background-color: #fff;
-        height: 95vh;
-        margin-top: 2.5%;
-        border-radius: 5px;
-        text-align: center;
-
-        #title {
-            text-align: start;
+            text-align: center;
             font-size: 20px;
             margin-left: 4%;
             padding-top: 2%;
@@ -114,7 +51,7 @@
         #submitButton {
             position: absolute;
             left: 40%;
-            bottom: 5%;
+            bottom: 10%;
             width: 20%;
             margin: auto;
         }
@@ -122,6 +59,17 @@
         #containerImage {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .arrowsContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 5vw;
         }
 
         #ArrowIcon {
@@ -129,14 +77,103 @@
         }
 
         #imageCard {
-            margin: auto;
             margin-top: 2.5%;
             width: 20ch;
             height: 20ch;
 
             img {
-                position: absolute;
-                left: 41%;
+                width: 20ch;
+                height: 20ch;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+// lg
+@media (min-width: 900px) and (max-width: 1200px) {
+    .mainRecordsModalContainer {
+        background-color: #fff;
+        height: 95vh;
+        margin-top: 2.5%;
+        border-radius: 5px;
+        text-align: center;
+
+        #title {
+            text-align: center;
+            font-size: 20px;
+            margin-left: 4%;
+            padding-top: 2%;
+            margin-right: 4%;
+            margin-bottom: 1%;
+            visibility: visible
+        }
+
+        h4 {
+            font-size: 15px;
+            margin-left: 2.5%;
+            margin-top: 2.5%;
+            text-align: start;
+        }
+
+        #itemsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+
+        #description {
+            max-height: 10vh;
+            overflow-y: scroll
+        }
+
+        #detailsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 2.5%;
+            margin-bottom: 2.5%;
+        }
+
+        .MuiListItemText-root {
+            padding-left: 2%;
+            text-align: start;
+        }
+
+        #submitButton {
+            position: absolute;
+            left: 40%;
+            bottom: 10%;
+            width: 20%;
+            margin: auto;
+        }
+
+        #containerImage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .arrowsContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 5vw;
+        }
+
+        #ArrowIcon {
+            font-size: 50px;
+        }
+
+        #imageCard {
+            margin-top: 2.5%;
+            width: 20ch;
+            height: 20ch;
+
+            img {
                 width: 20ch;
                 height: 20ch;
                 object-fit: contain;
@@ -155,7 +192,7 @@
         text-align: center;
 
         #title {
-            text-align: start;
+            text-align: center;
             font-size: 25px;
             margin-left: 4%;
             padding-top: 2%;
@@ -198,14 +235,25 @@
         #submitButton {
             position: absolute;
             left: 40%;
-            bottom: 5%;
+            bottom: 10%;
             width: 20%;
             margin: auto;
+        }
+
+        .arrowsContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 5vw;
         }
 
         #containerImage {
             display: flex;
             flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
         #ArrowIcon {
@@ -213,14 +261,11 @@
         }
 
         #imageCard {
-            margin: auto;
             margin-top: 2.5%;
             width: 20ch;
             height: 20ch;
 
             img {
-                position: absolute;
-                left: 40.5%;
                 width: 20ch;
                 height: 20ch;
                 object-fit: contain;
@@ -233,7 +278,8 @@
 @media (max-width: 600px) {
     .mainRecordsModalContainer {
         position: absolute;
-        left: 0; 
+        left: 0;
+        top: 0;
         background-color: #fff;
         height: 100vh;
         width: 100vw;
@@ -241,7 +287,7 @@
         overflow-y: scroll;
 
         #title {
-            text-align: start;
+            text-align: center;
             font-size: 25px;
             margin-left: 4%;
             padding-top: 2%;
@@ -271,24 +317,26 @@
 
         #detailsContainer {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: space-between;
             margin-top: 2.5%;
             margin-bottom: 2.5%;
         }
 
         #containerImage {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            width: 100%;
         }
 
         #imageCard {
             margin: auto;
             margin-top: 5%;
             width: 100%;
-            height: 30ch;
-
+            
             img {
-                width: 100%;
+                height: 30ch;
+                max-width: 100%;
                 object-fit: contain;
             }
         }
@@ -301,12 +349,14 @@
         #submitButton {
             width: 25%;
             margin: auto;
+            margin-bottom: 2.5vh;
         }
 
-        #arrowsContainer {
-            width: 100%;
+        .arrowsContainer {
             display: flex;
             justify-content: space-between;
+            width: 100%;
+            height: 7.5vh;
         }
 
         #ArrowIcon {

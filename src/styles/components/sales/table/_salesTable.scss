@@ -3,12 +3,11 @@
     .mainSalesTableContainer {
         #searchAndFilter {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            width: 90%;
-            height: 10vh;
-            margin-top: 11vh;
-            margin-left: 8.5vw;
+            width: calc( 100% - 70px );
+            height: 22.5vh;
+            margin-left: 70px;
 
             #closeIcon {
                 position: absolute;
@@ -28,12 +27,12 @@
         }
 
         #tableContainer {
-            width: 90%;
-            height: auto;
+            width: calc( 100% - 70px );
+            height: 77.5vh;
             display: flex;
             flex-wrap: wrap;
             margin: auto;
-            margin-left: 8.5vw;
+            margin-left: 70px;
             padding: 0;
             border: 1px solid rgba(1, 1, 1, 0.25);
         }
@@ -43,10 +42,17 @@
             height: 60vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
             margin: auto;
-            padding: 0;
+            padding: 0 2.5% 0 2.5%;
             overflow-y: scroll;
             overflow-x: hidden;
+
+            :hover {
+                background-color: rgba(127, 41, 185, 0.5) !important;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
         }
 
         #rowsDiv {
@@ -54,6 +60,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 2px;
+            padding: 0 2.5% 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #fff;
@@ -62,6 +69,9 @@
                 #menuIconDiv {
                     visibility: visible;
                 }
+
+                background-color: transparent !important;
+
             }
         }
 
@@ -72,10 +82,14 @@
             border-bottom: 1px solid rgba(1, 1, 1, 0.25);
             overflow-x: hidden;
             padding: 0 4vw 0 2.5%;
+            // padding: 0 2.5% 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #2980B9;
-            color: #fff;
+
+            div p{
+                color: #fff;
+            }
 
             :hover {
                 #menuIconDiv {
@@ -83,7 +97,6 @@
                 }
             }
         }
-
         #userItemContainer {
             display: flex;
             align-items: center;
@@ -153,12 +166,11 @@
     .mainSalesTableContainer {
         #searchAndFilter {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            width: 90%;
-            height: 10vh;
-            margin-top: 11vh;
-            margin-left: 8.5vw;
+            width: calc( 100% - 70px );
+            height: 22.5vh;
+            margin-left: 70px;
 
             #closeIcon {
                 position: absolute;
@@ -178,12 +190,12 @@
         }
 
         #tableContainer {
-            width: 90%;
-            height: auto;
+            width: calc( 100% - 70px );
+            height: 77.5vh;
             display: flex;
             flex-wrap: wrap;
             margin: auto;
-            margin-left: 8.5vw;
+            margin-left: 70px;
             padding: 0;
             border: 1px solid rgba(1, 1, 1, 0.25);
         }
@@ -193,10 +205,16 @@
             height: 60vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
             margin: auto;
-            padding: 0;
+            padding: 0 2.5% 0 2.5%;
             overflow-y: scroll;
             overflow-x: hidden;
+
+            :hover {
+                background-color: rgba(127, 41, 185, 0.5) !important;
+                transition: all 0.2s ease;
+            }
         }
 
         #rowsDiv {
@@ -204,6 +222,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 2px;
+            padding: 0 2.5% 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #fff;
@@ -212,6 +231,9 @@
                 #menuIconDiv {
                     visibility: visible;
                 }
+
+                background-color: transparent !important;
+
             }
         }
 
@@ -222,10 +244,14 @@
             border-bottom: 1px solid rgba(1, 1, 1, 0.25);
             overflow-x: hidden;
             padding: 0 4vw 0 2.5%;
+            // padding: 0 2.5% 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #2980B9;
-            color: #fff;
+
+            div p{
+                color: #fff;
+            }
 
             :hover {
                 #menuIconDiv {
@@ -303,12 +329,11 @@
     .mainSalesTableContainer {
         #searchAndFilter {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center;
             align-items: center;
-            width: 90%;
-            height: 10vh;
-            margin-top: 11vh;
-            margin-left: 8.5vw;
+            width: calc( 100% - 70px );
+            height: 22.5vh;
+            margin-left: 70px;
 
             #closeIcon {
                 position: absolute;
@@ -318,7 +343,7 @@
 
             #FormControl {
                 margin: 10px;
-                width: 30vw;
+                width: 25ch;
                 background-color: #fff;
 
                 .MuiInputBase-input {
@@ -328,12 +353,12 @@
         }
 
         #tableContainer {
-            width: 90%;
-            height: auto;
+            width: calc( 100% - 70px );
+            height: 77.5vh;
             display: flex;
             flex-wrap: wrap;
             margin: auto;
-            margin-left: 10vw;
+            margin-left: 70px;
             padding: 0;
             border: 1px solid rgba(1, 1, 1, 0.25);
         }
@@ -343,10 +368,17 @@
             height: 60vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
             margin: auto;
-            padding: 0;
+            padding: 0 2.5% 0 2.5%;
             overflow-y: scroll;
             overflow-x: hidden;
+
+            :hover {
+                background-color: rgba(127, 41, 185, 0.5) !important;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
         }
 
         #rowsDiv {
@@ -354,6 +386,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 2px;
+            padding: 0 2.5% 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #fff;
@@ -362,6 +395,9 @@
                 #menuIconDiv {
                     visibility: visible;
                 }
+
+                background-color: transparent !important;
+
             }
         }
 
@@ -375,7 +411,10 @@
             width: 100%;
             height: 7.5ch;
             background-color: #2980B9;
-            color: #fff;
+
+            div p{
+                color: #fff;
+            }
 
             :hover {
                 #menuIconDiv {
@@ -383,6 +422,7 @@
                 }
             }
         }
+
 
         #userItemContainer {
             display: flex;
@@ -447,19 +487,37 @@
 // sm
 @media (max-width: 600px) {
     .mainSalesTableContainer {
+        height: calc(100vh - 65px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: space-between;
+
+
         #searchAndFilter {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-around;
+            flex-wrap: wrap-reverse;
             align-items: center;
-            width: 90%;
-            height: 10vh;
-            margin-top: 11vh;
-            margin-left: 8.5vw;
+            width: 100%;
+            height: 25%;
 
             #closeIcon {
                 position: absolute;
-                top: 1vh;
-                left: 30vw;
+                top: 22.5%;
+                left: 85%;
+            }
+
+            // .search {
+            //     display: block;
+            //     margin: auto;
+            // }
+
+            .ContainerFormsControl {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                width: 100vw;
             }
 
             #FormControl {
@@ -475,7 +533,8 @@
 
         #tableContainer {
             width: 100%;
-            height: 75vh;
+            height: 75%;
+            max-height: 75%;
             display: flex;
             flex-wrap: wrap;
             margin: auto;
@@ -485,19 +544,27 @@
 
         #containerRows {
             width: 100%;
-            margin: auto;
+            height: 60vh;
+            display: flex;
             flex-direction: column;
-            padding: 0;
-            overflow-y: scroll;
+            align-items: center;
+            margin: auto;
+            padding: 0 2.5% 0 2.5%;
             overflow-x: hidden;
-            overflow-x: hidden;
+
+            :hover {
+                background-color: rgba(127, 41, 185, 0.5) !important;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
         }
 
         #rowsDiv {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             margin-bottom: 2px;
+            padding: 0 2.5% 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #fff;
@@ -506,6 +573,9 @@
                 #menuIconDiv {
                     visibility: visible;
                 }
+
+                background-color: transparent !important;
+
             }
         }
 
@@ -515,10 +585,14 @@
             justify-content: space-between;
             border-bottom: 1px solid rgba(1, 1, 1, 0.25);
             overflow-x: hidden;
+            padding: 0 4vw 0 2.5%;
             width: 100%;
             height: 7.5ch;
             background-color: #2980B9;
-            color: #fff;
+
+            div p{
+                color: #fff;
+            }
 
             :hover {
                 #menuIconDiv {
@@ -565,136 +639,12 @@
             justify-content: flex-end;
             overflow: hidden;
             width: 100%;
-            height: 6ch;
+            height: auto;
             padding: 0 4vw 0 2.5%;
             border-radius: 0 0 5px 5px;
             background-color: #fff;
             border-top: 1px solid rgba(1, 1, 1, 0.25);
         }
 
-        #searchAndFilter {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            width: 90%;
-            height: 10vh;
-            margin-top: 11vh;
-            margin-left: 8.5vw;
-
-            #closeIcon {
-                position: absolute;
-                top: 1vh;
-                left: 30vw;
-            }
-
-            #FormControl {
-                margin: 10px;
-                width: 30vw;
-                background-color: #fff;
-
-                .MuiInputBase-input {
-                    height: 0.5vh;
-                }
-            }
-        }
-
-        #tableContainer {
-            width: 100%;
-            height: 75vh;
-            display: flex;
-            flex-wrap: wrap;
-            margin: auto;
-            padding: 0;
-            border: 1px solid rgba(1, 1, 1, 0.25);
-        }
-
-        #containerRows {
-            width: 100%;
-            margin: auto;
-            flex-direction: column;
-            padding: 0;
-            overflow-y: scroll;
-            overflow-x: hidden;
-            overflow-x: hidden;
-        }
-
-        #rowsDiv {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 2px;
-            width: 100%;
-            height: 7.5ch;
-            background-color: #fff;
-
-            :hover {
-                #menuIconDiv {
-                    visibility: visible;
-                }
-            }
-        }
-
-        #headerDiv {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid rgba(1, 1, 1, 0.25);
-            overflow-x: hidden;
-            width: 100%;
-            height: 7.5ch;
-            background-color: #2980B9;
-            color: #fff;
-
-            :hover {
-                #menuIconDiv {
-                    visibility: visible;
-                }
-            }
-        }
-
-        #userItemContainer {
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding-left: 2.5%;
-            width: 15ch;
-            height: 7.5ch;
-        }
-
-        #stateItemContainer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 22.5ch;
-            height: 7.5ch;
-        }
-
-        #totalItemContainer {
-            position: absolute;
-            visibility: hidden;
-        }
-
-        #dateSendedItemContainer {
-            position: absolute;
-            visibility: hidden;
-        }
-
-        #dateRequestedItemContainer {
-            position: absolute;
-            visibility: hidden;
-        }
-
-        #paginationDiv {
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            overflow: hidden;
-            width: 100%;
-            height: 6ch;
-            padding: 0 4vw 0 2.5%;
-            border-radius: 0 0 5px 5px;
-            background-color: #fff;
-            border-top: 1px solid rgba(1, 1, 1, 0.25);
-        }
     }
 }

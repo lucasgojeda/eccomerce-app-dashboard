@@ -14,9 +14,10 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { Button, Divider } from '@mui/material';
+import { Button, Divider, Typography } from '@mui/material';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 
 import { useCategoriesStore, useUiStore } from '../../../hooks';
 
@@ -27,9 +28,12 @@ export const CategoriesModal = () => {
 
     const {
         categories,
+        activeCategory,
         categoryStartDeleted,
         categoryStartUpdated,
         startCreateCategory,
+        startSetActiveCategory,
+        startClearActiveCategory,
     } = useCategoriesStore();
     const {
         categoriesModal: categoriesModalStatus,
@@ -64,24 +68,30 @@ export const CategoriesModal = () => {
 
     }
 
+    const handleSetActiveCategory = (e, category) => {
+        e.preventDefault();
+
+        startSetActiveCategory(category);
+    }
+
     const handleCreate = (event) => {
         event.preventDefault();
 
         setModalCreate(true);
     }
 
-    const handleDelete = (event, category) => {
-        event.preventDefault();
+    const handleDelete = (e) => {
+        e.preventDefault();
 
-        setCategoryState(category);
+        setCategoryState(activeCategory);
 
         setModalDelete(true);
     }
 
-    const handleEdit = (event, category) => {
-        event.preventDefault();
+    const handleEdit = (e) => {
+        e.preventDefault();
 
-        setCategoryState(category);
+        setCategoryState(activeCategory);
 
         setModalEdit(true);
 
@@ -114,6 +124,8 @@ export const CategoriesModal = () => {
     }
 
     const handleClose = () => {
+
+        startClearActiveCategory();
 
         startUiCloseCategoriesModal();
     };
@@ -161,25 +173,78 @@ export const CategoriesModal = () => {
             <Container sx={{ border: 'none' }} maxWidth="sm">
                 <Box className='mainCaregoriesModalContainer'>
 
-                    <h1>Categories</h1>
-                    <Divider />
+                    <>
+                        <div className='titleContainer'>
+                            <Typography variant='body2' className='title'>
+                                Editar categorías
+                            </Typography>
+                        </div>
+                        <Divider />
+                    </>
+
 
                     <Container id='container'>
                         {
-                            categories.map(e => (
+                            categories.map((e, i) => (
 
-                                <MenuItem key={e._id} name={e.name} value={e.name}>
+                                <MenuItem
+                                    sx={{
+                                        backgroundColor: (activeCategory?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 0) && 'rgba(0, 113, 255, 0.25)',
+                                        ':hover': {
+                                            backgroundColor: 'rgba(127, 41, 185, 0.5)',
+                                            color: '#fff',
+                                            cursor: 'pointer'
+                                        }
+                                    }}
+                                    onClick={(event) => handleSetActiveCategory(event, e)}
+                                    key={e._id} name={e.name} value={e.name}>
+
                                     {e.name}
-                                    <EditIcon id='EditIcon' onClick={event => handleEdit(event, e)} />
-                                    <DeleteIcon id='DeleteIcon' onClick={event => handleDelete(event, e)} />
                                 </MenuItem>
                             ))
                         }
+
                     </Container>
 
-                    <Fab onClick={handleCreate} id='AddIcon'>
-                        <AddIcon />
-                    </Fab>
+
+                    <div className='editionItemsContainer'>
+
+                        {
+                            (activeCategory)
+                            &&
+                            <IconButton
+                                id='DeleteIcon'
+                                color="inherit"
+                                onClick={handleDelete}
+                            >
+                                <DeleteIcon />
+
+                            </IconButton>
+                        }
+
+                        <IconButton
+                            id='AddIcon'
+                            color="inherit"
+                            onClick={handleCreate}
+                        >
+                            <AddIcon />
+
+                        </IconButton>
+
+                        {
+                            (activeCategory)
+                            &&
+                            <IconButton
+                                id='EditIcon'
+                                color="inherit"
+                                onClick={handleEdit}
+                            >
+                                <EditIcon />
+
+                            </IconButton>
+                        }
+
+                    </div>
 
                     {
                         <Dialog open={modalCreate} onClose={handleModalCreateClose}>

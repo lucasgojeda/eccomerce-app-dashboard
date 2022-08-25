@@ -101,6 +101,13 @@ export const BinProductsTable = () => {
         setFilterBy(e.target.value)
     }
 
+    const handleActiveBinProduct = (e, product) => {
+        e.preventDefault();
+
+        startSetActiveBinProduct(product);
+    }
+
+
     const handleOrderByChange = (e) => {
         e.preventDefault();
 
@@ -281,45 +288,20 @@ export const BinProductsTable = () => {
                                         </Typography>
                                     </div>
 
-                                    <div id='menuIconDiv'>
-                                        <IconButton
-                                            size="large"
-                                            aria-label="account of current user"
-                                            aria-controls="menu-appbar"
-                                            aria-haspopup="true"
-                                            // onClick={(event) => handleMenu(event, e)}
-                                            color="inherit"
-                                            id='productMenuIcon'
-                                        >
-                                            <MoreVertIcon />
-                                        </IconButton>
-                                        <Menu
-                                            anchorEl={anchorEl}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            sx={{
-                                                boxShadow: '1px solid #000'
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
-                                        >
-                                            <MenuItem>Habilitar</MenuItem>
-                                            <MenuItem>Eliminar</MenuItem>
-                                        </Menu>
-                                    </div>
                                 </div>
 
                                 <Container id='containerRows'>
 
                                     {
                                         binProducts.map(
-                                            e => <div key={e._id} id='rowsDiv'>
+                                            (e, i) => <div
+                                            onClick={(event) => handleActiveBinProduct(event, e)}
+                                            key={e._id}
+                                            id='rowsDiv'
+                                            style={{
+                                                backgroundColor: (activeBinProduct?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                            }}
+                                            >
 
                                                 <div id='nameItemContainer'>
                                                     <Typography variant='body2'>
@@ -349,39 +331,6 @@ export const BinProductsTable = () => {
                                                     <Typography variant='body2'>
                                                         {e.user.name}
                                                     </Typography>
-                                                </div>
-
-                                                <div id='menuIconDiv'>
-                                                    <IconButton
-                                                        size="large"
-                                                        aria-label="account of current user"
-                                                        aria-controls="menu-appbar"
-                                                        aria-haspopup="true"
-                                                        onClick={(event) => handleMenu(event, e)}
-                                                        color="inherit"
-                                                        id='productMenuIcon'
-                                                    >
-                                                        <MoreVertIcon />
-                                                    </IconButton>
-                                                    <Menu
-                                                        anchorEl={anchorEl}
-                                                        anchorOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        sx={{
-                                                            boxShadow: '1px solid #000'
-                                                        }}
-                                                        transformOrigin={{
-                                                            vertical: 'top',
-                                                            horizontal: 'right',
-                                                        }}
-                                                        open={Boolean(anchorEl)}
-                                                        onClose={handleClose}
-                                                    >
-                                                        <MenuItem onClick={handleEnableButton}>Habilitar</MenuItem>
-                                                        <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                                    </Menu>
                                                 </div>
 
                                             </div>

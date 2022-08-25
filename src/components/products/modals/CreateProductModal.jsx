@@ -30,7 +30,7 @@ import { useCategoriesStore, useProductsStore, useUiStore } from '../../../hooks
 
 import '../../../styles/components/products/modals/_productModal.scss';
 
- 
+
 const initEvent = {
     name: '',
     price: '',
@@ -100,6 +100,7 @@ export const CreateProductModal = () => {
 
 
     }
+    
     const handleCategoryInputChange = ({ target }) => {
 
         setFormValues({
@@ -292,6 +293,7 @@ export const CreateProductModal = () => {
         }
     }
 
+
     return (
 
 
@@ -306,7 +308,13 @@ export const CreateProductModal = () => {
                 <Container className='mainProductModalContainer'>
                     <Box
                         component="form"
-
+                        sx={{
+                            position: 'relative',
+                            paddingRight: '7.5%',
+                            width: '100%',
+                            margin: 0,
+                            padding: 0,
+                        }}
                         noValidate
                         autoComplete="off"
                     >
@@ -370,8 +378,7 @@ export const CreateProductModal = () => {
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
                                         label="Categoria"
-                                        value={category.name}
-                                        defaultValue={(category.name)}
+                                        value={category.name || ''}
                                         onChange={handleCategoryInputChange}
                                     >
                                         {
@@ -379,7 +386,7 @@ export const CreateProductModal = () => {
                                                 <MenuItem key={e._id} name={e.name} value={e.name}>{e.name}</MenuItem>
                                             ))
                                         }
-                                        <MenuItem value='' name='' onClick={handleNewCategory} >Editar categorias<AddIcon /></MenuItem>
+                                        <MenuItem value='' onClick={handleNewCategory} >Editar categorias<AddIcon /></MenuItem>
                                     </Select>
 
                                 </FormControl>
@@ -393,117 +400,142 @@ export const CreateProductModal = () => {
 
 
 
-                            </div>
-
-                            <Container id='containerImage'>
-
-                                <IconButton
-                                    id='leftArrowIcon'
-                                    disabled={(cars.length === 0 || cars.length === 1 || counterImage <= 1)}
-                                    color="primary"
-                                    component="span"
-                                    onClick={() => setCounterImage(counterImage - 1)}
-                                >
-                                    <ArrowLeftIcon />
-                                </IconButton>
 
 
-                                {selectedCar ? (
-                                    <ImageCropDialog
-                                        id={selectedCar.id}
-                                        imageUrl={selectedCar.imageUrl}
-                                        cropInit={selectedCar.crop}
-                                        zoomInit={selectedCar.zoom}
-                                        aspectInit={selectedCar.aspect}
-                                        onCancel={onCancel}
-                                        setCroppedImageFor={setCroppedImageFor}
-                                        resetImage={resetImage}
-                                    />
-                                ) : null}
+                                <Container id='containerImage'>
 
-                                {
-                                    (cars.length !== 0)
-                                        ?
-                                        <>
+                                    {
+                                        (!sm)
+                                        &&
+                                        <IconButton
+                                            id='leftArrowIcon'
+                                            disabled={(cars.length === 0 || cars.length === 1 || counterImage <= 1)}
+                                            color="primary"
+                                            sx={{
+                                                marginLeft: '-3.5vw'
+                                            }}
+                                            component="span"
+                                            onClick={() => setCounterImage(counterImage - 1)}
+                                        >
+                                            <ArrowLeftIcon />
+                                        </IconButton>
+                                    }
 
+
+                                    {selectedCar ? (
+                                        <ImageCropDialog
+                                            id={selectedCar.id}
+                                            imageUrl={selectedCar.imageUrl}
+                                            cropInit={selectedCar.crop}
+                                            zoomInit={selectedCar.zoom}
+                                            aspectInit={selectedCar.aspect}
+                                            onCancel={onCancel}
+                                            setCroppedImageFor={setCroppedImageFor}
+                                            resetImage={resetImage}
+                                        />
+                                    ) : null}
+
+                                    {
+                                        (cars.length !== 0)
+                                            ?
+                                            <>
+
+                                                <div id="imageCard" >
+                                                    {cars.map((car) => (
+                                                        <Container
+                                                            key={car.id}
+                                                            sx={{
+                                                                visibility: (car.id === counterImage) ? 'visible' : 'hidden',
+                                                            }}
+                                                        >
+                                                            <img
+
+                                                                src={car.croppedImageUrl ? car.croppedImageUrl : car.imageUrl}
+                                                                alt=""
+                                                                onClick={() => {
+                                                                    console.log(car);
+                                                                    setSelectedCar(car);
+                                                                }}
+                                                            />
+                                                            <IconButton
+                                                                sx={{
+                                                                    position: 'absolute',
+                                                                    top: '-2%',
+                                                                    right: '30%'
+                                                                }}
+                                                                color="primary"
+                                                                component="span"
+                                                                onClick={() => handleChangeImageFile(car)}
+                                                            >
+                                                                <EditIcon />
+                                                            </IconButton>
+                                                            <IconButton
+                                                                sx={{
+                                                                    position: 'absolute',
+                                                                    top: '-2%',
+                                                                    right: '25.5%'
+                                                                }}
+                                                                color="inherit"
+                                                                component="span"
+                                                                onClick={handleImageFile}
+                                                            >
+                                                                <PhotoCameraIcon />
+                                                            </IconButton>
+                                                        </Container>
+                                                    ))}
+
+                                                </div>
+
+                                            </>
+                                            :
                                             <div id="imageCard" >
-                                                {cars.map((car) => (
-                                                    <Container
-                                                        key={car.id}
-                                                        sx={{
-                                                            visibility: (car.id === counterImage) ? 'visible' : 'hidden',
-                                                        }}
-                                                    >
-                                                        <img
-
-                                                            src={car.croppedImageUrl ? car.croppedImageUrl : car.imageUrl}
-                                                            alt=""
-                                                            onClick={() => {
-                                                                console.log(car);
-                                                                setSelectedCar(car);
-                                                            }}
-                                                        />
-                                                        <IconButton
-                                                            sx={{
-                                                                position: 'absolute',
-                                                                top: '-2%',
-                                                                right: '30%'
-                                                            }}
-                                                            color="primary"
-                                                            component="span"
-                                                            onClick={() => handleChangeImageFile(car)}
-                                                        >
-                                                            <EditIcon />
-                                                        </IconButton>
-                                                        <IconButton
-                                                            sx={{
-                                                                position: 'absolute',
-                                                                top: '-2%',
-                                                                right: '25.5%'
-                                                            }}
-                                                            color="inherit"
-                                                            component="span"
-                                                            onClick={handleImageFile}
-                                                        >
-                                                            <PhotoCameraIcon />
-                                                        </IconButton>
-                                                    </Container>
-                                                ))}
-
+                                                <div onClick={handleImageFile} id='NoneImage'><PhotoCameraIcon id='PhotoCameraIcon' /></div>
                                             </div>
-
-                                        </>
-                                        :
-                                        <div id="imageCard" >
-                                            <div onClick={handleImageFile} id='NoneImage'><PhotoCameraIcon id='PhotoCameraIcon' /></div>
-                                        </div>
-                                }
+                                    }
 
 
+                                    <div id='arrowsContainer'>
 
-                                <IconButton
-                                    id='rightArrowIcon'
-                                    disabled={(cars.length === 0 || cars.length === 1 || counterImage >= 5 || counterImage >= cars.length)}
-                                    color="primary"
-                                    component="span"
-                                    onClick={() => setCounterImage(counterImage + 1)}
-                                >
-                                    <ArrowRightIcon />
-                                </IconButton>
+                                        {
+                                            (sm)
+                                            &&
+                                            <IconButton
+                                                id='leftArrowIcon'
+                                                disabled={(cars.length === 0 || cars.length === 1 || counterImage <= 1)}
+                                                color="primary"
+                                                component="span"
+                                                onClick={() => setCounterImage(counterImage - 1)}
+                                            >
+                                                <ArrowLeftIcon />
+                                            </IconButton>
+                                        }
 
-                            </Container>
+
+                                        <IconButton
+                                            id='rightArrowIcon'
+                                            disabled={(cars.length === 0 || cars.length === 1 || counterImage >= 5 || counterImage >= cars.length)}
+                                            color="primary"
+                                            component="span"
+                                            onClick={() => setCounterImage(counterImage + 1)}
+                                        >
+                                            <ArrowRightIcon />
+                                        </IconButton>
+
+                                    </div>
+
+                                </Container>
 
 
 
 
 
-                            {/* <div id="imagePreviewProduct">
+                                {/* <div id="imagePreviewProduct">
 
                                 {
                                     (loadImage !== '') ? <img alt='Product' src={`${loadImage}`} /> : <div onClick={handleImageFile} id='NoneImage'><PhotoCameraIcon id='PhotoCameraIcon' /></div>
                                 }
                             </div> */}
-
+                            </div>
                         </Container>
 
                     </Box>
