@@ -74,13 +74,13 @@ export const useBinStore = () => {
         }
     }
 
-    const productBinStartEnable = async (product) => {
+    const productBinStartEnable = async () => {
 
         try {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { record, msg } } = await dashboardApi.put(`bin/products/${product._id}`, {});
+            const { data: { record, msg } } = await dashboardApi.put(`bin/products/${activeBinProduct._id}`, {});
 
             console.log({ record, msg });
 
@@ -92,8 +92,8 @@ export const useBinStore = () => {
                 dispatch(uiCloseProgressBackdrop());
 
 
-                dispatch(deleteBinProduct(product));
-                dispatch(addProduct(product))
+                dispatch(deleteBinProduct(activeBinProduct));
+                dispatch(addProduct(activeBinProduct))
 
                 dispatch(addOneDashboardProducts());
                 dispatch(subtractOneDashboardBinProducts());
@@ -167,6 +167,7 @@ export const useBinStore = () => {
 
     const startSetActiveBinProduct = (product) => {
 
+
         dispatch(setActiveBinProduct(product));
     }
 
@@ -201,13 +202,13 @@ export const useBinStore = () => {
         }
     }
 
-    const userBinStartEnable = async (user) => {
+    const userBinStartEnable = async () => {
 
         try {
 
             dispatch(uiOpenProgressBackdrop());
 
-            const { data: { msg, record } } = await dashboardApi.put(`bin/users/${user._id}`, {});
+            const { data: { msg, record } } = await dashboardApi.put(`bin/users/${activeBinUser._id}`, {});
 
             console.log({ msg, record });
 
@@ -218,8 +219,8 @@ export const useBinStore = () => {
 
                 dispatch(uiCloseProgressBackdrop());
 
-                dispatch(deleteBinUser(user));
-                dispatch(addUser(user));
+                dispatch(deleteBinUser(activeBinUser));
+                dispatch(addUser(activeBinUser));
 
                 dispatch(addOneDashboardUsers());
                 dispatch(subtractOneDashboardBinUsers());

@@ -7,6 +7,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
+import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import Menu from '@mui/material/Menu';
 import IconButton from '@mui/material/IconButton';
@@ -171,7 +172,7 @@ export const ProductsTable = () => {
         <div>
 
             <div>
-                
+
                 <Box className='mainProductsTableContainer'>
 
                     <Container id='searchAndFilter'>

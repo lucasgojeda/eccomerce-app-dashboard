@@ -431,11 +431,12 @@
 // sm
 @media (max-width: 600px) {
     .mainUsersTableContainer {
-        height: calc(100vh - 65px);
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: space-between;
+        margin-bottom: 65px;
 
 
         #searchAndFilter {
@@ -444,13 +445,13 @@
             flex-wrap: wrap-reverse;
             align-items: center;
             width: 100%;
-            height: 25%;
+            height: 25vh;
+            min-height: 150px;
 
-            #closeIcon {
-                position: absolute;
-                top: 22.5%;
-                left: 85%;
-            }
+            // #closeIcon {
+            //     position: relative;
+            //     right: 2.5vw;
+            // }
 
             // .search {
             //     display: block;
@@ -477,8 +478,8 @@
 
         #tableContainer {
             width: 100%;
-            height: 75%;
-            max-height: 75%;
+            height: auto;
+            min-height: calc((7.5vh * 8) + (2px * 8));
             display: flex;
             flex-wrap: wrap;
             margin: auto;
@@ -488,13 +489,17 @@
 
         #containerRows {
             width: 100%;
-            height: 60vh;
+            height: auto;
+            min-height: calc((7.5vh * 8) + (2px * 8));
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: start;
             margin: auto;
             padding: 0 2.5% 0 2.5%;
+            overflow-y: hidden;
             overflow-x: hidden;
+            
 
             :hover {
                 background-color: rgba(127, 41, 185, 0.5) !important;
@@ -506,11 +511,12 @@
         #rowsDiv {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             margin-bottom: 2px;
             padding: 0 2.5% 0 2.5%;
             width: 100%;
-            height: 7.5ch;
+            height: 7.5vh;
+            min-height: 65px;
             background-color: #fff;
 
             :hover {
@@ -526,12 +532,12 @@
         #headerDiv {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-around;
             border-bottom: 1px solid rgba(1, 1, 1, 0.25);
             overflow-x: hidden;
-            padding: 0 4vw 0 2.5%;
             width: 100%;
-            height: 7.5ch;
+            height: 7.5vh;
+            min-height: 65px;
             background-color: #2980B9;
 
             div p{
@@ -569,12 +575,11 @@
 
         #paginationDiv {
             display: flex;
-            align-items: center;
+            align-items: center !important;
             justify-content: flex-end;
             overflow: hidden;
             width: 100%;
             height: auto;
-            padding: 0 4vw 0 2.5%;
             border-radius: 0 0 5px 5px;
             background-color: #fff;
             border-top: 1px solid rgba(1, 1, 1, 0.25);

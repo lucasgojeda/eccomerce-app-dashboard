@@ -14,6 +14,9 @@ export const AdminRoute = ({ children, isRole }) => {
 
         case 'MODERATOR_ROLE':
             switch (pathname) {
+                case '/users':
+                    return <Navigate to="/" />;
+
                 case '/bin/users':
                     return <Navigate to="/" />;
 

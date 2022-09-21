@@ -31,6 +31,7 @@ export const DialogFields = () => {
     };
 
 
+
     return (
         <Dialog
             open={dialogFieldsStatus.status}
@@ -45,9 +46,9 @@ export const DialogFields = () => {
                 {
                     (dialogFieldsStatus.status !== false)
                     &&
-                    dialogFieldsStatus.errors.map(e => (
+                    dialogFieldsStatus.errors?.map((e, i) => (
 
-                        <DialogContentText key={e.index}>
+                        <DialogContentText key={i}>
                             {`• ${e.charAt(0).toUpperCase() + e.slice(1)}`}
                         </DialogContentText>
                     ))

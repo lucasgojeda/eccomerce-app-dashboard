@@ -2,8 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { Image } from 'cloudinary-react';
 
-import sortArray from 'sort-array';
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
@@ -161,6 +159,7 @@ export const EditProductModal = () => {
         setCars([]);
         startUiCloseProductModalEdit();
         setCategoryValue('');
+        setCounterImage(1);
 
     };
 
@@ -219,13 +218,9 @@ export const EditProductModal = () => {
                         croppedImageUrl: null,
                     }
 
-
-                    setCars(sortArray([
-                        ...cars.filter(e => e.flag !== 'true'),
-                        newCar
-                    ], {
-                        by: 'id',
-                    }));
+                    let sortedCars = [...cars.filter(e => e.flag !== 'true'), newCar];
+                    
+                    setCars(sortedCars.sort((a, b) => a.id - b.id));
 
                     return;
                 }
@@ -307,16 +302,15 @@ export const EditProductModal = () => {
                     croppedImageUrl: null
                 }
 
-                const newImages = sortArray([
+                let newImages = [
                     (oneNew.imageUrl !== '') && oneNew,
                     (twoNew.imageUrl !== '') && twoNew,
                     (treeNew.imageUrl !== '') && treeNew,
                     (fourNew.imageUrl !== '') && fourNew,
                     (fiveNew.imageUrl !== '') && fiveNew,
-                ].filter(e => (e !== false)), {
-                    by: 'id',
-                })
+                ].filter(e => (e !== false));
 
+                newImages.sort((a, b) => a.id - b.id);
 
                 const data = formValues;
                 data.img = newImages;
@@ -464,7 +458,7 @@ export const EditProductModal = () => {
                                     ) : null}
 
                                     {
-                                        (cars === [] || cars.length !== 0)
+                                        (cars.length !== 0)
                                             ?
                                             <>
 

@@ -30,6 +30,7 @@ import { useTheme } from '@mui/material/styles';
 import { Container } from '@mui/material';
 
 import {
+    useAuthStore,
     useBinStore,
     useProductsStore,
     useUiStore,
@@ -45,6 +46,7 @@ export const NavigationMenuMovil = () => {
     const { pathname } = useLocation();
 
 
+    const { role } = useAuthStore();
     const { activeUser } = useUsersStore();
     const { activeProduct } = useProductsStore();
 
@@ -230,21 +232,25 @@ export const NavigationMenuMovil = () => {
                 value={pathname}>
 
 
-                <BottomNavigationAction
-                    sx={{
-                        ml: '-1%'
-                    }}
-                    label="Papelera"
-                    value={
-                        (pathname === "/bin/users")
-                            ?
-                            "/bin/users"
-                            :
-                            "/bin/products"
-                    }
-                    icon={<AutoDeleteIcon />}
-                    onClick={handleBinMenu}
-                />
+                {
+                    (role === 'ADMIN_ROLE')
+                    &&
+                    <BottomNavigationAction
+                        sx={{
+                            ml: '-1%'
+                        }}
+                        label="Papelera"
+                        value={
+                            (pathname === "/bin/users")
+                                ?
+                                "/bin/users"
+                                :
+                                "/bin/products"
+                        }
+                        icon={<AutoDeleteIcon />}
+                        onClick={handleBinMenu}
+                    />
+                }
 
 
                 <BottomNavigationAction
@@ -269,19 +275,23 @@ export const NavigationMenuMovil = () => {
                     onClick={() => navigate('/products')}
                 />
 
-                <BottomNavigationAction
-                    sx={{
-                        mr: '-2%'
-                    }}
-                    label="Menu"
-                    value=""
-                    icon={<MoreVertIcon />}
-                    onClick={handleIconsMenu}
-                />
+                {
+                    (role === 'ADMIN_ROLE')
+                    &&
+                    <BottomNavigationAction
+                        sx={{
+                            mr: '-2%'
+                        }}
+                        label="Menu"
+                        value=""
+                        icon={<MoreVertIcon />}
+                        onClick={handleIconsMenu}
+                    />
+                }
 
 
                 {
-                    (iconsMenu)
+                    (iconsMenu && role === 'ADMIN_ROLE')
                     &&
                     <Box id='containerSubMenu'>
 
@@ -299,7 +309,7 @@ export const NavigationMenuMovil = () => {
                 }
 
                 {
-                    (iconsBinMenu)
+                    (iconsBinMenu && role === 'ADMIN_ROLE')
                     &&
                     <Box id='containerSubMenuBin'>
 

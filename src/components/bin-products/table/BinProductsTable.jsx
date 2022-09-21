@@ -104,6 +104,7 @@ export const BinProductsTable = () => {
     const handleActiveBinProduct = (e, product) => {
         e.preventDefault();
 
+
         startSetActiveBinProduct(product);
     }
 

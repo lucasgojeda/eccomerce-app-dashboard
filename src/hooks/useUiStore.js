@@ -124,7 +124,7 @@ export const useUiStore = () => {
 
     const startUiOpenSuccessAlert = (title) => {
 
-        dispatch(uiOpenSuccessAlert());
+        dispatch(uiOpenSuccessAlert(title));
 
     };
 
@@ -135,7 +135,7 @@ export const useUiStore = () => {
 
     const startUiOpenErrorAlert = (title) => {
 
-        dispatch(uiOpenErrorAlert());
+        dispatch(uiOpenErrorAlert(title));
 
     };
 
@@ -166,7 +166,7 @@ export const useUiStore = () => {
 
     const startUiOpenDialogFields = (errors) => {
 
-        dispatch(uiOpenDialogFields());
+        dispatch(uiOpenDialogFields(errors));
     };
 
     const startUiCloseDialogFields = () => {

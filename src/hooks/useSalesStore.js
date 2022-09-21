@@ -1,7 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import sortArray from 'sort-array';
-
 import dashboardApi from '../api/dashboardApi';
 
 import { cartLogout } from "../store/slices/cartSlice";

@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
 
-import sortArray from 'sort-array';
-
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
@@ -32,13 +30,39 @@ import '../../../styles/components/products/modals/_productModal.scss';
 
 
 const initEvent = {
-    name: '',
-    price: '',
-    description: '',
-    img: '',
-    quantity: '',
+    name: 'Producto',
+    price: '3000',
+    description: 'Esta es una descripción',
+    img: [
+        {
+            croppedImageUrl: null,
+            id: 1,
+            imageUrl: 'https://res.cloudinary.com/the-kings-company/image/upload/v1660157889/u34lsffp3rn1wu7n6baf.jpg'
+        },
+        {
+            croppedImageUrl: null,
+            id: 2,
+            imageUrl: 'https://res.cloudinary.com/the-kings-company/image/upload/v1658606573/rfhvwkwszxqtaar4njmh.jpg'
+        },
+        {
+            croppedImageUrl: null,
+            id: 3,
+            imageUrl: 'https://res.cloudinary.com/the-kings-company/image/upload/v1636394498/samples/ecommerce/analog-classic.jpg'
+        },
+        {
+            croppedImageUrl: null,
+            id: 4,
+            imageUrl: 'https://res.cloudinary.com/the-kings-company/image/upload/v1636394509/samples/ecommerce/car-interior-design.jpg'
+        },
+        {
+            croppedImageUrl: null,
+            id: 5,
+            imageUrl: 'https://res.cloudinary.com/the-kings-company/image/upload/v1636394510/samples/ecommerce/leather-bag-gray.jpg'
+        },
+    ],
+    quantity: '123123',
     category: {
-        name: ''
+        name: 'tecnologia'
     }
 }
 
@@ -100,7 +124,7 @@ export const CreateProductModal = () => {
 
 
     }
-    
+
     const handleCategoryInputChange = ({ target }) => {
 
         setFormValues({
@@ -133,6 +157,7 @@ export const CreateProductModal = () => {
         setFormValues(initEvent);
         setCars([]);
         startUiCloseProductModal();
+        setCounterImage(1);
     };
 
     const handleImageFile = (e) => {
@@ -179,14 +204,10 @@ export const CreateProductModal = () => {
                         imageUrl: arrayAuxiliar,
                         croppedImageUrl: null,
                     }
-
-
-                    setCars(sortArray([
-                        ...cars.filter(e => e.flag !== 'true'),
-                        newCar
-                    ], {
-                        by: 'id',
-                    }));
+                    
+                    let sortedCars = [...cars.filter(e => e.flag !== 'true'), newCar];
+                    
+                    setCars(sortedCars.sort((a, b) => a.id - b.id));
 
                     return;
                 }
@@ -194,6 +215,7 @@ export const CreateProductModal = () => {
                 if (cars.length >= 5) {
                     return console.log('Solo se pueden hasta 5 imagenes');
                 }
+
                 setCars([
                     ...cars,
                     {
@@ -268,17 +290,15 @@ export const CreateProductModal = () => {
                     croppedImageUrl: null
                 }
 
-
-                const newImages = sortArray([
+                let newImages = [
                     (oneNew.imageUrl !== '') && oneNew,
                     (twoNew.imageUrl !== '') && twoNew,
                     (treeNew.imageUrl !== '') && treeNew,
                     (fourNew.imageUrl !== '') && fourNew,
                     (fiveNew.imageUrl !== '') && fiveNew,
-                ].filter(e => (e !== false)), {
-                    by: 'id',
-                })
+                ].filter(e => (e !== false));
 
+                newImages.sort((a, b) => a.id - b.id);
 
                 const data = formValues;
                 data.img = newImages;
@@ -446,6 +466,7 @@ export const CreateProductModal = () => {
                                                             key={car.id}
                                                             sx={{
                                                                 visibility: (car.id === counterImage) ? 'visible' : 'hidden',
+                                                                position: 'absolute'
                                                             }}
                                                         >
                                                             <img
@@ -457,30 +478,24 @@ export const CreateProductModal = () => {
                                                                     setSelectedCar(car);
                                                                 }}
                                                             />
-                                                            <IconButton
-                                                                sx={{
-                                                                    position: 'absolute',
-                                                                    top: '-2%',
-                                                                    right: '30%'
-                                                                }}
-                                                                color="primary"
-                                                                component="span"
-                                                                onClick={() => handleChangeImageFile(car)}
-                                                            >
-                                                                <EditIcon />
-                                                            </IconButton>
-                                                            <IconButton
-                                                                sx={{
-                                                                    position: 'absolute',
-                                                                    top: '-2%',
-                                                                    right: '25.5%'
-                                                                }}
-                                                                color="inherit"
-                                                                component="span"
-                                                                onClick={handleImageFile}
-                                                            >
-                                                                <PhotoCameraIcon />
-                                                            </IconButton>
+                                                            <Container id='iconsContainer'>
+                                                                <IconButton
+                                                                    id='editIcon'
+                                                                    color="primary"
+                                                                    component="span"
+                                                                    onClick={() => handleChangeImageFile(car)}
+                                                                >
+                                                                    <EditIcon />
+                                                                </IconButton>
+                                                                <IconButton
+                                                                    id='cameraIcon'
+                                                                    color="inherit"
+                                                                    component="span"
+                                                                    onClick={handleImageFile}
+                                                                >
+                                                                    <PhotoCameraIcon />
+                                                                </IconButton>
+                                                            </Container>
                                                         </Container>
                                                     ))}
 

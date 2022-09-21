@@ -134,6 +134,7 @@ export const useUsersStore = () => {
 
     const userStartDeleted = async (_user) => {
 
+        
         try {
 
             dispatch(uiOpenProgressBackdrop());
@@ -152,7 +153,7 @@ export const useUsersStore = () => {
                 dispatch(addOneDashboardBinUsers());
 
                 dispatch(addNewRecord(record));
-                dispatch(addOneDashboardRecords());
+                dispatch(addOneDashboardRecords()); 
 
                 dispatch(uiOpenSuccessAlert('El usuario fue eliminado exitosamente!'));
 

@@ -17,6 +17,7 @@ export const BinProductsPage = () => {
 
     }, []);
 
+
     return (
         <>
 

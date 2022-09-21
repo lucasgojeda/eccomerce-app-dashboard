@@ -23,7 +23,11 @@ export const DialogDelete = () => {
 
     const { pathname } = useLocation();
 
-    const { dialogDelete: dialogDeleteStatus, startUiCloseDialogDelete } = useUiStore();
+    const { 
+        dialogDelete: dialogDeleteStatus, 
+        startUiCloseDialogDelete,
+        startUiOpenErrorAlert
+    } = useUiStore();
 
     const { activeProduct, productStartDeleted } = useProductsStore();
     const { activeUser, userStartDeleted } = useUsersStore();
@@ -54,29 +58,28 @@ export const DialogDelete = () => {
         startUiCloseDialogDelete();
         switch (pathname) {
 
-            case '/dashboard/products':
-                productStartDeleted(activeProduct)
+            case '/products':
+                productStartDeleted(activeProduct);
                 break;
 
-            case '/dashboard/users':
-                userStartDeleted(activeUser)
+            case '/users':
+                userStartDeleted(activeUser);
                 break;
 
-            case '/dashboard/bin/products':
-                productBinStartDeleted(activeBinProduct)
+            case '/bin/products':
+                startUiOpenErrorAlert('La opción de eliminar definitivamente un producto está desactivada en la versión de prueba');
                 break;
 
-            case '/dashboard/bin/users':
-                userBinStartDeleted(activeBinUser)
+            case '/bin/users':
+                startUiOpenErrorAlert('La opción de eliminar definitivamente un usuario está desactivada en la versión de prueba');
                 break;
 
-            case '/dashboard/regist':
-                startDeleteRecords()
+            case '/regist':
+                startUiOpenErrorAlert('La opción eliminar todos los registros está desactivada en la versión de prueba');
                 break;
 
 
             default:
-                productStartDeleted(activeProduct)
                 break;
         }
 

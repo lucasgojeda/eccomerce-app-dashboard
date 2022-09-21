@@ -9,37 +9,37 @@ export const verifyProductFields = ( product, img2 ) => {
     if ( category.name === ''){
         emptys = [
             ...emptys,
-            'category'
+            'categoria'
         ]
     }
     if ( name === ''){
         emptys = [
             ...emptys,
-            'name'
+            'nombre'
         ]
     }
     if ( price === ''){
         emptys = [
             ...emptys,
-            'price'
+            'precio'
         ]
     }
     if ( quantity === ''){
         emptys = [
             ...emptys,
-            'quantity'
+            'cantidad'
         ]
     }
     if ( img2.length === 0){
         emptys = [
             ...emptys,
-            'image'
+            'imagen'
         ]
     }
     if ( description === ''){
         emptys = [
             ...emptys,
-            'description'
+            'descripción'
         ]
     }
 

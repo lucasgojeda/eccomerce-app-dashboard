@@ -279,28 +279,12 @@ export const RecordsTable = () => {
                                             // onClick={(event) => handleMenu(event, e)}
                                             color="inherit"
                                             id='productMenuIcon'
+                                            sx={{
+                                                visibility: 'hidden'
+                                            }}
                                         >
                                             <MoreVertIcon />
                                         </IconButton>
-                                        {/* <Menu
-                                            anchorEl={anchorEl}
-                                            anchorOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            sx={{
-                                                boxShadow: '1px solid #000'
-                                            }}
-                                            transformOrigin={{
-                                                vertical: 'top',
-                                                horizontal: 'right',
-                                            }}
-                                            open={Boolean(anchorEl)}
-                                            onClose={handleClose}
-                                        >
-                                            <MenuItem onClick={handleEditButton}>Editar</MenuItem>
-                                            <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                        </Menu> */}
                                     </div>
                                 </div>
 
@@ -320,7 +304,7 @@ export const RecordsTable = () => {
 
                                                 <div id='nameItemContainer'>
                                                     <Typography variant='body2'>
-                                                        {e.name.split(" ")[0]} {e.name.split(" ")[1]}
+                                                        {e?.name.split(" ")[0]} {e?.name.split(" ")[1]}
                                                     </Typography>
                                                 </div>
 
@@ -338,7 +322,7 @@ export const RecordsTable = () => {
 
                                                 <div id='userItemContainer'>
                                                     <Typography variant='body2'>
-                                                        {e.user.name}
+                                                        {e.user?.name}
                                                     </Typography>
                                                 </div>
 

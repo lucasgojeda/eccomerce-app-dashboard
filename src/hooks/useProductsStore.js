@@ -2,13 +2,16 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { addBinProduct } from "../store/slices/binSlice";
+import { 
+    addBinProduct,
+ } from "../store/slices/binSlice";
 import { addNewRecord } from "../store/slices/recordsSlice";
 
 import {
     addOneDashboardProducts,
     addOneDashboardRecords,
-    subtractOneDashboardProducts
+    subtractOneDashboardProducts,
+    addOneDashboardBinProducts
 } from "../store/slices/staticsSlice";
 
 import {

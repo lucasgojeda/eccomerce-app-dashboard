@@ -64,6 +64,19 @@ export const MiniBarMenu = () => {
 
 
 
+    const evaluationVisibility = () => {
+
+        switch (pathname) {
+            case rutasActivas[2]:
+                return (activeBinProduct)  ? 'visible' : 'hidden';
+
+            case rutasActivas[3]:
+                return (activeBinUser) ? 'visible' : 'hidden';
+
+            default:
+                return 'visible';
+        }
+    }
 
 
     const {
@@ -94,9 +107,7 @@ export const MiniBarMenu = () => {
                     style={{
                         width: (!statusMenu) && '0',
                         transition: 'all 0.5s ease-out',
-                        visibility: ((pathname === rutasActivas[2] || pathname === rutasActivas[3])
-                            &&
-                            (activeBinProduct || activeBinUser)) ? 'visible' : 'hidden',
+                        visibility: evaluationVisibility()
                     }}>
 
                     <div

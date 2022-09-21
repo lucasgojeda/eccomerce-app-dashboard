@@ -1,0 +1,70 @@
+/* 5 */
+.admin-btn {
+    width: 130px;
+    height: 40px;
+    line-height: 42px;
+    padding: 0;
+    border: none;
+    background: #6C3483;
+}
+
+.admin-btn:hover {
+    background: transparent;
+    box-shadow: none;
+}
+
+.admin-btn:before,
+.admin-btn:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    background-color: #d61e53;
+    transition: 400ms ease all;
+}
+
+.admin-btn:after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+.admin-btn:hover:before,
+.admin-btn:hover:after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    font-size: 18px;
+    color: #676767;
+}
+
+.frame {
+    width: 90%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+button {
+    margin: 0px;
+}
+
+.custom-admin-btn {
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+}

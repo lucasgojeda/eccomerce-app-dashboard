@@ -6,12 +6,13 @@ export const Search = styled('div')(({ theme }) => ({
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
+    justifyContent: 'space-between',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: '#fff',
     border: '1px solid rgba(0, 0, 0, 0.23)', 
     marginLeft: 0,
     marginRight: 0,
-    width: '90%',
+    width: '90%', 
     height: '7.5vh',
     [theme.breakpoints.down('lg')]: {
         width: 'auto',
@@ -27,12 +28,14 @@ export const Search = styled('div')(({ theme }) => ({
         marginLeft: theme.spacing('0'),
         marginTop: '2.5vh',
         width: '90%',
+        minHeight: '60px',
     },
 }));
 
 export const SearchIconWrapper = styled('div')(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
+    minHeight: '50px',
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
@@ -68,6 +71,7 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
             '&:focus': {
                 width: '80%',
             },
+            minHeight: '50px',
         },
     }
 }));

@@ -9,6 +9,9 @@ import { Button, Typography } from '@mui/material';
 import { useAuthStore, useForm } from '../../../hooks';
 
 import '../../../styles/components/auth/pages/_loginPage.scss';
+import { IngresarButton } from './buttons/IngresarButton';
+import { ModButton } from './buttons/ModButton';
+import { AdminButton } from './buttons/AdminButton';
 
 
 export const LoginPage = () => {
@@ -90,20 +93,21 @@ export const LoginPage = () => {
 
                 <div id='ingresarButtonContainer'>
                     <Container>
-                        <button
-                            type="submit"
-                            id="submitButton"
-                            onClick={handleLogin}
-                            className="custom-btn btn-5">
-                            <span>Ingresar</span>
-                        </button>
+                        <IngresarButton onClick={handleLogin} />
                     </Container>
                 </div>
 
                 <Container id='fastLoginRoles'>
-                    <h1>Ingreso rapido (demostración de roles)</h1>
-                    <Button className='button offset' id="moderator" onClick={handleModLogin}>moderador</Button>
-                    <Button className='button offset' id="admin" onClick={handleAdminLogin}>admin</Button>
+                    <Container className='rolesTitleContainer'>
+                        <Typography className='rolesTitle' fontSize={18} variant="body2">
+                            Ingreso rapido
+                        </Typography>
+                    </Container>
+
+                    <Container className='buttonsContainer'>
+                        <ModButton handleModLogin={handleModLogin} />
+                        <AdminButton handleAdminLogin={handleAdminLogin} />
+                    </Container>
                 </Container>
             </Box>
 

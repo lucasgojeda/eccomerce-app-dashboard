@@ -301,28 +301,12 @@ export const SalesTable = () => {
                                     // onClick={(event) => handleMenu(event, e)}
                                     color="inherit"
                                     id='productMenuIcon'
+                                    sx={{
+                                        visibility: 'hidden'
+                                    }}
                                 >
                                     <MoreVertIcon />
                                 </IconButton>
-                                <Menu
-                                    anchorEl={anchorEl}
-                                    anchorOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    sx={{
-                                        boxShadow: '1px solid #000'
-                                    }}
-                                    transformOrigin={{
-                                        vertical: 'top',
-                                        horizontal: 'right',
-                                    }}
-                                    open={Boolean(anchorEl)}
-                                    onClose={handleClose}
-                                >
-                                    <MenuItem onClick={handleSendedButton}>Marcar como enviado</MenuItem>
-                                    <MenuItem onClick={handleDeleteButton}>Eliminar</MenuItem>
-                                </Menu>
                             </div>
                         </div>
 
