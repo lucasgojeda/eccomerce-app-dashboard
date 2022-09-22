@@ -49,27 +49,30 @@ export const LoginPage = () => {
 
     }
 
+    const handleToTheEnd = () => {
+
+        setTimeout(() => {
+            
+            window.scroll(0, 1000);
+        }, 100);
+    }
+
     return (
         <div className='login__Container'>
-            <div className="align">
 
+                <div className='iconLoginContainer'>
+                    <img
+                        src='https://res.cloudinary.com/the-kings-company/image/upload/v1663785540/dashboard-ecommerce-app/assets/3515462_rw5fkz.jpg'
+                        alt=''
+                    />
+                </div>
+                
                 <div className="grid">
 
                     <form
                         autoComplete="off"
                         className="form login"
                     >
-
-                        {/* <div className='LoginTitle'>
-                            <h3>PANEL DE ADMINISTRACIÓN</h3>
-                        </div> */}
-
-                        <div className='iconLoginContainer'>
-                            <img
-                                src='https://res.cloudinary.com/the-kings-company/image/upload/v1663785540/dashboard-ecommerce-app/assets/3515462_rw5fkz.jpg'
-                                alt=''
-                            />
-                        </div>
 
                         <div className="form__field">
 
@@ -90,6 +93,7 @@ export const LoginPage = () => {
                                 name='email'
                                 value={email}
                                 onChange={handleInputEmailChange}
+                                onClick={handleToTheEnd}
                                 required />
 
                         </div>
@@ -113,12 +117,13 @@ export const LoginPage = () => {
                                 name='password'
                                 value={password}
                                 onChange={handleInputPasswordChange}
+                                onClick={handleToTheEnd}
                                 required />
 
                         </div>
 
                         <div className="form__field">
-                            <input type="submit" value="Iniciar Sesión" onClick={handleLogin}/>
+                            <input type="submit" value="Iniciar Sesión" onClick={handleLogin} />
                         </div>
 
                     </form>
@@ -130,7 +135,6 @@ export const LoginPage = () => {
 
                 </div>
 
-            </div>
 
         </div>
     )
