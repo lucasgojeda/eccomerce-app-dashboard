@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-import { Box, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
@@ -47,6 +47,7 @@ export const ProductsTable = () => {
     const {
         startUiOpenDialogDelete,
         startUiOpenProductModalEdit,
+        tableLoading,
     } = useUiStore();
 
     const { q = '' } = queryString.parse(location.search);
@@ -290,56 +291,64 @@ export const ProductsTable = () => {
 
                         </div>
 
-                        <Container id='containerRows'>
 
-                            {
-                                products.map(
-                                    (e, i) => <div
-                                        onClick={(event) => handleActiveProduct(event, e)}
-                                        onDoubleClick={handleEditButton}
-                                        key={e._id}
-                                        id='rowsDiv'
-                                        style={{
-                                            backgroundColor: (activeProduct?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
-                                        }}
-                                    >
+                        {
+                            (products.length !== 0 && !tableLoading)
+                                ?
+                                <Container id='containerRows'>
+                                    {
+                                        products.map(
+                                            (e, i) => <div
+                                                onClick={(event) => handleActiveProduct(event, e)}
+                                                onDoubleClick={handleEditButton}
+                                                key={e._id}
+                                                id='rowsDiv'
+                                                style={{
+                                                    backgroundColor: (activeProduct?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                }}
+                                            >
 
-                                        <div id='nameItemContainer'>
-                                            <Typography variant='body2'>
-                                                {e.name.split(" ")[0]} {e.name.split(" ")[1]}
-                                            </Typography>
-                                        </div>
+                                                <div id='nameItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {e.name.split(" ")[0]} {e.name.split(" ")[1]}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='priceItemContainer'>
-                                            <Typography variant='body2'>
-                                                {`$${new Intl.NumberFormat('es-IN').format(e.price)}`}
-                                            </Typography>
-                                        </div>
+                                                <div id='priceItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {`$${new Intl.NumberFormat('es-IN').format(e.price)}`}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='quantityItemContainer'>
-                                            <Typography variant='body2'>
-                                                {new Intl.NumberFormat('es-IN').format(e.quantity)}
-                                            </Typography>
-                                        </div>
+                                                <div id='quantityItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {new Intl.NumberFormat('es-IN').format(e.quantity)}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='categoryItemContainer'>
-                                            <Typography variant='body2'>
-                                                {e.category.name}
-                                            </Typography>
-                                        </div>
+                                                <div id='categoryItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {e.category.name}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='userItemContainer'>
-                                            <Typography variant='body2'>
-                                                {e.user.name}
-                                            </Typography>
-                                        </div>
+                                                <div id='userItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {e.user.name}
+                                                    </Typography>
+                                                </div>
 
 
-                                    </div>
-                                )
-                            }
+                                            </div>
+                                        )
+                                    }
+                                </Container>
+                                :
+                                <div className='progressTable'>
+                                    <CircularProgress color="info" size='80px' sx={{ display: 'block' }} />
+                                </div>
+                        }
 
-                        </Container>
 
                         <Container id='paginationDiv'>
                             {

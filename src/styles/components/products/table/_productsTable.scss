@@ -5,7 +5,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: calc( 100% - 70px );
+            width: calc(100% - 70px);
             height: 22.5vh;
             margin-left: 70px;
 
@@ -27,7 +27,7 @@
         }
 
         #tableContainer {
-            width: calc( 100% - 70px );
+            width: calc(100% - 70px);
             height: 77.5vh;
             display: flex;
             flex-wrap: wrap;
@@ -87,7 +87,7 @@
             height: 7.5ch;
             background-color: #2980B9;
 
-            div p{
+            div p {
                 color: #fff;
             }
 
@@ -96,6 +96,15 @@
                     visibility: visible;
                 }
             }
+        }
+
+        .progressTable {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(165, 165, 165, 0.103);
         }
 
         #nameItemContainer {
@@ -164,7 +173,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: calc( 100% - 70px );
+            width: calc(100% - 70px);
             height: 22.5vh;
             margin-left: 70px;
 
@@ -186,7 +195,7 @@
         }
 
         #tableContainer {
-            width: calc( 100% - 70px );
+            width: calc(100% - 70px);
             height: 77.5vh;
             display: flex;
             flex-wrap: wrap;
@@ -246,7 +255,7 @@
             height: 7.5ch;
             background-color: #2980B9;
 
-            div p{
+            div p {
                 color: #fff;
             }
 
@@ -255,6 +264,15 @@
                     visibility: visible;
                 }
             }
+        }
+
+        .progressTable {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(165, 165, 165, 0.103);
         }
 
         #nameItemContainer {
@@ -323,7 +341,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            width: calc( 100% - 70px );
+            width: calc(100% - 70px);
             height: 22.5vh;
             margin-left: 70px;
 
@@ -345,7 +363,7 @@
         }
 
         #tableContainer {
-            width: calc( 100% - 70px );
+            width: calc(100% - 70px);
             height: 77.5vh;
             display: flex;
             flex-wrap: wrap;
@@ -404,7 +422,7 @@
             height: 7.5ch;
             background-color: #2980B9;
 
-            div p{
+            div p {
                 color: #fff;
             }
 
@@ -413,6 +431,15 @@
                     visibility: visible;
                 }
             }
+        }
+
+        .progressTable {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(165, 165, 165, 0.103);
         }
 
         #nameItemContainer {
@@ -542,7 +569,7 @@
             padding: 0 2.5% 0 2.5%;
             overflow-y: hidden;
             overflow-x: hidden;
-            
+
 
             :hover {
                 background-color: rgba(127, 41, 185, 0.5) !important;
@@ -584,7 +611,7 @@
             min-height: 65px;
             background-color: #2980B9;
 
-            div p{
+            div p {
                 color: #fff;
             }
 
@@ -593,6 +620,15 @@
                     visibility: visible;
                 }
             }
+        }
+
+        .progressTable {
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(165, 165, 165, 0.103);
         }
 
         #nameItemContainer {

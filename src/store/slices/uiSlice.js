@@ -43,6 +43,18 @@ export const uiSlice = createSlice({
       state.dialogFields = { status: false };
       state.recordModal = false;
       state.categoriesModal = false;
+      state.tableLoading = false;
+    },
+
+    /* TABLES */
+
+    uiStartTableLoading: (state) => {
+
+      state.tableLoading = true;
+    },
+    uiStopTableLoading: (state) => {
+
+      state.tableLoading = false;
     },
 
     /* ALERTS */
@@ -166,6 +178,10 @@ export const uiSlice = createSlice({
 export const {
 
   uiLogout,
+
+  /* TABLES */
+  uiStartTableLoading,
+  uiStopTableLoading,
 
   /*ALERTS */
   uiOpenSuccessAlert,

@@ -6,7 +6,7 @@ import 'moment-timezone';
 import 'moment/locale/es';
 
 import { DataGrid } from '@mui/x-data-grid';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
@@ -47,7 +47,7 @@ export const SalesTable = () => {
     const location = useLocation();
 
     const { dashboardSales } = useStaticsStore();
-    const { startUiOpenDialogDelete } = useUiStore();
+    const { startUiOpenDialogDelete, tableLoading } = useUiStore();
     const {
         sales,
         salesStartUpdated,
@@ -310,80 +310,88 @@ export const SalesTable = () => {
                             </div>
                         </div>
 
-                        <Container id='containerRows'>
+                        {
+                            (sales.length !== 0 && !tableLoading)
+                                ?
+                                <Container id='containerRows'>
 
-                            {
-                                sales.map(
-                                    (e, i) => <div
-                                        key={e._id}
-                                        id='rowsDiv'
-                                        style={{
-                                            backgroundColor: (e.status === 'false') ? 'rgba(208, 211, 212, 0.5)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
-                                        }}
-                                    >
+                                    {
+                                        sales.map(
+                                            (e, i) => <div
+                                                key={e._id}
+                                                id='rowsDiv'
+                                                style={{
+                                                    backgroundColor: (e.status === 'false') ? 'rgba(208, 211, 212, 0.5)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                }}
+                                            >
 
-                                        <div id='userItemContainer'>
-                                            <Typography variant='body2'>
-                                                {e.user?.name}
-                                            </Typography>
-                                        </div>
+                                                <div id='userItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {e.user?.name}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='stateItemContainer'>
-                                            <Typography variant='body2'>
-                                                {(e.status === 'false' ? 'Enviado' : 'Sin enviar')}
-                                            </Typography>
-                                        </div>
+                                                <div id='stateItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {(e.status === 'false' ? 'Enviado' : 'Sin enviar')}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='totalItemContainer'>
-                                            <Typography variant='body2'>
-                                                {`$${new Intl.NumberFormat('es-IN').format(e.total_price)}`}
-                                            </Typography>
-                                        </div>
+                                                <div id='totalItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {`$${new Intl.NumberFormat('es-IN').format(e.total_price)}`}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='dateRequestedItemContainer'>
-                                            <Typography variant='body2'>
-                                                {(e.date_requested) && moment(e.date_requested).tz("America/Argentina/Buenos_Aires").format('LLL')}
-                                            </Typography>
-                                        </div>
+                                                <div id='dateRequestedItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {(e.date_requested) && moment(e.date_requested).tz("America/Argentina/Buenos_Aires").format('LLL')}
+                                                    </Typography>
+                                                </div>
 
-                                        <div id='dateSendedItemContainer'>
-                                            <Typography variant='body2'>
-                                                {(e?.date_sended) && moment(e?.date_sended).tz("America/Argentina/Buenos_Aires").format('LLL')}
-                                            </Typography>
-                                        </div>
+                                                <div id='dateSendedItemContainer'>
+                                                    <Typography variant='body2'>
+                                                        {(e?.date_sended) && moment(e?.date_sended).tz("America/Argentina/Buenos_Aires").format('LLL')}
+                                                    </Typography>
+                                                </div>
 
-                                        {
-                                            (e.status !== 'false')
-                                                ?
-                                                <IconButton
-                                                    size="large"
-                                                    aria-label="account of current user"
-                                                    aria-controls="menu-appbar"
-                                                    aria-haspopup="true"
-                                                    onClick={(event) => handleSendedButton(event, e)}
-                                                    color="inherit"
-                                                    id='productMenuIcon'
-                                                >
-                                                    <CheckBoxOutlineBlankIcon />
-                                                </IconButton>
-                                                :
-                                                <IconButton
-                                                    size="large"
-                                                    aria-label="account of current user"
-                                                    aria-controls="menu-appbar"
-                                                    aria-haspopup="true"
-                                                    color="inherit"
-                                                    id='productMenuIcon'
-                                                >
-                                                    <CheckBoxIcon />
-                                                </IconButton>
-                                        }
+                                                {
+                                                    (e.status !== 'false')
+                                                        ?
+                                                        <IconButton
+                                                            size="large"
+                                                            aria-label="account of current user"
+                                                            aria-controls="menu-appbar"
+                                                            aria-haspopup="true"
+                                                            onClick={(event) => handleSendedButton(event, e)}
+                                                            color="inherit"
+                                                            id='productMenuIcon'
+                                                        >
+                                                            <CheckBoxOutlineBlankIcon />
+                                                        </IconButton>
+                                                        :
+                                                        <IconButton
+                                                            size="large"
+                                                            aria-label="account of current user"
+                                                            aria-controls="menu-appbar"
+                                                            aria-haspopup="true"
+                                                            color="inherit"
+                                                            id='productMenuIcon'
+                                                        >
+                                                            <CheckBoxIcon />
+                                                        </IconButton>
+                                                }
 
-                                    </div>
-                                )
-                            }
+                                            </div>
+                                        )
+                                    }
 
-                        </Container>
+                                </Container>
+                                :
+                                <div className='progressTable'>
+                                    <CircularProgress color="info" size='80px' sx={{ display: 'block' }} />
+                                </div>
+                        }
 
                         <Container id='paginationDiv'>
                             {

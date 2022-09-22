@@ -8,6 +8,7 @@ import {
     recordsLogout,
     setActiveRecord
 } from "../store/slices/recordsSlice";
+import { uiStartTableLoading, uiStopTableLoading } from '../store/slices/uiSlice';
 
 
 export const useRecordsStore = () => {
@@ -21,7 +22,7 @@ export const useRecordsStore = () => {
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
         try {
-
+            dispatch(uiStartTableLoading());
             const { data: { msg, results } } = await dashboardApi.get(`records/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
             if (msg === 'OK') {
@@ -33,13 +34,16 @@ export const useRecordsStore = () => {
                 dispatch(loadRecords(filteredRecords));
 
                 window.scroll(0, 0);
+                dispatch(uiStopTableLoading());
 
             } else {
+                dispatch(uiStopTableLoading());
                 console.log(msg);
             }
 
 
         } catch (error) {
+            dispatch(uiStopTableLoading());
             console.log(error);
         }
     }

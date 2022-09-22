@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import dashboardApi from '../api/dashboardApi';
 
-import { 
+import {
     addBinProduct,
- } from "../store/slices/binSlice";
+} from "../store/slices/binSlice";
 import { addNewRecord } from "../store/slices/recordsSlice";
 
 import {
@@ -27,7 +27,9 @@ import {
     uiCloseProgressBackdrop,
     uiOpenErrorAlert,
     uiOpenProgressBackdrop,
-    uiOpenSuccessAlert
+    uiOpenSuccessAlert,
+    uiStartTableLoading,
+    uiStopTableLoading,
 } from "../store/slices/uiSlice";
 
 
@@ -42,6 +44,8 @@ export const useProductsStore = () => {
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
         try {
+
+            dispatch(uiStartTableLoading());
 
             const { data } = await dashboardApi.get(`products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
@@ -59,12 +63,16 @@ export const useProductsStore = () => {
 
                 window.scroll(0, 0);
 
+                dispatch(uiStopTableLoading());
+
             } else {
+                dispatch(uiStopTableLoading());
                 console.log(msg);
             }
 
 
         } catch (error) {
+            dispatch(uiStopTableLoading());
             console.log(error);
         }
     }

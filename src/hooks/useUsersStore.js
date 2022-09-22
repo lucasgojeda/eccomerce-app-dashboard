@@ -17,7 +17,9 @@ import {
     uiCloseProgressBackdrop,
     uiOpenErrorAlert,
     uiOpenProgressBackdrop,
-    uiOpenSuccessAlert
+    uiOpenSuccessAlert,
+    uiStartTableLoading,
+    uiStopTableLoading
 } from "../store/slices/uiSlice";
 
 import {
@@ -41,7 +43,7 @@ export const useUsersStore = () => {
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
         try {
-
+            dispatch(uiStartTableLoading());
             const { data: { msg, results } } = await dashboardApi.get(`users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
@@ -54,13 +56,16 @@ export const useUsersStore = () => {
                 dispatch(loadUsers(filteredUsers));
 
                 window.scroll(0, 0);
+                dispatch(uiStopTableLoading());
 
             } else {
+                dispatch(uiStopTableLoading());
                 console.log(msg);
             }
 
 
         } catch (error) {
+            dispatch(uiStopTableLoading());
             console.log(error);
         }
     }
@@ -134,7 +139,7 @@ export const useUsersStore = () => {
 
     const userStartDeleted = async (_user) => {
 
-        
+
         try {
 
             dispatch(uiOpenProgressBackdrop());
@@ -153,7 +158,7 @@ export const useUsersStore = () => {
                 dispatch(addOneDashboardBinUsers());
 
                 dispatch(addNewRecord(record));
-                dispatch(addOneDashboardRecords()); 
+                dispatch(addOneDashboardRecords());
 
                 dispatch(uiOpenSuccessAlert('El usuario fue eliminado exitosamente!'));
 

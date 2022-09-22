@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
-import { Box, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
@@ -49,7 +49,7 @@ export const BinUsersTable = () => {
     } = useBinStore();
     const { dashboardBinUsers } = useStaticsStore();
     const { startUiOpenDialogDelete } = useUiStore();
-    const { startLoadUsers } = useUsersStore();
+    const { startLoadUsers, tableLoading } = useUsersStore();
 
 
     const { q = '' } = queryString.parse(location.search);
@@ -280,42 +280,50 @@ export const BinUsersTable = () => {
 
                                 </div>
 
-                                <Container id='containerRows'>
+                                {
+                                    (binUsers.length !== 0 && !tableLoading)
+                                        ?
+                                        <Container id='containerRows'>
 
-                                    {
-                                        binUsers.map(
-                                            (e, i) => <div
-                                            onClick={(event) => handleActiveBinUser(event, e)}
-                                            key={e._id}
-                                            id='rowsDiv'
-                                            style={{
-                                                backgroundColor: (activeBinUser?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
-                                            }}
-                                            >
+                                            {
+                                                binUsers.map(
+                                                    (e, i) => <div
+                                                        onClick={(event) => handleActiveBinUser(event, e)}
+                                                        key={e._id}
+                                                        id='rowsDiv'
+                                                        style={{
+                                                            backgroundColor: (activeBinUser?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                        }}
+                                                    >
 
-                                                <div id='nameItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.name}
-                                                    </Typography>
-                                                </div>
+                                                        <div id='nameItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.name}
+                                                            </Typography>
+                                                        </div>
 
-                                                <div id='roleItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.role}
-                                                    </Typography>
-                                                </div>
+                                                        <div id='roleItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.role}
+                                                            </Typography>
+                                                        </div>
 
-                                                <div id='emailItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.email}
-                                                    </Typography>
-                                                </div>
+                                                        <div id='emailItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.email}
+                                                            </Typography>
+                                                        </div>
 
-                                            </div>
-                                        )
-                                    }
+                                                    </div>
+                                                )
+                                            }
 
-                                </Container>
+                                        </Container>
+                                        :
+                                        <div className='progressTable'>
+                                            <CircularProgress color="info" size='80px' sx={{ display: 'block' }} />
+                                        </div>
+                                }
 
                                 <Container id='paginationDiv'>
                                     {

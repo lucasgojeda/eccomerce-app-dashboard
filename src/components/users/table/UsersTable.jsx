@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
 import { DataGrid } from '@mui/x-data-grid';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
@@ -46,7 +46,8 @@ export const UsersTable = () => {
     const {
         startUiOpenDialogDelete,
         startUiOpenProductModalEdit,
-        startUiOpenUserModalEdit
+        startUiOpenUserModalEdit,
+        tableLoading,
     } = useUiStore();
 
     const { q = '' } = queryString.parse(location.search);
@@ -276,43 +277,52 @@ export const UsersTable = () => {
 
                                 </div>
 
-                                <Container id='containerRows'>
 
-                                    {
-                                        users.map(
-                                            (e, i) => <div
-                                                onClick={(event) => handleActiveUser(event, e)}
-                                                onDoubleClick={handleEditButton}
-                                                key={e._id}
-                                                id='rowsDiv'
-                                                style={{
-                                                    backgroundColor: (activeUser?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
-                                                }}
-                                                >
+                                {
+                                    (users.length !== 0 && !tableLoading)
+                                        ?
+                                        <Container id='containerRows'>
 
-                                                <div id='nameItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.name}
-                                                    </Typography>
-                                                </div>
+                                            {
+                                                users.map(
+                                                    (e, i) => <div
+                                                        onClick={(event) => handleActiveUser(event, e)}
+                                                        onDoubleClick={handleEditButton}
+                                                        key={e._id}
+                                                        id='rowsDiv'
+                                                        style={{
+                                                            backgroundColor: (activeUser?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                        }}
+                                                    >
 
-                                                <div id='roleItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.role}
-                                                    </Typography>
-                                                </div>
+                                                        <div id='nameItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.name}
+                                                            </Typography>
+                                                        </div>
 
-                                                <div id='emailItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.email}
-                                                    </Typography>
-                                                </div>
+                                                        <div id='roleItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.role}
+                                                            </Typography>
+                                                        </div>
 
-                                            </div>
-                                        )
-                                    }
+                                                        <div id='emailItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.email}
+                                                            </Typography>
+                                                        </div>
 
-                                </Container>
+                                                    </div>
+                                                )
+                                            }
+
+                                        </Container>
+                                        :
+                                        <div className='progressTable'>
+                                            <CircularProgress color="info" size='80px' sx={{ display: 'block' }} />
+                                        </div>
+                                }
 
                                 <Container id='paginationDiv'>
                                     {

@@ -29,7 +29,9 @@ import {
     uiCloseProgressBackdrop,
     uiOpenErrorAlert,
     uiOpenProgressBackdrop,
-    uiOpenSuccessAlert
+    uiOpenSuccessAlert,
+    uiStartTableLoading,
+    uiStopTableLoading
 } from "../store/slices/uiSlice";
 
 
@@ -51,6 +53,7 @@ export const useBinStore = () => {
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
         try {
+            dispatch(uiStartTableLoading());
 
             const { data: { msg, results } } = await dashboardApi.get(`bin/products/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
@@ -63,13 +66,16 @@ export const useBinStore = () => {
                 dispatch(loadBinProducts(filteredBinProducts));
 
                 window.scroll(0, 0);
+                dispatch(uiStopTableLoading());
 
             } else {
+                dispatch(uiStopTableLoading());
                 console.log(msg);
             }
 
 
         } catch (error) {
+            dispatch(uiStopTableLoading());
             console.log(error);
         }
     }
@@ -178,7 +184,7 @@ export const useBinStore = () => {
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
         try {
-
+            dispatch(uiStartTableLoading());
             const { data: { msg, results } } = await dashboardApi.get(`bin/users/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
@@ -191,13 +197,16 @@ export const useBinStore = () => {
                 dispatch(loadBinUsers(filteredUsers));
 
                 window.scroll(0, 0);
+                dispatch(uiStopTableLoading());
 
             } else {
+                dispatch(uiStopTableLoading());
                 console.log(msg);
             }
 
 
         } catch (error) {
+            dispatch(uiStopTableLoading());
             console.log(error);
         }
     }
@@ -252,7 +261,7 @@ export const useBinStore = () => {
             dispatch(uiOpenProgressBackdrop());
 
             const { data: { msg, record } } = await dashboardApi.delete(`bin/users/${user._id}`, {});
-            
+
             console.log({ msg, record });
 
 

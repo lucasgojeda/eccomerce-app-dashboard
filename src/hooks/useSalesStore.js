@@ -21,7 +21,9 @@ import {
     uiCloseProgressBackdrop,
     uiOpenErrorAlert,
     uiOpenProgressBackdrop,
-    uiOpenSuccessAlert
+    uiOpenSuccessAlert,
+    uiStartTableLoading,
+    uiStopTableLoading
 } from "../store/slices/uiSlice";
 
 
@@ -36,7 +38,7 @@ export const useSalesStore = () => {
         const term = (searchText !== '' && searchText) ? searchText : 'home';
 
         try {
-
+            dispatch(uiStartTableLoading());
             const { data: { msg, results } } = await dashboardApi.get(`sales/${term}?page=${page}&filterBy=${filterBy}&orderBy=${orderBy}`);
 
 
@@ -51,16 +53,18 @@ export const useSalesStore = () => {
                 dispatch(loadSales(filteredSales));
 
                 window.scroll(0, 0);
+                dispatch(uiStopTableLoading());
 
             } else {
                 if (msg) {
-
+                    dispatch(uiStopTableLoading());
                     console.log(msg);
                 }
             }
 
 
         } catch (error) {
+            dispatch(uiStopTableLoading());
             console.log(error);
         }
     }
@@ -105,7 +109,7 @@ export const useSalesStore = () => {
 
             console.log({ msg, results, notification })
 
-            
+
             if (msg === 'OK') {
 
                 dispatch(uiCloseProgressBackdrop());

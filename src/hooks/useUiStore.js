@@ -24,13 +24,15 @@ import {
     uiCloseDialogDelete,
     uiOpenDialogFields,
     uiCloseDialogFields,
+    uiStartTableLoading,
+    uiStopTableLoading,
 } from '../store/slices/uiSlice';
 
 
 export const useUiStore = () => {
 
     const dispatch = useDispatch();
-    
+
     const {
         modalProductAdd,
         modalProductEdit,
@@ -44,6 +46,7 @@ export const useUiStore = () => {
         dialogFields,
         recordModal,
         categoriesModal,
+        tableLoading,
     } = useSelector(state => state.ui);
 
 
@@ -174,6 +177,16 @@ export const useUiStore = () => {
         dispatch(uiCloseDialogFields());
     };
 
+    const startUiStartTableLoading = () => {
+
+        dispatch(uiStartTableLoading());
+    };
+
+    const startUiStopTableLoading = () => {
+
+        dispatch(uiStopTableLoading());
+    };
+
 
 
     return {
@@ -190,6 +203,7 @@ export const useUiStore = () => {
         dialogFields,
         recordModal,
         categoriesModal,
+        tableLoading,
 
         //* Métodos
         startUiLogout,
@@ -215,5 +229,7 @@ export const useUiStore = () => {
         startUiCloseDialogDelete,
         startUiOpenDialogFields,
         startUiCloseDialogFields,
+        startUiStartTableLoading,
+        startUiStopTableLoading,
     }
 }

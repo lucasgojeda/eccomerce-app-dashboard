@@ -6,7 +6,7 @@ import 'moment-timezone';
 import 'moment/locale/es';
 
 import { DataGrid } from '@mui/x-data-grid';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, CircularProgress, Container, Typography } from '@mui/material';
 import Skeleton from '@mui/material/Skeleton';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import MenuItem from '@mui/material/MenuItem';
@@ -43,7 +43,7 @@ export const RecordsTable = () => {
     const location = useLocation();
 
     const { dashboardRecords } = useStaticsStore();
-    const { startUiOpenRecordModal } = useUiStore();
+    const { startUiOpenRecordModal, tableLoading } = useUiStore();
     const {
         records,
         activeRecord,
@@ -288,69 +288,77 @@ export const RecordsTable = () => {
                                     </div>
                                 </div>
 
-                                <Container id='containerRows'>
+                                {
+                                    (records.length !== 0 && !tableLoading)
+                                        ?
+                                        <Container id='containerRows'>
 
-                                    {
-                                        records.map(
-                                            (e, i) => <div
-                                                onClick={(event) => handleActiveRecord(event, e)}
-                                                onDoubleClick={handleOpenButton}
-                                                key={e._id}
-                                                id='rowsDiv'
-                                                style={{
-                                                    backgroundColor: (activeRecord?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
-                                                }}
-                                                >
-
-                                                <div id='nameItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e?.name.split(" ")[0]} {e?.name.split(" ")[1]}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='actionItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.action}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='typeItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.type}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='userItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {e.user?.name}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='dateItemContainer'>
-                                                    <Typography variant='body2'>
-                                                        {moment(e.date).tz("America/Argentina/Buenos_Aires").format('LLL')}
-                                                    </Typography>
-                                                </div>
-
-                                                <div id='menuIconDiv'>
-                                                    <IconButton
-                                                        size="large"
-                                                        aria-label="account of current user"
-                                                        aria-controls="menu-appbar"
-                                                        aria-haspopup="true"
-                                                        onClick={(event) => handleMenu(event, e)}
-                                                        color="inherit"
-                                                        id='productMenuIcon'
+                                            {
+                                                records.map(
+                                                    (e, i) => <div
+                                                        onClick={(event) => handleActiveRecord(event, e)}
+                                                        onDoubleClick={handleOpenButton}
+                                                        key={e._id}
+                                                        id='rowsDiv'
+                                                        style={{
+                                                            backgroundColor: (activeRecord?._id === e._id) ? 'rgba(93, 6, 129, 0.25)' : (i % 2 === 1) && 'rgba(0, 113, 255, 0.25)',
+                                                        }}
                                                     >
-                                                        <VisibilityIcon />
-                                                    </IconButton>
-                                                </div>
 
-                                            </div>
-                                        )
-                                    }
+                                                        <div id='nameItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e?.name.split(" ")[0]} {e?.name.split(" ")[1]}
+                                                            </Typography>
+                                                        </div>
 
-                                </Container>
+                                                        <div id='actionItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.action}
+                                                            </Typography>
+                                                        </div>
+
+                                                        <div id='typeItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.type}
+                                                            </Typography>
+                                                        </div>
+
+                                                        <div id='userItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {e.user?.name}
+                                                            </Typography>
+                                                        </div>
+
+                                                        <div id='dateItemContainer'>
+                                                            <Typography variant='body2'>
+                                                                {moment(e.date).tz("America/Argentina/Buenos_Aires").format('LLL')}
+                                                            </Typography>
+                                                        </div>
+
+                                                        <div id='menuIconDiv'>
+                                                            <IconButton
+                                                                size="large"
+                                                                aria-label="account of current user"
+                                                                aria-controls="menu-appbar"
+                                                                aria-haspopup="true"
+                                                                onClick={(event) => handleMenu(event, e)}
+                                                                color="inherit"
+                                                                id='productMenuIcon'
+                                                            >
+                                                                <VisibilityIcon />
+                                                            </IconButton>
+                                                        </div>
+
+                                                    </div>
+                                                )
+                                            }
+
+                                        </Container>
+                                        :
+                                        <div className='progressTable'>
+                                            <CircularProgress color="info" size='80px' sx={{ display: 'block' }} />
+                                        </div>
+                                }
 
                                 <Container id='paginationDiv'>
                                     {
