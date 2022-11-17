@@ -49,16 +49,17 @@ Para iniciar sesión como moderador una vez que estamos en la pagina de login de
 - Marcar como enviados los pedidos de los productos por parte de clientes desde la sección de ventas.
 - Puede ver solo las estadisticas de la cantidad de productos y de ventas en la pagina de inicio.
 
-## Installation
+## Instalación
 
 
 
 Primero instalamos las dependencias y luego iniciamos el servidor local.
 
 ```sh
-cd eccomerce-app-dashboard
-npm i
-npm run dev
+$ git clone https://github.com/lucasgojeda/eccomerce-app-dashboard.git
+$ cd eccomerce-app-dashboard
+$ npm i
+$ npm run dev
 ```
 
 Cabe destacar que debemos contar con la siguiente variable de entorno configurada.
