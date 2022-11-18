@@ -4,6 +4,8 @@
 
 ![Image text](https://res.cloudinary.com/the-kings-company/image/upload/v1662149689/Portafolio/DashboardApp/1_pak7lt.jpg)
 
+Este proyecto fue migrado de CRA a VITE, y refactorizado varias veces mientras iba aprendiendo nuevas cosas, los commits de este repositorio empiezan cuando el poyecto fue migrado a VITE.
+
 Este proyecto es parte del que al principio fue uno mucho más grande pero decidí dividir su frontend en dos partes para que todo quede mucho más ordenado, facil de mantener y de realizar cambios, el proyecto en si es un e-commerce el cuál consta de las siguientes partes:
 
 - Frontend del usuario, e-commerce en si.
