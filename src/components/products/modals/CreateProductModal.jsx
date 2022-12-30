@@ -341,7 +341,7 @@ export const CreateProductModal = () => {
 
 
                         <Typography variant='body2' id='title'>
-                            Crear nuevo producto
+                            Create new product
                         </Typography>
 
                         <Container id='container'>
@@ -351,7 +351,7 @@ export const CreateProductModal = () => {
                                 <TextField
                                     required
                                     id="outlined-required"
-                                    label="Nombre"
+                                    label="Name"
                                     name='name'
                                     value={name}
                                     onChange={handleProductInputChange}
@@ -361,7 +361,7 @@ export const CreateProductModal = () => {
                                     required
                                     id="outlined-required"
                                     type="number"
-                                    label="Precio"
+                                    label="Price"
                                     name='price'
                                     value={price}
                                     onChange={handleProductInputChange}
@@ -371,7 +371,7 @@ export const CreateProductModal = () => {
                                     required
                                     id="outlined-required"
                                     type="number"
-                                    label="Cantidad"
+                                    label="Quantity"
                                     name='quantity'
                                     value={quantity}
                                     onChange={handleProductInputChange}
@@ -380,7 +380,7 @@ export const CreateProductModal = () => {
                                 <input
                                     type="file"
                                     className="products_input-image"
-                                    placeholder="Imagen"
+                                    placeholder="Image"
                                     ref={imageRef}
                                     name='img'
                                     value={''}
@@ -397,7 +397,7 @@ export const CreateProductModal = () => {
                                     <Select
                                         labelId="demo-simple-select-label"
                                         id="demo-simple-select"
-                                        label="Categoria"
+                                        label="Category"
                                         value={category.name || ''}
                                         onChange={handleCategoryInputChange}
                                     >
@@ -576,13 +576,13 @@ export const CreateProductModal = () => {
                                 id="saveButton"
                                 variant="contained"
                                 onClick={handleSubmit}
-                            >Guardar</Button>
+                            >Save</Button>
 
                             <Button
                                 id="closeButton"
                                 variant="outlined"
                                 onClick={handleClose}
-                            >Cerrar</Button>
+                            >Cancel</Button>
                         </Container>
                     </Box>
                 </Container>

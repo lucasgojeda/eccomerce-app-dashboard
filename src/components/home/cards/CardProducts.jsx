@@ -35,10 +35,10 @@ export const CardProducts = () => {
 
 
   const dataDoughnut = {
-    labels: ['Usuaros habilitados', 'Usuarios en papelera'],
+    labels: ['Enabled users', 'Users on trash'],
     datasets: [
       {
-        label: 'Usuarios',
+        label: 'Users',
         data: [dashboardUsers, dashboardBinUsers],
         backgroundColor: [
           'rgba(40, 180, 99, 0.8)',
@@ -54,10 +54,10 @@ export const CardProducts = () => {
   };
 
   const dataPie = {
-    labels: ['Productos activos', 'Productos en papelera'],
+    labels: ['Active products', 'Products on trash'],
     datasets: [
       {
-        label: 'Productos',
+        label: 'Products',
         data: [dashboardProducts, dashboardBinProducts],
         backgroundColor: [
           'rgba(40, 180, 99, 0.8)',
@@ -97,7 +97,7 @@ export const CardProducts = () => {
                     <Typography
                       variant='body2'
                       className="card-title text-title"
-                    >VENTAS</Typography>
+                    >SALES</Typography>
                     <h2 className="text-amount">{dashboardSales}</h2>
                   </div>
                   <div className="iconContainer">
@@ -123,7 +123,7 @@ export const CardProducts = () => {
                     <Typography
                       variant='body2'
                       className="card-title text-title"
-                    >PRODUCTOS</Typography>
+                    >PRODUCTS</Typography>
                     <h2 className="text-amount">{dashboardProducts + dashboardBinProducts}</h2>
                   </div>
                   <div className="iconContainer">
@@ -152,7 +152,7 @@ export const CardProducts = () => {
                         <Typography
                           variant='body2'
                           className="card-title text-title"
-                        >USUARIOS</Typography>
+                        >USERS</Typography>
                         <h2 className="text-amount">{dashboardUsers + dashboardBinUsers}</h2>
                       </div>
                       <div className="iconContainer">
@@ -180,7 +180,7 @@ export const CardProducts = () => {
                         <Typography
                           variant='body2'
                           className="card-title text-title"
-                        >REGISTROS</Typography>
+                        >RECORDS</Typography>
                         <h2 className="text-amount">{dashboardRecords}</h2>
                       </div>
 

@@ -5,7 +5,7 @@ import '../../../../styles/components/auth/pages/buttons/_adminButton.scss';
 export const AdminButton = ({handleAdminLogin}) => {
     return (
         <button className='custom-admin-btn admin-btn' onClick={handleAdminLogin}>
-            <span>Administrador</span>
+            <span>Administrator</span>
         </button>
     )
 }

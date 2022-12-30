@@ -21,8 +21,8 @@ export const TabNavRecordModal = ({ setProductUpdate, productUpdate }) => {
         aria-label="Tabs where selection follows focus"
         selectionFollowsFocus
       >
-        <Tab label="Antes" />
-        <Tab label="Después" />
+        <Tab label="Before" />
+        <Tab label="After" />
       </Tabs>
     </Box>
   );

@@ -78,18 +78,18 @@ export const RecordModal = () => {
                     <Box className='mainRecordsModalContainer'>
 
                         <Typography variant='body2' id='title'>
-                            Registro
+                            Record
                         </Typography>
 
 
                         <Divider />
                         <Container id='itemsContainer'>
 
-                            <ListItemText id='user' primary={`Nombre: ${user.name}`} />
-                            <ListItemText id='action' primary={`Acción: ${action}`} />
+                            <ListItemText id='user' primary={`Name: ${user.name}`} />
+                            <ListItemText id='action' primary={`Action: ${action}`} />
                             <ListItemText id='user' primary={`Email: ${user.email}`} />
-                            <ListItemText id='type' primary={`Tipo: ${type}`} />
-                            <ListItemText id='date' primary={`Fecha: ${moment(date).tz("America/Argentina/Buenos_Aires").format('LLL')}`} />
+                            <ListItemText id='type' primary={`Type: ${type}`} />
+                            <ListItemText id='date' primary={`Date: ${moment(date).tz("America/Argentina/Buenos_Aires").format('LLL')}`} />
 
                         </Container>
 
@@ -100,16 +100,16 @@ export const RecordModal = () => {
                             &&
                             <>
                                 <h4>
-                                    Detalles
+                                    Details
                                 </h4>
 
                                 <Container id='detailsContainer'>
 
-                                    <ListItemText id='name' primary={`Nombre: ${name}`} />
-                                    <ListItemText id='category' primary={`Categoria: ${details.category.name}`} />
-                                    <ListItemText id='price' primary={`Precio: $${new Intl.NumberFormat('es-IN').format(details.price)}`} />
-                                    <ListItemText id='quantity' primary={`Cantidad: ${details.quantity}`} />
-                                    <ListItemText id='description' primary={`Descripción: ${details.description}`} />
+                                    <ListItemText id='name' primary={`Name: ${name}`} />
+                                    <ListItemText id='category' primary={`Category: ${details.category.name}`} />
+                                    <ListItemText id='price' primary={`Price: $${new Intl.NumberFormat('es-IN').format(details.price)}`} />
+                                    <ListItemText id='quantity' primary={`Quantity: ${details.quantity}`} />
+                                    <ListItemText id='description' primary={`Description: ${details.description}`} />
 
                                     <Container id='containerImage'>
 
@@ -207,11 +207,11 @@ export const RecordModal = () => {
                                         ?
                                         <Container id='detailsContainer'>
 
-                                            <ListItemText id='name' primary={`Nombre: ${details.before.name}`} />
-                                            <ListItemText id='category' primary={`Categoria: ${details.before.category.name}`} />
-                                            <ListItemText id='price' primary={`Precio: $${new Intl.NumberFormat('es-IN').format(details.before.price)}`} />
-                                            <ListItemText id='quantity' primary={`Cantidad: ${details.before.quantity}`} />
-                                            <ListItemText id='description' primary={`Descripción: ${details.before.description}`} />
+                                            <ListItemText id='name' primary={`Name: ${details.before.name}`} />
+                                            <ListItemText id='category' primary={`Category: ${details.before.category.name}`} />
+                                            <ListItemText id='price' primary={`Price: $${new Intl.NumberFormat('es-IN').format(details.before.price)}`} />
+                                            <ListItemText id='quantity' primary={`Quantity: ${details.before.quantity}`} />
+                                            <ListItemText id='description' primary={`Description: ${details.before.description}`} />
 
                                             <Container id='containerImage'>
 
@@ -291,11 +291,11 @@ export const RecordModal = () => {
                                         :
                                         <Container id='detailsContainer'>
 
-                                            <ListItemText id='name' primary={`Nombre: ${details.after.name}`} />
-                                            <ListItemText id='category' primary={`Categoria: ${details.after.category.name}`} />
-                                            <ListItemText id='price' primary={`Precio: $${new Intl.NumberFormat('es-IN').format(details.after.price)}`} />
-                                            <ListItemText id='quantity' primary={`Cantidad: ${details.after.quantity}`} />
-                                            <ListItemText id='description' primary={`Descripción: ${details.after.description}`} />
+                                            <ListItemText id='name' primary={`Name: ${details.after.name}`} />
+                                            <ListItemText id='category' primary={`Category: ${details.after.category.name}`} />
+                                            <ListItemText id='price' primary={`Price: $${new Intl.NumberFormat('es-IN').format(details.after.price)}`} />
+                                            <ListItemText id='quantity' primary={`Quantity: ${details.after.quantity}`} />
+                                            <ListItemText id='description' primary={`Description: ${details.after.description}`} />
 
                                             <Container id='containerImage'>
 
@@ -386,10 +386,10 @@ export const RecordModal = () => {
 
                                 <Container id='detailsContainer'>
 
-                                    <ListItemText id='name' primary={`Nombre: ${name}`} />
+                                    <ListItemText id='name' primary={`Name: ${name}`} />
                                     <ListItemText id='email' primary={`Email: ${details.email}`} />
                                     <ListItemText id='price' primary={`Google: ${details.google}`} />
-                                    <ListItemText id='quantity' primary={`Rol: ${details.role}`} />
+                                    <ListItemText id='quantity' primary={`Role: ${details.role}`} />
 
                                 </Container>
                             </>
@@ -410,19 +410,19 @@ export const RecordModal = () => {
                                         ?
                                         <Container id='detailsContainer'>
 
-                                            <ListItemText id='name' primary={`Nombre: ${details.before.name}`} />
+                                            <ListItemText id='name' primary={`Name: ${details.before.name}`} />
                                             <ListItemText id='email' primary={`Email: ${details.before.email}`} />
                                             <ListItemText id='price' primary={`Google: ${details.before.google}`} />
-                                            <ListItemText id='quantity' primary={`Rol: ${details.before.role}`} />
+                                            <ListItemText id='quantity' primary={`Role: ${details.before.role}`} />
 
                                         </Container>
                                         :
                                         <Container id='detailsContainer'>
 
-                                            <ListItemText id='name' primary={`Nombre: ${details.after.name}`} />
+                                            <ListItemText id='name' primary={`Name: ${details.after.name}`} />
                                             <ListItemText id='email' primary={`Email: ${details.after.email}`} />
                                             <ListItemText id='price' primary={`Google: ${details.after.google}`} />
-                                            <ListItemText id='quantity' primary={`Rol: ${details.after.role}`} />
+                                            <ListItemText id='quantity' primary={`Role: ${details.after.role}`} />
 
                                         </Container>
                                 }
@@ -434,7 +434,7 @@ export const RecordModal = () => {
                             id="submitButton"
                             variant="outlined"
                             onClick={handleClose}
-                        >Cerrar</Button>
+                        >Close</Button>
                     </Box>
                 </Container>
             </Modal>

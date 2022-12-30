@@ -353,14 +353,14 @@ export const EditProductModal = () => {
                     >
 
                         <Typography variant='body2' id='title'>
-                            Editar producto
+                            Edit product
                         </Typography>
                         <Container id='container'>
                             <div>
                                 <TextField
                                     required
                                     id="outlined-required"
-                                    label="Nombre"
+                                    label="Name"
                                     name='name'
                                     value={name}
                                     onChange={handleProductInputChange}
@@ -370,7 +370,7 @@ export const EditProductModal = () => {
                                     required
                                     id="outlined-required"
                                     type="number"
-                                    label="Precio"
+                                    label="Price"
                                     name='price'
                                     value={price}
                                     onChange={handleProductInputChange}
@@ -380,7 +380,7 @@ export const EditProductModal = () => {
                                     required
                                     id="outlined-required"
                                     type="number"
-                                    label="Cantidad"
+                                    label="Quantity"
                                     name='quantity'
                                     value={quantity}
                                     onChange={handleProductInputChange}
@@ -389,7 +389,7 @@ export const EditProductModal = () => {
                                 <input
                                     type="file"
                                     className="products_input-image"
-                                    placeholder="Imagen"
+                                    placeholder="Image"
                                     ref={imageRef}
                                     name='img'
                                     value={''}
@@ -610,13 +610,13 @@ export const EditProductModal = () => {
                                 id="saveButton"
                                 variant="contained"
                                 onClick={handleSubmit}
-                            >Guardar</Button>
+                            >Save</Button>
 
                             <Button
                                 id="closeButton"
                                 variant="outlined"
                                 onClick={handleClose}
-                            >Cerrar</Button>
+                            >Cancel</Button>
                         </Container>
                     </Box>
                 </Container>

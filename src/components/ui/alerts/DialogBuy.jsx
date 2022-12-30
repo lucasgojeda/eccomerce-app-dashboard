@@ -48,15 +48,15 @@ export const DialogBuy = ({ dialogBuyOpen, setDialogBuyOpen, cart }) => {
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Está a solo un paso de terminar su compra!
+                        You are just one step away from completing your purchase!
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose}>
-                        Cancelar
+                        Cancel
                     </Button>
                     <Button autoFocus onClick={handleBuy}>
-                        Comprar
+                        Buy
                     </Button>
                 </DialogActions>
             </Dialog>

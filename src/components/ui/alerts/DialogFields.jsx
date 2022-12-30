@@ -40,7 +40,7 @@ export const DialogFields = () => {
         >
             <DialogContent>
                 <h4>
-                    {'Los siguientes campos son requeridos:'}
+                    {'Following fields are required:'}
                 </h4>
                 <br />
                 {

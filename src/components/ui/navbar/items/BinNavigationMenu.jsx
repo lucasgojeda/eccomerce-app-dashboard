@@ -41,7 +41,7 @@ export const BinNavigationMenu = () => {
                                 }} />
                         </ListItemIcon>
 
-                        <ListItemText primary="Papelera" />
+                        <ListItemText primary="Trash" />
 
                     </ListItem>
 
@@ -55,7 +55,7 @@ export const BinNavigationMenu = () => {
                                 }} />
                         </ListItemIcon>
 
-                        <ListItemText primary="Productos" />
+                        <ListItemText primary="Products" />
 
                     </ListItem>
 
@@ -67,7 +67,7 @@ export const BinNavigationMenu = () => {
                                 }} />
                         </ListItemIcon>
 
-                        <ListItemText primary="Usuarios" />
+                        <ListItemText primary="Users" />
 
                     </ListItem>
 

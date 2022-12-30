@@ -70,7 +70,7 @@ export const BinEditionItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Habilitar" />
+                    <ListItemText primary="Enable" />
 
                 </ListItem>
 
@@ -81,7 +81,7 @@ export const BinEditionItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Eliminar" />
+                    <ListItemText primary="Remove" />
 
                 </ListItem>
 

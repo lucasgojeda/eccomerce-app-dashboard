@@ -186,7 +186,7 @@ export const BinUsersTable = () => {
 
                                 <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Filter by</InputLabel>
 
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -196,7 +196,7 @@ export const BinUsersTable = () => {
                                         label="filterBy"
                                         onChange={handleFilterByChange}
                                     >
-                                        <MenuItem value={'name'}>Nombre</MenuItem>
+                                        <MenuItem value={'name'}>Name</MenuItem>
                                         <MenuItem value={'role'}>Role</MenuItem>
                                         <MenuItem value={'email'}>Email</MenuItem>
                                     </Select>
@@ -205,7 +205,7 @@ export const BinUsersTable = () => {
 
                                 <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Order by</InputLabel>
 
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -215,8 +215,8 @@ export const BinUsersTable = () => {
                                         label="orderBy"
                                         onChange={handleOrderByChange}
                                     >
-                                        <MenuItem value={'asc'}>Ascendente</MenuItem>
-                                        <MenuItem value={'desc'}>Descendente</MenuItem>
+                                        <MenuItem value={'asc'}>Ascendent</MenuItem>
+                                        <MenuItem value={'desc'}>Descendent</MenuItem>
                                     </Select>
 
                                 </FormControl>
@@ -262,7 +262,7 @@ export const BinUsersTable = () => {
 
                                     <div id='nameItemContainer'>
                                         <Typography variant='body2'>
-                                            Nombre
+                                            Name
                                         </Typography>
                                     </div>
 

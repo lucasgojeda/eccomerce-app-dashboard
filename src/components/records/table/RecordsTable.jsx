@@ -165,7 +165,7 @@ export const RecordsTable = () => {
 
                                 <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Filter by</InputLabel>
 
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -175,10 +175,10 @@ export const RecordsTable = () => {
                                         label="filterBy"
                                         onChange={handleFilterByChange}
                                     >
-                                        <MenuItem value={'name'}>Nombre</MenuItem>
-                                        <MenuItem value={'action'}>Acción</MenuItem>
-                                        <MenuItem value={'type'}>Tipo</MenuItem>
-                                        <MenuItem value={'date'}>Fecha</MenuItem>
+                                        <MenuItem value={'name'}>Name</MenuItem>
+                                        <MenuItem value={'action'}>Action</MenuItem>
+                                        <MenuItem value={'type'}>Type</MenuItem>
+                                        <MenuItem value={'date'}>Date</MenuItem>
                                         {/* <MenuItem value={'user'}>Usuario</MenuItem> */}
                                     </Select>
 
@@ -186,7 +186,7 @@ export const RecordsTable = () => {
 
                                 <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Order by</InputLabel>
 
                                     <Select
                                         labelId="demo-simple-select-label"
@@ -196,8 +196,8 @@ export const RecordsTable = () => {
                                         label="orderBy"
                                         onChange={handleOrderByChange}
                                     >
-                                        <MenuItem value={'asc'}>Ascendente</MenuItem>
-                                        <MenuItem value={'desc'}>Descendente</MenuItem>
+                                        <MenuItem value={'asc'}>Ascendent</MenuItem>
+                                        <MenuItem value={'desc'}>Descendent</MenuItem>
                                     </Select>
 
                                 </FormControl>
@@ -242,31 +242,31 @@ export const RecordsTable = () => {
 
                                     <div id='nameItemContainer'>
                                         <Typography variant='body2'>
-                                            Nombre
+                                            Name
                                         </Typography>
                                     </div>
 
                                     <div id='actionItemContainer'>
                                         <Typography variant='body2'>
-                                            Acción
+                                            Action
                                         </Typography>
                                     </div>
 
                                     <div id='typeItemContainer'>
                                         <Typography variant='body2'>
-                                            Tipo
+                                            Type
                                         </Typography>
                                     </div>
 
                                     <div id='userItemContainer'>
                                         <Typography variant='body2'>
-                                            Usuario
+                                            User
                                         </Typography>
                                     </div>
 
                                     <div id='dateItemContainer'>
                                         <Typography variant='body2'>
-                                            Fecha
+                                            Date
                                         </Typography>
                                     </div>
 

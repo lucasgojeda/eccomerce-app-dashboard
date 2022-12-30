@@ -182,7 +182,7 @@ export const ProductsTable = () => {
 
                             <FormControl id="FormControl">
 
-                                <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Filter by</InputLabel>
 
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -192,18 +192,18 @@ export const ProductsTable = () => {
                                     label="filterBy"
                                     onChange={handleFilterByChange}
                                 >
-                                    <MenuItem value={'name'}>Nombre</MenuItem>
-                                    <MenuItem value={'category'}>Categoria</MenuItem>
-                                    <MenuItem value={'price'}>Precio</MenuItem>
-                                    <MenuItem value={'quantity'}>Cantidad</MenuItem>
-                                    <MenuItem value={'user'}>Usuario</MenuItem>
+                                    <MenuItem value={'name'}>Name</MenuItem>
+                                    <MenuItem value={'category'}>Category</MenuItem>
+                                    <MenuItem value={'price'}>Price</MenuItem>
+                                    <MenuItem value={'quantity'}>Quantity</MenuItem>
+                                    <MenuItem value={'user'}>User</MenuItem>
                                 </Select>
 
                             </FormControl>
 
                             <FormControl id="FormControl">
 
-                                <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Order by</InputLabel>
 
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -213,8 +213,8 @@ export const ProductsTable = () => {
                                     label="orderBy"
                                     onChange={handleOrderByChange}
                                 >
-                                    <MenuItem value={'asc'}>Ascendente</MenuItem>
-                                    <MenuItem value={'desc'}>Descendente</MenuItem>
+                                    <MenuItem value={'asc'}>Ascendent</MenuItem>
+                                    <MenuItem value={'desc'}>Descendent</MenuItem>
                                 </Select>
 
                             </FormControl>
@@ -261,31 +261,31 @@ export const ProductsTable = () => {
 
                             <div id='nameItemContainer'>
                                 <Typography variant='body2'>
-                                    Nombre
+                                    Name
                                 </Typography>
                             </div>
 
                             <div id='priceItemContainer'>
                                 <Typography variant='body2'>
-                                    Precio
+                                    Price
                                 </Typography>
                             </div>
 
                             <div id='quantityItemContainer'>
                                 <Typography variant='body2'>
-                                    Cantidad
+                                    Quantity
                                 </Typography>
                             </div>
 
                             <div id='categoryItemContainer'>
                                 <Typography variant='body2'>
-                                    Categoria
+                                    Category
                                 </Typography>
                             </div>
 
                             <div id='userItemContainer'>
                                 <Typography variant='body2'>
-                                    Usuario
+                                    User
                                 </Typography>
                             </div>
 

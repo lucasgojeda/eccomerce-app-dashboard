@@ -111,9 +111,9 @@ export const LoginPage = () => {
                                 id="login__password"
                                 type="password"
                                 className="form__input"
-                                placeholder="Contraseña"
+                                placeholder="Password"
                                 autoComplete="off"
-                                label="Contraseña"
+                                label="Password"
                                 name='password'
                                 value={password}
                                 onChange={handleInputPasswordChange}
@@ -123,7 +123,7 @@ export const LoginPage = () => {
                         </div>
 
                         <div className="form__field">
-                            <input type="submit" value="Iniciar Sesión" onClick={handleLogin} />
+                            <input type="submit" value="Login" onClick={handleLogin} />
                         </div>
 
                     </form>

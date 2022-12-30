@@ -23,8 +23,8 @@ export const DialogDelete = () => {
 
     const { pathname } = useLocation();
 
-    const { 
-        dialogDelete: dialogDeleteStatus, 
+    const {
+        dialogDelete: dialogDeleteStatus,
         startUiCloseDialogDelete,
         startUiOpenErrorAlert
     } = useUiStore();
@@ -93,20 +93,20 @@ export const DialogDelete = () => {
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title">
-                    {"Advertencia!"}
+                    {"Warning!"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Está seguro que desea realizar esta acción?
-                        Podria ser irreversible
+                        Are you sure you want to perform this action?
+                        Could be irreversible
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button autoFocus onClick={handleClose}>
-                        No
+                        No, I don't
                     </Button>
                     <Button autoFocus onClick={handleDelete}>
-                        Si
+                        Yes, I do
                     </Button>
                 </DialogActions>
             </Dialog>

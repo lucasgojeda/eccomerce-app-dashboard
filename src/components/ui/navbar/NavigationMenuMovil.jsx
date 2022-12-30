@@ -239,7 +239,7 @@ export const NavigationMenuMovil = () => {
                         sx={{
                             ml: '-1%'
                         }}
-                        label="Papelera"
+                        label="Trash"
                         value={
                             (pathname === "/bin/users")
                                 ?
@@ -262,14 +262,14 @@ export const NavigationMenuMovil = () => {
 
 
                 <BottomNavigationAction
-                    label="Inicio"
+                    label="Home"
                     value="/"
                     icon={<HomeIcon />}
                     onClick={() => navigate('/')}
                 />
 
                 <BottomNavigationAction
-                    label="Productos"
+                    label="Products"
                     value="/products"
                     icon={<InventoryIcon />}
                     onClick={() => navigate('/products')}
@@ -295,12 +295,12 @@ export const NavigationMenuMovil = () => {
                     &&
                     <Box id='containerSubMenu'>
 
-                        <IconButton aria-label="Usuarios" onClick={() => navigate('/users')}>
+                        <IconButton aria-label="Users" onClick={() => navigate('/users')}>
                             <GroupIcon />
                         </IconButton>
 
 
-                        <IconButton aria-label="Registros" onClick={() => navigate('/regist')}>
+                        <IconButton aria-label="Recors" onClick={() => navigate('/regist')}>
                             <LibraryBooksIcon />
                         </IconButton>
 
@@ -313,11 +313,11 @@ export const NavigationMenuMovil = () => {
                     &&
                     <Box id='containerSubMenuBin'>
 
-                        <IconButton aria-label="Usuarios" onClick={() => navigate('/bin/users')}>
+                        <IconButton aria-label="Users" onClick={() => navigate('/bin/users')}>
                             <GroupIcon />
                         </IconButton>
 
-                        <IconButton aria-label="Productos" onClick={() => navigate('/bin/products')}>
+                        <IconButton aria-label="Products" onClick={() => navigate('/bin/products')}>
                             <InventoryIcon />
                         </IconButton>
 

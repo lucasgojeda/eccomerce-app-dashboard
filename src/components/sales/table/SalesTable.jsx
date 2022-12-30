@@ -184,7 +184,7 @@ export const SalesTable = () => {
 
                             <FormControl id="FormControl">
 
-                                <InputLabel id="demo-simple-select-label">Filtrar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Filter by</InputLabel>
 
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -194,11 +194,11 @@ export const SalesTable = () => {
                                     label="filterBy"
                                     onChange={handleFilterByChange}
                                 >
-                                    <MenuItem value={'user'}>Usuario</MenuItem>
-                                    <MenuItem value={'status'}>Estado</MenuItem>
+                                    <MenuItem value={'user'}>User</MenuItem>
+                                    <MenuItem value={'status'}>Status</MenuItem>
                                     <MenuItem value={'total_price'}>Total</MenuItem>
-                                    <MenuItem value={'date_requested'}>Fecha entrada</MenuItem>
-                                    <MenuItem value={'date_sended'}>Fecha salida</MenuItem>
+                                    <MenuItem value={'date_requested'}>Entry date</MenuItem>
+                                    <MenuItem value={'date_sended'}>Departure date</MenuItem>
                                     {/* <MenuItem value={'user'}>Usuario</MenuItem> */}
                                 </Select>
 
@@ -206,7 +206,7 @@ export const SalesTable = () => {
 
                             <FormControl id="FormControl">
 
-                                <InputLabel id="demo-simple-select-label">Ordenar por</InputLabel>
+                                <InputLabel id="demo-simple-select-label">Order by</InputLabel>
 
                                 <Select
                                     labelId="demo-simple-select-label"
@@ -216,8 +216,8 @@ export const SalesTable = () => {
                                     label="orderBy"
                                     onChange={handleOrderByChange}
                                 >
-                                    <MenuItem value={'asc'}>Ascendente</MenuItem>
-                                    <MenuItem value={'desc'}>Descendente</MenuItem>
+                                    <MenuItem value={'asc'}>Ascendent</MenuItem>
+                                    <MenuItem value={'desc'}>Descendent</MenuItem>
                                 </Select>
 
                             </FormControl>
@@ -264,13 +264,13 @@ export const SalesTable = () => {
 
                             <div id='userItemContainer'>
                                 <Typography variant='body2'>
-                                    Usuario
+                                    User
                                 </Typography>
                             </div>
 
                             <div id='stateItemContainer'>
                                 <Typography variant='body2'>
-                                    Estado
+                                    Status
                                 </Typography>
                             </div>
 
@@ -282,13 +282,13 @@ export const SalesTable = () => {
 
                             <div id='dateRequestedItemContainer'>
                                 <Typography variant='body2'>
-                                    Fecha entrada
+                                    Entry date
                                 </Typography>
                             </div>
 
                             <div id='dateSendedItemContainer'>
                                 <Typography variant='body2'>
-                                    Fecha salida
+                                    Departure date
                                 </Typography>
                             </div>
 

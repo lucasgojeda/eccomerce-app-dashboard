@@ -8,7 +8,7 @@ export const IngresarButton = () => {
             type="submit"
             id="submitButton"
             className="custom-ingresar-btn ingresar-btn">
-            <span>Ingresar</span>
+            <span>Login</span>
         </button>
     )
 }

@@ -24,7 +24,7 @@ export const HomePage = () => {
             <button
                 onClick={handleLogout}
                 className='custom-btn btn-5'>
-                <span><LogoutIcon/>Cerrar sesión</span>
+                <span><LogoutIcon/>Log out</span>
             </button>
 
             <CardProducts />

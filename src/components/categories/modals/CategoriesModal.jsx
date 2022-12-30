@@ -176,7 +176,7 @@ export const CategoriesModal = () => {
                     <>
                         <div className='titleContainer'>
                             <Typography variant='body2' className='title'>
-                                Editar categorías
+                                Edit categories
                             </Typography>
                         </div>
                         <Divider />
@@ -249,12 +249,12 @@ export const CategoriesModal = () => {
                     {
                         <Dialog open={modalCreate} onClose={handleModalCreateClose}>
 
-                            <DialogTitle>Crear categoria</DialogTitle>
+                            <DialogTitle>Create new category</DialogTitle>
 
                             <DialogContent>
 
                                 <DialogContentText>
-                                    Escriba cuidadosamente el nombre de la categoria y tenga cuidado con las faltas de ortografia.
+                                    Write the name of the category carefully and be careful with misspellings.
                                 </DialogContentText>
 
                                 <TextField
@@ -271,8 +271,8 @@ export const CategoriesModal = () => {
                             </DialogContent>
 
                             <DialogActions>
-                                <Button onClick={handleModalCreateClose}>Cancelar</Button>
-                                <Button onClick={handleCreateSave}>Guardar</Button>
+                                <Button onClick={handleModalCreateClose}>Cancel</Button>
+                                <Button onClick={handleCreateSave}>Save</Button>
                             </DialogActions>
 
                         </Dialog>
@@ -282,12 +282,12 @@ export const CategoriesModal = () => {
                     {
                         <Dialog open={modalEdit} onClose={handleModalEditClose}>
 
-                            <DialogTitle>Editar categoria</DialogTitle>
+                            <DialogTitle>Edit category</DialogTitle>
 
                             <DialogContent>
 
                                 <DialogContentText>
-                                    Si se edita una categoria, todos los productos que se encuentren dentro de ella se veran afectados.
+                                    If a category is edited, all products within it will be affected.
                                 </DialogContentText>
 
                                 <TextField
@@ -304,8 +304,8 @@ export const CategoriesModal = () => {
                             </DialogContent>
 
                             <DialogActions>
-                                <Button onClick={handleModalEditClose}>Cancelar</Button>
-                                <Button onClick={handleEditSave}>Guardar</Button>
+                                <Button onClick={handleModalEditClose}>Cancel</Button>
+                                <Button onClick={handleEditSave}>Save</Button>
                             </DialogActions>
 
                         </Dialog>
@@ -315,20 +315,20 @@ export const CategoriesModal = () => {
                     {
                         <Dialog open={modalDelete} onClose={handleModalDeleteClose}>
 
-                            <DialogTitle>Eliminar categoria</DialogTitle>
+                            <DialogTitle>Delete category</DialogTitle>
 
                             <DialogContent>
 
                                 <DialogContentText>
-                                    No se podrá eliminar la categoria si esta se encuentra relacionada con al menos 1 producto.
-                                    Está seguro que desea eliminar esta categoria permanentemente ?
+                                    The category cannot be deleted if it is related to at least 1 product.
+                                    Are you sure you want to delete this category permanently?
                                 </DialogContentText>
 
                             </DialogContent>
 
                             <DialogActions>
-                                <Button onClick={handleModalDeleteClose}>No</Button>
-                                <Button onClick={handleDeleteSave}>Si</Button>
+                                <Button onClick={handleModalDeleteClose}>No, I don't</Button>
+                                <Button onClick={handleDeleteSave}>Yes, I do</Button>
                             </DialogActions>
 
                         </Dialog>
@@ -339,7 +339,7 @@ export const CategoriesModal = () => {
                         id="submitButton"
                         variant="outlined"
                         onClick={handleClose}
-                    >Cerrar</Button>
+                    >Close</Button>
                 </Box>
             </Container>
         </Modal>

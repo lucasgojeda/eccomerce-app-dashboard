@@ -46,7 +46,7 @@ export const RecordItems = () => {
                             }} />
                         </ListItemIcon>
 
-                        <ListItemText primary="Ver" />
+                        <ListItemText primary="View" />
 
                     </ListItem>
 

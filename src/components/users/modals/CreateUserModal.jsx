@@ -134,7 +134,7 @@ export const CreateUserModal = () => {
                     >
 
                         <Typography variant='body2' id='title'>
-                            Crear usuario
+                            Create new user
                         </Typography>
 
 
@@ -145,7 +145,7 @@ export const CreateUserModal = () => {
                                     required
                                     id="outlined-required"
                                     variant='outlined'
-                                    label="Nombre"
+                                    label="Name"
                                     name='name'
                                     value={name}
                                     onChange={handleUserInputChange}
@@ -165,7 +165,7 @@ export const CreateUserModal = () => {
                                     required
                                     id="outlined-required"
                                     variant='outlined'
-                                    label="Contraseña"
+                                    label="Password"
                                     name='password'
                                     value={password}
                                     onChange={handleUserInputChange}
@@ -173,7 +173,7 @@ export const CreateUserModal = () => {
 
                                 <FormControl id="FormControl">
 
-                                    <InputLabel id="demo-simple-select-label">Rol</InputLabel>
+                                    <InputLabel id="demo-simple-select-label">Role</InputLabel>
 
                                     <Select
                                         id="demo-simple-select"
@@ -183,9 +183,9 @@ export const CreateUserModal = () => {
                                         onChange={handleSelectRolesInput}
                                     >
 
-                                        <MenuItem name='USER_ROLE' value={'USER_ROLE'}>Usuario</MenuItem>
-                                        <MenuItem name='MODERATOR_ROLE' value={'MODERATOR_ROLE'}>Moderador</MenuItem>
-                                        <MenuItem name='ADMIN_ROLE' value={'ADMIN_ROLE'}>Administrador</MenuItem>
+                                        <MenuItem name='USER_ROLE' value={'USER_ROLE'}>User</MenuItem>
+                                        <MenuItem name='MODERATOR_ROLE' value={'MODERATOR_ROLE'}>Moderator</MenuItem>
+                                        <MenuItem name='ADMIN_ROLE' value={'ADMIN_ROLE'}>Administrator</MenuItem>
 
                                     </Select>
 
@@ -199,13 +199,13 @@ export const CreateUserModal = () => {
                                 id="submitButton"
                                 variant="contained"
                                 onClick={handleSubmit}
-                            >Guardar</Button>
+                            >Save</Button>
 
                             <Button
                                 id="submitButton"
                                 variant="outlined"
                                 onClick={handleClose}
-                            >Cerrar</Button>
+                            >Cancel</Button>
                         </Container>
 
                     </Box>

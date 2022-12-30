@@ -100,7 +100,7 @@ export const EditionItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Editar" />
+                    <ListItemText primary="Edit" />
 
                 </ListItem>
 
@@ -113,7 +113,7 @@ export const EditionItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Crear" />
+                    <ListItemText primary="Create" />
 
                 </ListItem>
 
@@ -129,7 +129,7 @@ export const EditionItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Eliminar" />
+                    <ListItemText primary="Remove" />
 
                 </ListItem>
 

@@ -29,7 +29,7 @@ export const NavigationItems = () => {
                     }} />
                 </ListItemIcon>
 
-                <ListItemText primary="Productos" />
+                <ListItemText primary="Products" />
 
             </ListItem>
 
@@ -43,7 +43,7 @@ export const NavigationItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Usuarios" />
+                    <ListItemText primary="Users" />
 
                 </ListItem>
             }
@@ -58,7 +58,7 @@ export const NavigationItems = () => {
                         }} />
                     </ListItemIcon>
 
-                    <ListItemText primary="Registro" />
+                    <ListItemText primary="Records" />
 
                 </ListItem>
             }
@@ -70,7 +70,7 @@ export const NavigationItems = () => {
                     }} />
                 </ListItemIcon>
 
-                <ListItemText primary="Ventas" />
+                <ListItemText primary="Sales" />
 
             </ListItem>
 

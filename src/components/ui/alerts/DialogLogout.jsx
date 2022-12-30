@@ -41,19 +41,19 @@ export const DialogLogout = ({ dialogLogoutOpen, setDialogLogoutOpen }) => {
             aria-labelledby="responsive-dialog-title"
         >
             <DialogTitle id="responsive-dialog-title">
-                {"Cerrar sesión"}
+                {"Log out"}
             </DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Está seguro que desea cerrar sesión?
+                    Are you sure you want to log out?
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
                 <Button autoFocus onClick={handleClose}>
-                    Cancelar
+                    Cancel
                 </Button>
                 <Button autoFocus onClick={handleLogout}>
-                    Aceptar
+                    Accept
                 </Button>
             </DialogActions>
         </Dialog>
