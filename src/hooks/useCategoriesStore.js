@@ -90,10 +90,10 @@ export const useCategoriesStore = () => {
 
         try {
 
-            const { data: { msg, category } } = await dashboardApi.put(`categories/${_category._id}`, category);
+            const { data: { msg, category } } = await dashboardApi.put(`categories/${_category._id}`, _category);
 
 
-            console.log(data);
+            console.log(category);
 
 
             if (msg === 'OK') {
