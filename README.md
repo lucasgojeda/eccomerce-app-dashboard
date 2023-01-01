@@ -2,7 +2,7 @@
 
 ### _Dashboard_
 
-![Image text](https://res.cloudinary.com/the-kings-company/image/upload/v1662149689/Portafolio/DashboardApp/1_pak7lt.jpg)
+![Image text](https://res.cloudinary.com/the-kings-company/image/upload/v1672610383/Portafolio/English/Dashboard%20app/3_vah90n.jpg)
 
 This project was migrated from CRA to VITE, and refactored several times while i was learning new things, the commits of this repository start when the project was migrated to VITE.
 
