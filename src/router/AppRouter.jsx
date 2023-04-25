@@ -1,165 +1,186 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-    Routes,
-    Route,
-    BrowserRouter,
-    Navigate
-} from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
-import { AdminRoute } from './AdminRoute';
-import { PublicRoute } from './PublicRoute';
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+import Stack from "@mui/material/Stack";
 
-import { NavbarDashboard } from '../components/ui/navbar/NavbarDashboard';
+import { AdminRoute } from "./AdminRoute";
+import { PublicRoute } from "./PublicRoute";
 
-import { EditProductModal } from '../components/products/modals/EditProductModal';
-import { CategoriesModal } from '../components/categories/modals/CategoriesModal';
+import { NavbarDashboard } from "../components/ui/navbar/NavbarDashboard";
 
-import { LoginPage } from '../components/auth';
-import { ProductsPage } from '../components/products';
-import { UsersPage } from '../components/users';
-import { RecordPage } from '../components/records';
-import { BinProductsPage } from '../components/bin-products';
-import { BinUsersPage } from '../components/bin-users';
-import { SalesPage } from '../components/sales';
-import { HomePage } from '../components/home';
+import { EditProductModal } from "../components/products/modals/EditProductModal";
+import { CategoriesModal } from "../components/categories/modals/CategoriesModal";
 
-import { ErrorAlert } from '../components/ui/alerts/ErrorAlert';
-import { SuccessAlert } from '../components/ui/alerts/SuccessAlert';
-import { DialogDelete } from '../components/ui/alerts/DialogDelete';
-import { DialogFields } from '../components/ui/alerts/DialogFields';
-import { ProgressBackdrop } from '../components/ui/progress/ProgressBackdrop';
+import { LoginPage } from "../components/auth";
+import { ProductsPage } from "../components/products";
+import { UsersPage } from "../components/users";
+import { RecordPage } from "../components/records";
+import { BinProductsPage } from "../components/bin-products";
+import { BinUsersPage } from "../components/bin-users";
+import { SalesPage } from "../components/sales";
+import { HomePage } from "../components/home";
 
-import { useAuthStore, useStaticsStore } from '../hooks';
+import { ErrorAlert } from "../components/ui/alerts/ErrorAlert";
+import { SuccessAlert } from "../components/ui/alerts/SuccessAlert";
+import { DialogDelete } from "../components/ui/alerts/DialogDelete";
+import { DialogFields } from "../components/ui/alerts/DialogFields";
+import { ProgressBackdrop } from "../components/ui/progress/ProgressBackdrop";
 
-
-
+import { useAuthStore, useStaticsStore } from "../hooks";
 
 export const AppRouter = () => {
+  const { uid, checking, role, startChecking } = useAuthStore();
+  const { startLoadStatistics } = useStaticsStore();
 
-    const { uid, checking, role, startChecking } = useAuthStore();
-    const { startLoadStatistics } = useStaticsStore();
+  useEffect(() => {
+    startChecking();
+  }, []);
 
-    useEffect(() => {
-
-        startChecking();
-    }, [])
-
-    useEffect(() => {
-
-        if (uid) {
-            startLoadStatistics();
-        }
-    }, [uid])
-
-
-    if (checking) {
-
-        return <Backdrop
-            sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open={true}
-        >
-            <CircularProgress color="inherit" size='80px' sx={{ display: 'block' }} />
-        </Backdrop>
+  useEffect(() => {
+    if (uid) {
+      startLoadStatistics();
     }
+  }, [uid]);
 
-
+  if (checking) {
     return (
-
-
-        <BrowserRouter>
-
-            <Routes>
-
-
-                <Route path="login" element={
-                    <PublicRoute isAutenticated={!!uid}>
-                        <LoginPage />
-                    </PublicRoute>
-                } />
-
-
-                <Route path="/" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <HomePage />
-                        </>
-                    </AdminRoute>
-                } />
-
-                <Route path="products" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <ProductsPage />
-                        </>
-                    </AdminRoute>
-                } />
-
-                <Route path="users" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <UsersPage />
-                        </>
-                    </AdminRoute>
-                } />
-
-                <Route path="regist" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <RecordPage />
-                        </>
-                    </AdminRoute>
-                } />
-
-                <Route path="bin/products" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <BinProductsPage />
-                        </>
-                    </AdminRoute>
-                } />
-
-                <Route path="bin/users" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <BinUsersPage />
-                        </>
-                    </AdminRoute>
-                } />
-
-                <Route path="sales" element={
-                    <AdminRoute isRole={role}>
-                        <>
-                            <NavbarDashboard />
-                            <SalesPage />
-                        </>
-                    </AdminRoute>
-                } />
-
-
-                <Route path="/*" element={<Navigate to="/" />} />
-
-
-            </Routes>
-
-
-            <EditProductModal />
-            <CategoriesModal />
-            <ProgressBackdrop />
-            <DialogDelete />
-            <DialogFields />
-            <ErrorAlert />
-            <SuccessAlert />
-
-        </BrowserRouter>
+      <Backdrop
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          color: "#fff",
+          zIndex: (theme) => theme.zIndex.drawer + 1,
+        }}
+        open={true}
+      >
+        <CircularProgress
+          color="primary"
+          size="80px"
+          sx={{ display: "block" }}
+        />
+        <Stack sx={{ width: "300px", marginTop: "5vh" }} spacing={2}>
+          <Alert severity="info">
+            <AlertTitle>Info</AlertTitle>
+            <strong>The server is for free</strong> so this can take a bit of
+            time the first time you start it. Thanks for your time!
+          </Alert>
+        </Stack>
+      </Backdrop>
     );
+  }
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="login"
+          element={
+            <PublicRoute isAutenticated={!!uid}>
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+
+        <Route
+          path="/"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <HomePage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="products"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <ProductsPage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="users"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <UsersPage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="regist"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <RecordPage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="bin/products"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <BinProductsPage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="bin/users"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <BinUsersPage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="sales"
+          element={
+            <AdminRoute isRole={role}>
+              <>
+                <NavbarDashboard />
+                <SalesPage />
+              </>
+            </AdminRoute>
+          }
+        />
+
+        <Route path="/*" element={<Navigate to="/" />} />
+      </Routes>
+
+      <EditProductModal />
+      <CategoriesModal />
+      <ProgressBackdrop />
+      <DialogDelete />
+      <DialogFields />
+      <ErrorAlert />
+      <SuccessAlert />
+    </BrowserRouter>
+  );
 };
